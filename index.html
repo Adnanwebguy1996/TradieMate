@@ -1,0 +1,2156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TradieMate | Premium Photography & Videography for Sydney Tradies</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons (updated for newer icon set including bi-drone) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+    <style>
+        :root {
+            --primary-orange: #FF931E;
+            --primary-dark: #010100;
+            --secondary-dark: #1A1A1A;
+            --light-gray: #F8F9FA;
+            --medium-gray: #6C757D;
+            --border-gray: #E0E0E0;
+            --white: #FFFFFF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--primary-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-orange);
+            border-color: var(--primary-orange);
+            color: var(--primary-dark);
+            font-weight: 600;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #E6820B;
+            border-color: #E6820B;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 147, 30, 0.3);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
+            font-weight: 600;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--white);
+            border-color: var(--white);
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .section-padding {
+            padding: 80px 0;
+        }
+        
+        /* Hero Section - Clean Video Fix */
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            background: var(--primary-dark);
+        }
+        
+        @media (max-width: 767px) {
+            .hero-section {
+                min-height: 85vh;
+            }
+        }
+        
+        @media (max-width: 575px) {
+            .hero-section {
+                min-height: 80vh;
+            }
+        }
+        
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        
+        .video-background video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(1, 1, 0, 0.85) 0%, rgba(1, 1, 0, 0.75) 100%);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: var(--white);
+            padding: 180px 20px 140px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+        
+        /* Hero Title Stacking Fix */
+        .hero-title {
+            display: block;
+            overflow: hidden;
+        }
+        
+        .hero-title-line {
+            display: block;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: titleReveal 0.8s forwards;
+        }
+        
+        .hero-title-line:nth-child(1) { animation-delay: 0.2s; }
+        .hero-title-line:nth-child(2) { animation-delay: 0.4s; }
+        .hero-title-line:nth-child(3) { animation-delay: 0.6s; }
+        
+        @keyframes titleReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-section .lead {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+            opacity: 0.95;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            line-height: 1.6;
+        }
+        
+        /* FAQ Section - Professional Restored */
+        .faq-section {
+            background: var(--light-gray);
+            padding: 100px 0;
+        }
+        
+        .accordion-item {
+            border: 1px solid var(--border-gray);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            background: var(--white);
+        }
+        
+        .accordion-button {
+            padding: 1.5rem;
+            font-weight: 600;
+            background: var(--white);
+            border: none;
+            box-shadow: none;
+            font-size: 1.1rem;
+            color: var(--primary-dark);
+        }
+        
+        .accordion-button:not(.collapsed) {
+            background: rgba(255, 147, 30, 0.1);
+            color: var(--primary-dark);
+            border-bottom: 1px solid var(--primary-orange);
+        }
+        
+        .accordion-button:focus {
+            box-shadow: 0 0 0 0.25rem rgba(255, 147, 30, 0.25);
+            border-color: var(--primary-orange);
+        }
+        
+        .accordion-button::after {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23FF931E'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+        }
+        
+        .accordion-button:not(.collapsed)::after {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23FF931E'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+            transform: rotate(180deg);
+        }
+        
+        .accordion-body {
+            padding: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--medium-gray);
+            background: var(--white);
+        }
+        
+        .faq-icon {
+            color: var(--primary-orange);
+            margin-right: 12px;
+            font-size: 1.2rem;
+        }
+        
+        /* Professional Icons Fix */
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--primary-orange);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            padding: 15px;
+            background: rgba(255, 147, 30, 0.1);
+            border-radius: 12px;
+        }
+        
+        /* Services Cards - Professional Fix */
+        .service-card {
+            border: 1px solid var(--border-gray);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            height: 100%;
+            transition: all 0.3s ease;
+            background: var(--white);
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(1, 1, 0, 0.1);
+            border-color: var(--primary-orange);
+        }
+        
+        .service-card-link {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+            text-decoration: none;
+        }
+        
+        .service-card .btn {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary-orange);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            padding: 20px;
+            background: rgba(255, 147, 30, 0.1);
+            border-radius: 16px;
+        }
+        
+        /* Portfolio Section - Professional Grid Fix */
+        .portfolio-section {
+            background: var(--light-gray);
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+        }
+        
+        .portfolio-item a {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 3;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(1, 1, 0, 0.9));
+            color: var(--white);
+            padding: 30px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+        }
+        
+        .portfolio-overlay h5 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+        }
+        
+        .portfolio-overlay p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin: 0;
+        }
+        
+        /* Stats Section - Professional Fix */
+        .stats-section {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+            color: var(--white);
+            padding: 80px 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary-orange);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Navigation - Professional Mobile Hamburger Fix */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.98) !important;
+            box-shadow: 0 2px 30px rgba(1, 1, 0, 0.1);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+        
+        .navbar-brand {
+            padding: 0;
+        }
+        
+        .navbar-brand img {
+            height: 45px;
+            width: auto;
+        }
+        
+        /* Mobile Hamburger Menu Fix */
+        .navbar-toggler {
+            border: none;
+            padding: 0.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .navbar-toggler:focus {
+            box-shadow: 0 0 0 3px rgba(255, 147, 30, 0.25);
+            outline: none;
+        }
+        
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(1, 1, 0, 0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+            width: 1.5em;
+            height: 1.5em;
+        }
+        
+        .nav-link {
+            font-weight: 600;
+            color: var(--primary-dark) !important;
+            margin: 0;
+            padding: 0.75rem 1rem !important;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 1rem;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 1rem;
+            right: 1rem;
+            height: 2px;
+            background-color: var(--primary-orange);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            transform: scaleX(1);
+        }
+        
+        /* Mobile Navigation Dropdown */
+        .navbar-collapse {
+            background: var(--white);
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-top: 10px;
+        }
+        
+        @media (min-width: 992px) {
+            .navbar-collapse {
+                background: transparent;
+                box-shadow: none;
+                margin-top: 0;
+            }
+        }
+        
+        .header-booking-btn {
+            background-color: var(--primary-orange);
+            color: var(--primary-dark);
+            border: none;
+            padding: 0.75rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+            margin: 0.5rem 0;
+        }
+        
+        @media (min-width: 992px) {
+            .header-booking-btn {
+                width: auto;
+                margin: 0 0 0 1rem;
+            }
+        }
+        
+        .header-booking-btn:hover {
+            background-color: #E6820B;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 147, 30, 0.3);
+        }
+        
+        /* Footer - Professional Mobile Ready */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        @media (min-width: 768px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+        }
+        
+        @media (min-width: 992px) {
+            footer {
+                padding: 80px 0 30px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 2fr 1fr 1fr 2fr;
+                gap: 30px;
+            }
+        }
+        
+        .footer-section {
+            margin-bottom: 30px;
+        }
+        
+        @media (min-width: 768px) {
+            .footer-section {
+                margin-bottom: 0;
+            }
+        }
+        
+        .footer-logo {
+            height: 40px;
+            width: auto;
+            margin-bottom: 1.5rem;
+            filter: brightness(0) invert(1);
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-logo:hover {
+            opacity: 0.8;
+        }
+        
+        .footer-section p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-section h5 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-section ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-size: 0.95rem;
+        }
+        
+        .footer-section ul li a:hover {
+            color: var(--primary-orange);
+            transform: translateX(5px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary-orange);
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 147, 30, 0.3);
+        }
+        
+        .contact-info {
+            margin-top: 1rem;
+        }
+        
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+        }
+        
+        .contact-info li i {
+            color: var(--primary-orange);
+            margin-top: 4px;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+        }
+        
+        .contact-info li span {
+            line-height: 1.5;
+        }
+        
+        .contact-info li span a {
+            transition: color 0.3s ease;
+        }
+        
+        .contact-info li span a:hover {
+            color: var(--primary-orange) !important;
+            text-decoration: underline;
+        }
+        
+        .copyright {
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-align: center;
+        }
+        
+        @media (min-width: 768px) {
+            .copyright {
+                text-align: left;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
+        
+        .copyright p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .copyright-links {
+            margin-top: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .copyright-links {
+                margin-top: 0;
+                justify-content: flex-end;
+            }
+        }
+        
+        .copyright-links a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: inline-block;
+            padding: 0 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .copyright-links a:hover {
+            color: var(--primary-orange);
+        }
+        
+        /* Mobile Footer Adjustments - Center Aligned */
+        @media (max-width: 767px) {
+            footer {
+                padding: 50px 0 25px;
+            }
+            
+            .footer-content {
+                gap: 35px;
+            }
+            
+            .footer-section {
+                margin-bottom: 35px;
+                text-align: center;
+            }
+            
+            .footer-section:last-child {
+                margin-bottom: 0;
+            }
+            
+            .footer-logo {
+                height: 35px;
+                margin-bottom: 1rem;
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+            }
+            
+            .footer-section p {
+                text-align: center;
+            }
+            
+            .footer-section h5 {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+                text-align: center;
+            }
+            
+            .footer-section ul {
+                text-align: center;
+            }
+            
+            .footer-section ul li {
+                text-align: center;
+            }
+            
+            .footer-section ul li a {
+                display: inline-block;
+            }
+            
+            .social-links {
+                gap: 12px;
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            .social-links a {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .contact-info {
+                text-align: center;
+            }
+            
+            .contact-info li {
+                font-size: 0.9rem;
+                margin-bottom: 0.875rem;
+                justify-content: center;
+                text-align: center;
+            }
+            
+            .contact-info li i {
+                margin-right: 8px;
+            }
+            
+            .copyright {
+                padding-top: 30px;
+                margin-top: 30px;
+                font-size: 0.9rem;
+                text-align: center;
+            }
+            
+            .copyright p {
+                font-size: 0.9rem;
+            }
+            
+            .copyright-links {
+                margin-top: 0.75rem;
+                gap: 0.25rem;
+                justify-content: center;
+            }
+            
+            .copyright-links a {
+                font-size: 0.9rem;
+                padding: 0.25rem 0.5rem;
+            }
+        }
+        
+        @media (max-width: 575px) {
+            footer {
+                padding: 40px 0 20px;
+            }
+            
+            .footer-content {
+                gap: 30px;
+            }
+            
+            .footer-section p {
+                font-size: 0.9rem;
+            }
+            
+            .copyright {
+                font-size: 0.9rem;
+            }
+            
+            .copyright p {
+                font-size: 0.9rem;
+            }
+            
+            .copyright-links a {
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Testimonials - Professional Fix */
+        .testimonial-card {
+            border: 1px solid var(--border-gray);
+            border-radius: 16px;
+            padding: 2.5rem;
+            height: 100%;
+            background: var(--white);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .testimonial-card .stars {
+            color: var(--primary-orange);
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonial-card .quote {
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--medium-gray);
+            margin-bottom: 2rem;
+        }
+        
+        .testimonial-card .author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .testimonial-card .author-info h6 {
+            margin-bottom: 0.25rem;
+            font-weight: 700;
+        }
+        
+        .testimonial-card .author-info small {
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Final CTA - Professional Fix */
+        .final-cta {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+            color: var(--white);
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
+            opacity: 0.1;
+        }
+        
+        /* Responsive Design Fixes */
+        @media (max-width: 1199px) {
+            .hero-section h1 {
+                font-size: 3rem;
+            }
+            
+            .hero-section .lead {
+                font-size: 1.3rem;
+            }
+            
+            .portfolio-grid {
+                gap: 25px;
+            }
+        }
+        
+        @media (max-width: 991px) {
+            .section-padding {
+                padding: 60px 0;
+            }
+            
+            .hero-content {
+                padding: 140px 15px 100px;
+            }
+            
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-section .lead {
+                font-size: 1.2rem;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .service-card {
+                margin-bottom: 20px;
+                padding: 2rem 1.5rem;
+            }
+            
+            .service-icon {
+                font-size: 2.5rem;
+                padding: 15px;
+            }
+            
+            .service-card h4 {
+                font-size: 1.25rem;
+            }
+            
+            .service-card p {
+                font-size: 0.95rem;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .service-card {
+                padding: 1.75rem 1.25rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .service-icon {
+                font-size: 2.25rem;
+                padding: 12px;
+                margin-bottom: 1.25rem;
+            }
+            
+            .service-card h4 {
+                font-size: 1.15rem;
+                margin-bottom: 0.75rem;
+            }
+            
+            .service-card p {
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
+            }
+            
+            .service-card .btn {
+                min-height: 44px;
+                font-size: 0.9rem;
+            }
+            
+            .portfolio-grid {
+                gap: 15px;
+            }
+            
+            .portfolio-item {
+                border-radius: 12px;
+            }
+            
+            .portfolio-overlay {
+                padding: 20px;
+            }
+            
+            .portfolio-overlay h5 {
+                font-size: 1.25rem;
+            }
+            
+            .portfolio-overlay p {
+                font-size: 0.85rem;
+            }
+            
+            .text-center.p-4 {
+                padding: 1.5rem 1rem !important;
+            }
+            
+            .text-center.p-4 h4 {
+                font-size: 1.15rem;
+                margin-bottom: 0.75rem;
+            }
+            
+            .text-center.p-4 p {
+                font-size: 0.9rem;
+            }
+            
+            .testimonial-card {
+                margin-bottom: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .hero-content {
+                padding: 100px 15px 60px;
+            }
+            
+            .hero-section h1 {
+                font-size: 2rem;
+                line-height: 1.3;
+                margin-bottom: 1.25rem;
+            }
+            
+            .hero-title-line {
+                display: block;
+                margin-bottom: 0.5rem;
+            }
+            
+            .hero-section .lead {
+                font-size: 1.1rem;
+                padding: 0 10px;
+                margin-bottom: 2rem;
+            }
+            
+            .hero-buttons {
+                width: 100%;
+                max-width: 100%;
+                padding: 0 15px;
+            }
+            
+            .hero-buttons .btn {
+                width: 100%;
+                margin-bottom: 0.75rem;
+                min-height: 48px;
+                font-size: 0.95rem;
+            }
+            
+            .navbar-brand img {
+                height: 35px;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+            
+            .stat-item {
+                padding: 1.5rem 1rem;
+            }
+            
+            .stat-label {
+                font-size: 0.95rem;
+            }
+            
+            .footer-section {
+                margin-bottom: 30px;
+            }
+            
+            .footer-section:last-child {
+                margin-bottom: 0;
+            }
+            
+            .accordion-button {
+                padding: 1.25rem;
+                font-size: 0.95rem;
+            }
+            
+            .accordion-body {
+                padding: 1.25rem;
+                font-size: 0.9rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.75rem;
+                margin-bottom: 0.75rem;
+            }
+            
+            .section-header p {
+                font-size: 1rem;
+            }
+            
+            .section-padding {
+                padding: 50px 0;
+            }
+        }
+        
+        @media (max-width: 575px) {
+            .hero-section h1 {
+                font-size: 1.75rem;
+            }
+            
+            .hero-section .lead {
+                font-size: 0.95rem;
+                line-height: 1.5;
+            }
+            
+            .section-padding {
+                padding: 40px 0;
+            }
+            
+            .btn-primary,
+            .btn-secondary {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.9rem;
+                display: block;
+                width: 100%;
+                margin-bottom: 0.75rem;
+                min-height: 48px;
+            }
+            
+            .btn-secondary {
+                margin-bottom: 0;
+            }
+            
+            .hero-buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+                width: 100%;
+                max-width: 100%;
+                margin: 0 auto;
+                padding: 0 10px;
+            }
+            
+            .faq-section {
+                padding: 50px 0;
+            }
+            
+            .testimonial-card {
+                padding: 1.75rem 1.5rem;
+            }
+            
+            .testimonial-card .quote {
+                font-size: 1rem;
+                line-height: 1.6;
+                margin-bottom: 1.5rem;
+            }
+            
+            .stat-number {
+                font-size: 2.25rem;
+            }
+            
+            .stat-label {
+                font-size: 0.85rem;
+            }
+            
+            .stat-item {
+                padding: 1.25rem 0.75rem;
+            }
+            
+            .benefit-icon {
+                font-size: 2rem;
+                padding: 12px;
+                margin-bottom: 1.25rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .section-header p {
+                font-size: 0.95rem;
+            }
+            
+            .final-cta {
+                padding: 60px 0;
+            }
+            
+            .final-cta h2 {
+                font-size: 1.5rem;
+            }
+            
+            .final-cta .lead {
+                font-size: 1rem;
+            }
+            
+            .final-cta .btn {
+                width: 100%;
+                margin-bottom: 0.75rem;
+                min-height: 48px;
+            }
+            
+            .d-flex.flex-column.flex-md-row {
+                flex-direction: column;
+            }
+        }
+        
+        /* Hero Title Mobile Specific Fix */
+        @media (max-width: 767px) {
+            .hero-title {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                width: 100%;
+            }
+            
+            .hero-title-line {
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .hero-title-line:nth-child(1) { 
+                font-size: 1.75rem;
+                font-weight: 800;
+            }
+            
+            .hero-title-line:nth-child(2) { 
+                font-size: 1.6rem;
+                font-weight: 700;
+            }
+            
+            .hero-title-line:nth-child(3) { 
+                font-size: 1.5rem;
+                font-weight: 700;
+            }
+        }
+        
+        @media (max-width: 575px) {
+            .hero-title-line:nth-child(1) { 
+                font-size: 1.5rem;
+            }
+            
+            .hero-title-line:nth-child(2) { 
+                font-size: 1.4rem;
+            }
+            
+            .hero-title-line:nth-child(3) { 
+                font-size: 1.3rem;
+            }
+        }
+        
+        /* Ensure proper spacing */
+        .container {
+            max-width: 1200px;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        
+        @media (max-width: 767px) {
+            .container {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            
+            .row {
+                margin-left: -10px;
+                margin-right: -10px;
+            }
+            
+            .row > [class*="col-"] {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+            
+            .row.g-4 {
+                margin-left: -0.5rem;
+                margin-right: -0.5rem;
+            }
+            
+            .row.g-4 > [class*="col-"] {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+                margin-bottom: 1rem;
+            }
+        }
+        
+        @media (max-width: 575px) {
+            .container {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+            
+            .stats-section .row {
+                margin: 0;
+            }
+            
+            .stats-section .col-md-3 {
+                padding: 0.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            .stats-section .col-6 {
+                padding: 0.5rem;
+            }
+        }
+        
+        /* Mobile Menu Animation */
+        @media (max-width: 991px) {
+            .navbar-nav {
+                padding: 1rem;
+            }
+            
+            .nav-item {
+                margin-bottom: 0.5rem;
+            }
+            
+            .nav-link {
+                padding: 0.75rem 1rem !important;
+                border-radius: 8px;
+                transition: all 0.3s ease;
+                font-size: 0.95rem;
+            }
+            
+            .nav-link:hover,
+            .nav-link.active {
+                background: rgba(255, 147, 30, 0.1);
+                color: var(--primary-orange) !important;
+            }
+            
+            .nav-link::after {
+                display: none;
+            }
+            
+            .navbar {
+                padding: 0.75rem 0;
+            }
+        }
+        
+        @media (max-width: 575px) {
+            .navbar-nav {
+                padding: 0.75rem;
+            }
+            
+            .nav-link {
+                padding: 0.65rem 0.875rem !important;
+                font-size: 0.9rem;
+            }
+            
+            .header-booking-btn {
+                padding: 0.65rem 1.25rem;
+                font-size: 0.9rem;
+                min-height: 44px;
+            }
+        }
+        
+        /* Loading animation for video */
+        .video-loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .loading-spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid var(--primary-orange);
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+        
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--medium-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 767px) {
+            .section-header {
+                margin-bottom: 35px;
+                padding: 0 15px;
+            }
+            
+            .section-header h2 {
+                font-size: 1.75rem;
+                margin-bottom: 0.75rem;
+                line-height: 1.3;
+            }
+            
+            .section-header p {
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+        }
+        
+        @media (max-width: 575px) {
+            .section-header {
+                margin-bottom: 30px;
+                padding: 0 10px;
+            }
+            
+            .section-header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .section-header p {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/cropped-tradie-mate_01b-261x71-1.png" 
+                     alt="TradieMate Logo" 
+                     class="logo-img">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#value">Why Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#portfolio">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#faq">FAQ</a>
+                    </li>
+                    <li class="nav-item d-block d-lg-none mt-3">
+                        <a href="booking.html" class="header-booking-btn">Book a Shoot</a>
+                    </li>
+                    <li class="nav-item d-none d-lg-block ms-3">
+                        <a href="booking.html" class="header-booking-btn">Book a Shoot</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <!-- Video Background Container -->
+        <div class="video-background">
+            <!-- Loading animation -->
+            <div class="video-loading d-flex flex-column align-items-center justify-content-center">
+                <div class="loading-spinner"></div>
+                <p>Loading video...</p>
+            </div>
+            
+            <!-- Updated Clean MP4 Video Source -->
+            <video id="heroVideo" autoplay muted loop playsinline>
+                <source src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/TAMARAMA-homepage-hero-2.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        
+        <!-- Video Overlay -->
+        <div class="video-overlay"></div>
+        
+        <!-- Hero Content -->
+        <div class="container">
+            <div class="row">
+                <div class="col-12 hero-content">
+                    <h1 class="hero-title">
+                        <span class="hero-title-line">Show Your Craftsmanship.</span>
+                        <span class="hero-title-line">Win More Clients.Stand Out.</span>
+                    </h1>
+                    <p class="lead">Premium photography & videography services exclusively for Sydney tradies who want to showcase their best work.</p>
+                    <div class="hero-buttons">
+                        <a href="booking.html" class="btn btn-primary btn-lg">
+                            <i class="bi bi-calendar-check me-2"></i>Book a Shoot
+                        </a>
+                        <a href="#portfolio" class="btn btn-secondary btn-lg">
+                            <i class="bi bi-images me-2"></i>View Portfolio
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rest of the content remains the same... -->
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-6 mb-4 mb-md-0">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="500">0</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4 mb-md-0">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="98">0</div>
+                        <div class="stat-label">Client Satisfaction</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="24">0</div>
+                        <div class="stat-label">Hour Turnaround</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="5">0</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Proposition Section -->
+    <section id="value" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>Visuals That Get Tradies More Work</h2>
+                <p>Professional visuals that showcase craftsmanship and win bigger projects</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="text-center p-4">
+                        <div class="benefit-icon">
+                            <i class="bi bi-camera"></i>
+                        </div>
+                        <h4>Premium Visuals</h4>
+                        <p class="text-muted mb-0">High-quality photography & videography captured by professionals who understand construction sites.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="text-center p-4">
+                        <div class="benefit-icon">
+                            <i class="bi bi-laptop"></i>
+                        </div>
+                        <h4>Optimized for Business</h4>
+                        <p class="text-muted mb-0">Images perfectly formatted for websites, social media, quotes, and client proposals.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="text-center p-4">
+                        <div class="benefit-icon">
+                            <i class="bi bi-hammer"></i>
+                        </div>
+                        <h4>Craftsmanship Focused</h4>
+                        <p class="text-muted mb-0">We highlight the fine details and quality that set your work apart from competitors.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-padding bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Capture, Create, Showcase Work</h2>
+                <p>Comprehensive visual solutions designed specifically for trade professionals.</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-card">
+                        <a href="booking.html" class="service-card-link" aria-label="Book Photo Shoots"></a>
+                        <div class="service-icon">
+                            <i class="bi bi-camera2"></i>
+                        </div>
+                        <h4>Photo Shoots</h4>
+                        <p class="text-muted">High-res images highlighting precision and quality in every detail</p>
+                        <div class="mt-3">
+                            <span class="badge bg-primary">From $299</span>
+                        </div>
+                        <a href="booking.html" class="btn btn-outline-dark w-100 mt-3">Book Now</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-card">
+                        <a href="booking.html" class="service-card-link" aria-label="Book Video Sessions"></a>
+                        <div class="service-icon">
+                            <i class="bi bi-camera-reels"></i>
+                        </div>
+                        <h4>Video Sessions</h4>
+                        <p class="text-muted">Dynamic video content for websites, social media, and client presentations.</p>
+                        <div class="mt-3">
+                            <span class="badge bg-primary">From $499</span>
+                        </div>
+                        <a href="booking.html" class="btn btn-outline-dark w-100 mt-3">Book Now</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-card">
+                        <a href="booking.html" class="service-card-link" aria-label="Book Drone Footage"></a>
+                        <div class="service-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16" style="display: inline-block;">
+                                <!-- Drone body -->
+                                <rect x="5" y="6" width="6" height="4" rx="0.5"/>
+                                <!-- Propellers -->
+                                <circle cx="3" cy="4" r="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                <circle cx="13" cy="4" r="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                <circle cx="3" cy="12" r="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                <circle cx="13" cy="12" r="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                <!-- Propeller blades -->
+                                <line x1="3" y1="4" x2="1.5" y2="4" stroke="currentColor" stroke-width="1"/>
+                                <line x1="3" y1="4" x2="4.5" y2="4" stroke="currentColor" stroke-width="1"/>
+                                <line x1="3" y1="4" x2="3" y2="2.5" stroke="currentColor" stroke-width="1"/>
+                                <line x1="3" y1="4" x2="3" y2="5.5" stroke="currentColor" stroke-width="1"/>
+                                <line x1="13" y1="4" x2="11.5" y2="4" stroke="currentColor" stroke-width="1"/>
+                                <line x1="13" y1="4" x2="14.5" y2="4" stroke="currentColor" stroke-width="1"/>
+                                <line x1="13" y1="4" x2="13" y2="2.5" stroke="currentColor" stroke-width="1"/>
+                                <line x1="13" y1="4" x2="13" y2="5.5" stroke="currentColor" stroke-width="1"/>
+                                <line x1="3" y1="12" x2="1.5" y2="12" stroke="currentColor" stroke-width="1"/>
+                                <line x1="3" y1="12" x2="4.5" y2="12" stroke="currentColor" stroke-width="1"/>
+                                <line x1="3" y1="12" x2="3" y2="10.5" stroke="currentColor" stroke-width="1"/>
+                                <line x1="3" y1="12" x2="3" y2="13.5" stroke="currentColor" stroke-width="1"/>
+                                <line x1="13" y1="12" x2="11.5" y2="12" stroke="currentColor" stroke-width="1"/>
+                                <line x1="13" y1="12" x2="14.5" y2="12" stroke="currentColor" stroke-width="1"/>
+                                <line x1="13" y1="12" x2="13" y2="10.5" stroke="currentColor" stroke-width="1"/>
+                                <line x1="13" y1="12" x2="13" y2="13.5" stroke="currentColor" stroke-width="1"/>
+                                <!-- Arms connecting body to propellers -->
+                                <line x1="5" y1="6" x2="3" y2="4" stroke="currentColor" stroke-width="1.5"/>
+                                <line x1="11" y1="6" x2="13" y2="4" stroke="currentColor" stroke-width="1.5"/>
+                                <line x1="5" y1="10" x2="3" y2="12" stroke="currentColor" stroke-width="1.5"/>
+                                <line x1="11" y1="10" x2="13" y2="12" stroke="currentColor" stroke-width="1.5"/>
+                                <!-- Camera lens -->
+                                <circle cx="8" cy="8" r="1"/>
+                            </svg>
+                        </div>
+                        <h4>Drone Footage</h4>
+                        <p class="text-muted">Aerial views for projects, progress and property showcases.</p>
+                        <div class="mt-3">
+                            <span class="badge bg-primary">From $399</span>
+                        </div>
+                        <a href="booking.html" class="btn btn-outline-dark w-100 mt-3">Book Now</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-card">
+                        <a href="booking.html" class="service-card-link" aria-label="Book Interviews"></a>
+                        <div class="service-icon">
+                            <i class="bi bi-person-video3"></i>
+                        </div>
+                        <h4>Interviews</h4>
+                        <p class="text-muted">Storytelling content blending client testimonials with project walkthroughs.</p>
+                        <div class="mt-3">
+                            <span class="badge bg-primary">From $599</span>
+                        </div>
+                        <a href="booking.html" class="btn btn-outline-dark w-100 mt-3">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section-padding portfolio-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Work Around Sydney</h2>
+                <p>See how we've helped tradies showcase their work across Sydney's suburbs.</p>
+            </div>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <a href="booking.html" aria-label="View Balgowlah Project"></a>
+                    <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/DJI_0164-1024x768-1.jpg" alt="Balgowlah Project">
+                    <div class="portfolio-overlay">
+                        <h5>Balgowlah</h5>
+                        <p>Custom Home Build</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <a href="booking.html" aria-label="View Bellevue Hill Project"></a>
+                    <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/bellevuehill-1-1024x683-1.jpg" alt="Bellevue Hill Project">
+                    <div class="portfolio-overlay">
+                        <h5>Bellevue Hill</h5>
+                        <p>Luxury Renovation</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <a href="booking.html" aria-label="View Mosman Project"></a>
+                    <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/Mosman-15-1.jpg" alt="Mosman Project">
+                    <div class="portfolio-overlay">
+                        <h5>Mosman</h5>
+                        <p>Waterfront Property</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <a href="booking.html" aria-label="View McMahons Point Project"></a>
+                    <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/LIVING-ROOM-3-1024x683-1.jpg" alt="McMahons Point Project">
+                    <div class="portfolio-overlay">
+                        <h5>McMahons Point</h5>
+                        <p>Apartment Complex</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <a href="#portfolio" class="btn btn-primary btn-lg">
+                    <i class="bi bi-images me-2"></i>View Full Portfolio
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Tradies Say About Us</h2>
+                <p>Hear from Sydney tradies who've used our services to grow their business.</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="quote">"The photos helped us win a $150k renovation project. Best investment we've made in marketing."</p>
+                        <div class="author">
+                            <div class="author-info">
+                                <h6 class="mb-0">Mike Johnson</h6>
+                                <small>Builder, North Sydney</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="quote">"Professional, on-time, and understood exactly what we needed. The drone footage was incredible."</p>
+                        <div class="author">
+                            <div class="author-info">
+                                <h6 class="mb-0">Sarah Chen</h6>
+                                <small>Landscaper, Eastern Suburbs</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="quote">"Our social media engagement tripled after using their video content. Highly recommend!"</p>
+                        <div class="author">
+                            <div class="author-info">
+                                <h6 class="mb-0">David Wilson</h6>
+                                <small>Electrician, Inner West</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section - RESTORED -->
+    <section id="faq" class="section-padding faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Got questions? We've got answers for Sydney tradies.</p>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    <i class="bi bi-house-door faq-icon"></i> What types of projects do you cover?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    We cover all trade projects across Sydney - residential renovations, new builds, commercial fitouts, landscaping, plumbing, electrical, and more. If you're a tradie with a project to showcase, we can capture it.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    <i class="bi bi-clock faq-icon"></i> How long does a typical shoot take?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Most photo shoots take 2-3 hours. Video sessions typically require 3-4 hours. We work around your schedule and aim to minimize disruption to your workday.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    <i class="bi bi-airplane faq-icon"></i> Do you handle drone permits and safety?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes, our drone operators are CASA certified and carry full insurance. We handle all necessary permits and conduct thorough site safety assessments before every flight.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                    <i class="bi bi-calendar faq-icon"></i> How soon can I get my photos/videos?
+                                </button>
+                            </h2>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Edited photos are typically delivered within 24-48 hours. Video projects take 3-5 business days. We offer rush services for urgent projects.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                    <i class="bi bi-credit-card faq-icon"></i> What's included in your pricing?
+                                </button>
+                            </h2>
+                            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Our pricing includes on-site shooting, professional editing, and delivery of high-resolution digital files. Travel within Sydney metro is included. Additional services like expedited delivery or extra editing are available.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h2 class="mb-4">Ready to Showcase Your Best Work?</h2>
+                    <p class="lead mb-5">Professional visuals that help you win more projects and grow your business.</p>
+                    
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="d-flex flex-column flex-md-row gap-3 justify-content-center">
+                                <a href="booking.html" class="btn btn-primary btn-lg">
+                                    <i class="bi bi-calendar-check me-2"></i>Book Online Now
+                                </a>
+                                <a href="tel:1300123456" class="btn btn-outline-light btn-lg">
+                                    <i class="bi bi-telephone me-2"></i>Call 1300 123 456
+                                </a>
+                            </div>
+                            <p class="text-light mt-4"><small>Operating Hours: Mon-Fri 7am-6pm | Sat 8am-4pm</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <a href="index.html">
+                        <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/cropped-tradie-mate_01b-261x71-1.png" 
+                             alt="TradieMate Logo" 
+                             class="footer-logo">
+                    </a>
+                    <p class="mb-4">Premium photography & videography services for Sydney tradies. Showcasing craftsmanship since 2018.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                        <a href="#"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h5>Services</h5>
+                    <ul>
+                        <li><a href="#services">Photo Shoots</a></li>
+                        <li><a href="#services">Video Sessions</a></li>
+                        <li><a href="#services">Drone Footage</a></li>
+                        <li><a href="#services">Walkthroughs</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h5>Company</h5>
+                    <ul>
+                        <li><a href="#value">Why Choose Us</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="booking.html">Book Now</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h5>Contact Info</h5>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="bi bi-geo-alt"></i>
+                            <span>Sydney NSW, Australia</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-telephone"></i>
+                            <span><a href="tel:1300123456" style="color: inherit; text-decoration: none;">1300 123 456</a></span>
+                        </li>
+                        <li>
+                            <i class="bi bi-envelope"></i>
+                            <span><a href="mailto:hello@tradiemate.com.au" style="color: inherit; text-decoration: none;">hello@tradiemate.com.au</a></span>
+                        </li>
+                        <li>
+                            <i class="bi bi-clock"></i>
+                            <span>Mon-Fri: 7am-6pm<br>Sat: 8am-4pm</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <div>
+                    <p class="mb-2 mb-md-0">&copy; 2023 TradieMate. All rights reserved. ABN: 12 345 678 901</p>
+                </div>
+                <div class="copyright-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Site Map</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Smooth scrolling for navigation links
+            $('a.nav-link, .btn-primary, .btn-secondary').on('click', function(e) {
+                if (this.hash !== '' && this.hash !== '#') {
+                    e.preventDefault();
+                    const hash = this.hash;
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top - 80
+                    }, 800);
+                    
+                    // Close mobile menu when clicking a link
+                    if ($(window).width() < 992) {
+                        $('.navbar-collapse').collapse('hide');
+                    }
+                }
+            });
+            
+            // Video elements - clean video setup
+            const heroVideo = document.getElementById('heroVideo');
+            const videoLoading = document.querySelector('.video-loading');
+            
+            // Video loading events
+            heroVideo.addEventListener('loadeddata', function() {
+                if (videoLoading) {
+                    videoLoading.style.display = 'none';
+                    console.log('Video loaded successfully');
+                }
+            });
+            
+            heroVideo.addEventListener('error', function(e) {
+                console.log('Video error:', e);
+                if (videoLoading) {
+                    videoLoading.innerHTML = '<p>Video failed to load. Please check your connection.</p>';
+                }
+            });
+            
+            // Show loading if video takes time to load
+            setTimeout(function() {
+                if (videoLoading && heroVideo.readyState < 3) {
+                    videoLoading.style.display = 'flex';
+                }
+            }, 500);
+            
+            // Force video to play
+            heroVideo.play().catch(function(error) {
+                console.log('Video play failed:', error);
+            });
+            
+            // Animate stats counter
+            function animateCounter() {
+                $('.stat-number').each(function() {
+                    const $this = $(this);
+                    const countTo = $this.attr('data-count');
+                    $({ countNum: 0 }).animate({
+                        countNum: countTo
+                    }, {
+                        duration: 2000,
+                        easing: 'swing',
+                        step: function() {
+                            $this.text(Math.floor(this.countNum));
+                        },
+                        complete: function() {
+                            $this.text(this.countNum);
+                        }
+                    });
+                });
+            }
+            
+            // Trigger counter animation when in viewport
+            function isElementInViewport(el) {
+                const rect = el.getBoundingClientRect();
+                return (
+                    rect.top >= 0 &&
+                    rect.left >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+            }
+            
+            let statsAnimated = false;
+            $(window).scroll(function() {
+                if (!statsAnimated && isElementInViewport($('.stat-item')[0])) {
+                    animateCounter();
+                    statsAnimated = true;
+                }
+                
+                // Navbar scroll effect
+                if ($(window).scrollTop() > 50) {
+                    $('.navbar').css('background-color', 'rgba(255, 255, 255, 0.98)');
+                }
+            });
+            
+            // Mobile menu improvements
+            $('.navbar-nav .nav-link').on('click', function() {
+                if ($(window).width() < 992) {
+                    $(this).addClass('active').siblings().removeClass('active');
+                }
+            });
+            
+            // Prevent empty hash links
+            $('a[href="#"]').on('click', function(e) {
+                e.preventDefault();
+            });
+            
+            // Animate hero title on load
+            setTimeout(function() {
+                $('.hero-title-line').each(function(index) {
+                    $(this).css({
+                        'opacity': '1',
+                        'transform': 'translateY(0)'
+                    });
+                });
+            }, 300);
+            
+            // Fix iOS video autoplay
+            if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+                heroVideo.setAttribute('playsinline', '');
+                heroVideo.setAttribute('webkit-playsinline', '');
+                heroVideo.setAttribute('muted', '');
+            }
+        });
+    </script>
+</body>
+</html>

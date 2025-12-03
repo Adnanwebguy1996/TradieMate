@@ -1,0 +1,1897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Shoot | TradieMate</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+    <style>
+        :root {
+            --primary-orange: #FF931E;
+            --primary-dark: #010100;
+            --secondary-dark: #1A1A1A;
+            --light-gray: #F8F9FA;
+            --medium-gray: #6C757D;
+            --border-gray: #E0E0E0;
+            --white: #FFFFFF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--primary-dark);
+            line-height: 1.6;
+            background-color: var(--light-gray);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-orange);
+            border-color: var(--primary-orange);
+            color: var(--primary-dark);
+            font-weight: 600;
+            padding: 0.75rem 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #E6820B;
+            border-color: #E6820B;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 147, 30, 0.3);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--primary-dark);
+            color: var(--primary-dark);
+            font-weight: 600;
+            padding: 0.75rem 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+        
+        /* Navigation */
+        .navbar {
+            background-color: var(--white);
+            box-shadow: 0 2px 20px rgba(1, 1, 0, 0.1);
+            padding: 0.75rem 0;
+        }
+        
+        .navbar-brand {
+            padding: 0;
+        }
+        
+        .navbar-brand img {
+            height: 50px;
+            width: auto;
+        }
+        
+        .nav-link {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin: 0 0.5rem;
+            padding: 0.5rem 1rem;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-orange);
+        }
+        
+        .header-booking-btn {
+            background-color: var(--primary-orange);
+            color: var(--primary-dark);
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        
+        .header-booking-btn:hover {
+            background-color: #E6820B;
+        }
+        
+        /* Booking Page Styles */
+        .booking-hero {
+            background: linear-gradient(rgba(1, 1, 0, 0.9), rgba(1, 1, 0, 0.8)), 
+                        url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 6rem 0 4rem;
+            text-align: center;
+        }
+        
+        .booking-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .booking-container {
+                padding: 0 15px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .booking-container {
+                padding: 0 12px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .booking-container {
+                padding: 0 10px;
+            }
+        }
+        
+        .booking-card {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(1, 1, 0, 0.1);
+            overflow: hidden;
+            margin: -3rem auto 3rem;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .booking-tabs {
+            border-bottom: 1px solid var(--border-gray);
+            padding: 0 2rem;
+            background-color: var(--white);
+        }
+        
+        .booking-tab {
+            padding: 1.5rem 2rem;
+            background: none;
+            border: none;
+            font-weight: 600;
+            color: var(--medium-gray);
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .booking-tabs {
+                padding: 0;
+            }
+        }
+        
+        .booking-tab.active {
+            color: var(--primary-orange);
+        }
+        
+        .booking-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background-color: var(--primary-orange);
+        }
+        
+        .booking-content {
+            padding: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            .booking-content {
+                padding: 2rem 1.5rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .booking-content {
+                padding: 1.5rem 1rem;
+            }
+        }
+        
+        .service-option {
+            border: 2px solid var(--border-gray);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            height: 100%;
+            background-color: var(--white);
+        }
+        
+        .service-option:hover {
+            border-color: var(--primary-orange);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 147, 30, 0.15);
+        }
+        
+        .service-option.selected {
+            border-color: var(--primary-orange);
+            background-color: rgba(255, 147, 30, 0.08);
+            box-shadow: 0 8px 20px rgba(255, 147, 30, 0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .service-option {
+                min-height: 280px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .service-option {
+                min-height: auto;
+            }
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary-orange);
+            margin-bottom: 1rem;
+        }
+        
+        .calendar-container {
+            background: var(--light-gray);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+        
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+        }
+        
+        .calendar-day-header {
+            text-align: center;
+            font-weight: 600;
+            color: var(--medium-gray);
+            padding: 0.5rem;
+        }
+        
+        .calendar-day {
+            text-align: center;
+            padding: 1rem 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .calendar-day:hover {
+            background-color: rgba(255, 147, 30, 0.1);
+        }
+        
+        .calendar-day.selected {
+            background-color: var(--primary-orange);
+            color: var(--primary-dark);
+            font-weight: bold;
+        }
+        
+        .calendar-day.disabled {
+            color: var(--border-gray);
+            cursor: not-allowed;
+        }
+        
+        .time-slot {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--border-gray);
+            border-radius: 8px;
+            margin: 0.25rem;
+            cursor: pointer;
+            display: inline-block;
+            transition: all 0.2s ease;
+        }
+        
+        .time-slot:hover {
+            border-color: var(--primary-orange);
+        }
+        
+        .time-slot.selected {
+            background-color: var(--primary-orange);
+            border-color: var(--primary-orange);
+            color: var(--primary-dark);
+            font-weight: bold;
+        }
+        
+            .form-control, .form-select {
+                padding: 0.875rem 1rem;
+                border: 1px solid var(--border-gray);
+                border-radius: 8px;
+                font-size: 1rem;
+                min-height: 48px;
+                transition: all 0.3s ease;
+            }
+            
+            @media (max-width: 768px) {
+                .form-control, .form-select {
+                    padding: 0.75rem 0.875rem;
+                    font-size: 16px; /* Prevents zoom on iOS */
+                    min-height: 48px;
+                }
+            }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-orange);
+            box-shadow: 0 0 0 0.25rem rgba(255, 147, 30, 0.25);
+        }
+        
+        .booking-summary {
+            background: var(--light-gray);
+            border-radius: 12px;
+            padding: 2rem;
+            height: 100%;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-gray);
+        }
+        
+        .summary-item:last-child {
+            border-bottom: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        /* Footer - Mobile Ready */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        @media (min-width: 768px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+        }
+        
+        @media (min-width: 992px) {
+            footer {
+                padding: 80px 0 30px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 2fr 1fr 1fr 2fr;
+                gap: 30px;
+            }
+        }
+        
+        .footer-section {
+            margin-bottom: 30px;
+        }
+        
+        @media (min-width: 768px) {
+            .footer-section {
+                margin-bottom: 0;
+            }
+        }
+        
+        .footer-logo {
+            height: 40px;
+            width: auto;
+            margin-bottom: 1.5rem;
+            filter: brightness(0) invert(1);
+        }
+        
+        .footer-section p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-section h5 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-section ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-size: 0.95rem;
+        }
+        
+        .footer-section ul li a:hover {
+            color: var(--primary-orange);
+            transform: translateX(5px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary-orange);
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 147, 30, 0.3);
+        }
+        
+        .contact-info {
+            margin-top: 1rem;
+        }
+        
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+        }
+        
+        .contact-info li i {
+            color: var(--primary-orange);
+            margin-top: 4px;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+        }
+        
+        .contact-info li span {
+            line-height: 1.5;
+        }
+        
+        .copyright {
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-align: center;
+        }
+        
+        @media (min-width: 768px) {
+            .copyright {
+                text-align: left;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
+        
+        .copyright p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .copyright-links {
+            margin-top: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .copyright-links {
+                margin-top: 0;
+                justify-content: flex-end;
+            }
+        }
+        
+        .copyright-links a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: inline-block;
+            padding: 0 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .copyright-links a:hover {
+            color: var(--primary-orange);
+        }
+        
+        /* Mobile Footer Adjustments */
+        @media (max-width: 767px) {
+            footer {
+                padding: 50px 0 25px;
+            }
+            
+            .footer-content {
+                gap: 35px;
+            }
+            
+            .footer-section {
+                margin-bottom: 35px;
+                text-align: center;
+            }
+            
+            .footer-section:last-child {
+                margin-bottom: 0;
+            }
+            
+            .footer-logo {
+                height: 35px;
+                margin-bottom: 1rem;
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+            }
+            
+            .footer-section p {
+                text-align: center;
+            }
+            
+            .footer-section h5 {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+                text-align: center;
+            }
+            
+            .footer-section ul {
+                text-align: center;
+            }
+            
+            .footer-section ul li {
+                text-align: center;
+            }
+            
+            .footer-section ul li a {
+                display: inline-block;
+            }
+            
+            .social-links {
+                gap: 12px;
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            .social-links a {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .contact-info {
+                text-align: center;
+            }
+            
+            .contact-info li {
+                font-size: 0.9rem;
+                margin-bottom: 0.875rem;
+                justify-content: center;
+                text-align: center;
+            }
+            
+            .contact-info li i {
+                margin-right: 8px;
+            }
+            
+            .copyright {
+                padding-top: 30px;
+                margin-top: 30px;
+                font-size: 0.85rem;
+                text-align: center;
+            }
+            
+            .copyright-links {
+                margin-top: 0.75rem;
+                gap: 0.25rem;
+                justify-content: center;
+            }
+            
+            .copyright-links a {
+                font-size: 0.85rem;
+                padding: 0.25rem 0.5rem;
+            }
+        }
+        
+        @media (max-width: 575px) {
+            footer {
+                padding: 40px 0 20px;
+            }
+            
+            .footer-content {
+                gap: 30px;
+            }
+            
+            .footer-section p {
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .container {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            
+            .booking-content h2 {
+                text-align: center;
+                font-size: 1.75rem;
+                margin-bottom: 1.25rem;
+            }
+            
+            .booking-content > p.text-muted {
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+            
+            .booking-tabs {
+                padding: 0;
+                display: flex;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+            }
+            
+            .booking-tabs::-webkit-scrollbar {
+                display: none;
+            }
+            
+            .booking-tab {
+                padding: 1rem 0.75rem;
+                font-size: 0.8rem;
+                white-space: nowrap;
+                flex-shrink: 0;
+                min-width: auto;
+            }
+            
+            .navbar-brand img {
+                height: 40px;
+            }
+            
+            .booking-hero {
+                padding: 4rem 0 3rem;
+            }
+            
+            .booking-hero h1 {
+                font-size: 1.75rem;
+            }
+            
+            .booking-hero .lead {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+            
+            .booking-card {
+                margin: -2rem 1rem 2rem;
+                border-radius: 12px;
+                box-shadow: 0 8px 30px rgba(1, 1, 0, 0.12);
+            }
+            
+            @media (max-width: 576px) {
+                .booking-card {
+                    margin: -1.5rem 0.75rem 1.5rem;
+                    border-radius: 10px;
+                }
+            }
+            
+            .row.g-4 {
+                margin: 0 -0.5rem;
+                justify-content: center;
+            }
+            
+            .row.g-4 > [class*="col-"] {
+                padding: 0.75rem 0.5rem;
+            }
+            
+            .service-option {
+                padding: 1.75rem 1.25rem;
+                margin-bottom: 0;
+                text-align: center;
+                border-radius: 10px;
+            }
+            
+            .service-icon {
+                font-size: 2.5rem;
+                margin-bottom: 0.75rem;
+            }
+            
+            .service-option h4 {
+                font-size: 1.1rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .service-option p {
+                font-size: 0.9rem;
+                margin-bottom: 0.75rem;
+            }
+            
+            .service-option ul {
+                font-size: 0.85rem;
+                margin-top: 0.75rem;
+            }
+            
+            .service-option ul li {
+                margin-bottom: 0.5rem;
+            }
+            
+            .calendar-container {
+                padding: 1.5rem 1rem;
+                border-radius: 10px;
+            }
+            
+            .calendar-header {
+                flex-wrap: wrap;
+                gap: 1rem;
+                justify-content: center;
+                margin-bottom: 1.25rem;
+            }
+            
+            .calendar-header h4 {
+                font-size: 1.1rem;
+                width: 100%;
+                text-align: center;
+                font-weight: 600;
+            }
+            
+            .calendar-header .btn {
+                min-width: 44px;
+                min-height: 44px;
+                padding: 0.5rem;
+            }
+            
+            #step2 h5 {
+                text-align: center;
+                margin-bottom: 1.25rem;
+                font-weight: 600;
+            }
+            
+            #timeSlots {
+                text-align: center;
+                padding: 0.5rem 0;
+            }
+            
+            .calendar-day-header {
+                font-size: 0.75rem;
+                padding: 0.6rem 0.25rem;
+                font-weight: 600;
+            }
+            
+            .calendar-day {
+                padding: 0.85rem 0.25rem;
+                font-size: 0.9rem;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .time-slot {
+                padding: 0.75rem 1.25rem;
+                font-size: 0.9rem;
+                margin: 0.4rem 0.25rem;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: calc(50% - 0.5rem);
+                text-align: center;
+                min-height: 44px;
+                border-radius: 8px;
+            }
+            
+            .booking-summary {
+                padding: 1.75rem 1.5rem;
+                margin-top: 1.5rem;
+                border-radius: 10px;
+            }
+            
+            .booking-summary h5 {
+                text-align: center;
+                margin-bottom: 1.5rem;
+                font-weight: 600;
+            }
+            
+            .summary-item {
+                padding: 0.875rem 0;
+                font-size: 0.9rem;
+            }
+            
+            .summary-item:last-child {
+                font-size: 1.1rem;
+                padding-top: 1rem;
+                margin-top: 0.5rem;
+                border-top: 2px solid var(--border-gray);
+            }
+            
+            .btn-primary, .btn-secondary, .btn-outline-secondary {
+                padding: 0.75rem 1.75rem;
+                font-size: 0.95rem;
+                font-weight: 600;
+                min-height: 44px;
+                border-radius: 8px;
+            }
+            
+            .d-flex.justify-content-between {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.875rem;
+                margin-top: 1.5rem;
+            }
+            
+            .d-flex.justify-content-between .btn {
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            .form-control, .form-select {
+                font-size: 0.95rem;
+                padding: 0.65rem;
+            }
+            
+            .form-label {
+                font-size: 0.9rem;
+                margin-bottom: 0.5rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .booking-hero {
+                padding: 3rem 0 2rem;
+            }
+            
+            .booking-hero h1 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            .booking-hero .lead {
+                font-size: 0.95rem;
+            }
+            
+            .booking-card {
+                margin: -1.5rem 0.75rem 1.5rem;
+                border-radius: 10px;
+            }
+            
+            .booking-content {
+                padding: 1.5rem 1rem;
+            }
+            
+            .booking-content h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+                text-align: center;
+                line-height: 1.3;
+            }
+            
+            .booking-content > p.text-muted {
+                text-align: center;
+                font-size: 0.95rem;
+            }
+            
+            .booking-content h5 {
+                font-size: 1.1rem;
+                text-align: center;
+                font-weight: 600;
+            }
+            
+            #step3 h2 {
+                text-align: center;
+            }
+            
+            #step3 > p.text-muted {
+                text-align: center;
+            }
+            
+            .booking-tabs {
+                padding: 0;
+            }
+            
+            .booking-tab {
+                padding: 0.875rem 0.5rem;
+                font-size: 0.75rem;
+            }
+            
+            .service-option {
+                padding: 1.5rem 1rem;
+            }
+            
+            .service-icon {
+                font-size: 2.25rem;
+            }
+            
+            .service-option h4 {
+                font-size: 1rem;
+                font-weight: 600;
+            }
+            
+            .calendar-container {
+                padding: 1.25rem 0.75rem;
+            }
+            
+            .calendar-header h4 {
+                font-size: 1rem;
+            }
+            
+            .calendar-day-header {
+                font-size: 0.7rem;
+                padding: 0.5rem 0.2rem;
+            }
+            
+            .calendar-day {
+                padding: 0.7rem 0.2rem;
+                font-size: 0.85rem;
+                min-height: 42px;
+            }
+            
+            .time-slot {
+                padding: 0.7rem 1rem;
+                font-size: 0.85rem;
+                width: 100%;
+                margin: 0.4rem 0;
+                min-height: 44px;
+            }
+            
+            .booking-summary {
+                padding: 1.5rem 1.25rem;
+            }
+            
+            .summary-item {
+                font-size: 0.9rem;
+                flex-wrap: wrap;
+                padding: 0.875rem 0;
+            }
+            
+            .summary-item span:first-child {
+                width: 100%;
+                margin-bottom: 0.25rem;
+                font-weight: 500;
+            }
+            
+            .summary-item:last-child {
+                font-size: 1.1rem;
+            }
+            
+            .btn-primary, .btn-secondary, .btn-outline-secondary {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.9rem;
+                width: 100%;
+                margin-bottom: 0.75rem;
+                min-height: 48px;
+            }
+            
+            .d-flex.justify-content-between {
+                flex-direction: column;
+                gap: 0.875rem;
+            }
+            
+            .d-flex.justify-content-between .btn {
+                width: 100%;
+            }
+            
+            .form-control, .form-select {
+                font-size: 16px; /* Prevents zoom on iOS */
+                padding: 0.75rem 0.875rem;
+                min-height: 48px;
+            }
+            
+            .form-label {
+                text-align: left;
+                font-weight: 500;
+                margin-bottom: 0.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .card-body {
+                padding: 1.25rem 1rem;
+            }
+            
+            .card-body .row {
+                margin: 0;
+            }
+            
+            .card-body .col-md-6 {
+                padding: 0.75rem 0;
+                width: 100%;
+            }
+            
+            .booking-summary h5 {
+                text-align: center;
+            }
+            
+            .form-check {
+                text-align: left;
+                margin-top: 1.5rem;
+                padding: 1rem;
+                background-color: rgba(255, 147, 30, 0.03);
+                border-radius: 8px;
+            }
+            
+            .form-check-label {
+                text-align: left;
+                font-size: 0.875rem;
+                line-height: 1.5;
+            }
+            
+            .form-check-input {
+                margin-top: 0.25rem;
+                width: 1.125rem;
+                height: 1.125rem;
+            }
+            
+            .row.g-3 {
+                margin: 0 -0.5rem;
+            }
+            
+            .row.g-3 > [class*="col-"] {
+                padding: 0 0.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            .mt-5.pt-4.border-top {
+                margin-top: 2rem !important;
+                padding-top: 1.5rem !important;
+            }
+            
+            .d-flex.flex-column.flex-md-row {
+                flex-direction: column;
+            }
+            
+            .d-flex.flex-column.flex-md-row .btn {
+                width: 100%;
+                margin-bottom: 0.75rem;
+            }
+            
+            .navbar-nav {
+                padding: 1rem 0;
+            }
+            
+            .nav-link {
+                padding: 0.75rem 1rem;
+            }
+            
+            .header-booking-btn {
+                margin-top: 0.5rem;
+                width: 100%;
+                text-align: center;
+            }
+            
+            #step4 .text-center {
+                padding: 2rem 0.5rem;
+            }
+            
+            #step4 h2 {
+                font-size: 1.5rem;
+                text-align: center;
+            }
+            
+            #step4 .lead {
+                font-size: 0.95rem;
+                text-align: center;
+            }
+            
+            #step4 .bi-check-circle-fill {
+                font-size: 3rem !important;
+            }
+            
+            .card-title {
+                font-size: 1.1rem;
+                text-align: center;
+            }
+            
+            .card-body .row.text-start {
+                text-align: center !important;
+            }
+            
+            .card-body .row.text-start .col-md-6 {
+                text-align: center;
+                margin-bottom: 0.75rem;
+            }
+            
+            .card-body .row.text-start strong {
+                display: block;
+                margin-bottom: 0.25rem;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .booking-tab {
+                padding: 0.75rem 0.4rem;
+                font-size: 0.7rem;
+            }
+            
+            .service-icon {
+                font-size: 2rem;
+            }
+            
+            .calendar-day {
+                padding: 0.5rem 0.1rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/cropped-tradie-mate_01b-261x71-1.png" 
+                     alt="TradieMate Logo" 
+                     class="logo-img">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#value">Why Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#portfolio">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#faq">FAQ</a>
+                    </li>
+                    <li class="nav-item ms-3">
+                        <a href="booking.html" class="header-booking-btn">Book a Shoot</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Booking Hero -->
+    <section class="booking-hero">
+        <div class="container">
+            <h1 class="mb-3">Book Your Professional Shoot</h1>
+            <p class="lead mb-0">Easy online booking for Sydney tradies. Choose your service, pick a time, and we'll handle the rest.</p>
+        </div>
+    </section>
+
+    <!-- Booking Form -->
+    <div class="container booking-container">
+        <div class="booking-card">
+            <!-- Progress Bar -->
+            <div class="booking-tabs">
+                <button class="booking-tab active" data-step="1">1. Service</button>
+                <button class="booking-tab" data-step="2">2. Date & Time</button>
+                <button class="booking-tab" data-step="3">3. Details</button>
+                <button class="booking-tab" data-step="4">4. Confirm</button>
+            </div>
+            
+            <!-- Step 1: Service Selection -->
+            <div class="booking-content" id="step1">
+                <h2 class="mb-4">Select Your Service</h2>
+                <p class="text-muted mb-5">Choose the photography or videography service that best fits your project needs.</p>
+                
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="service-option" data-service="photo">
+                            <div class="service-icon">
+                                <i class="bi bi-camera2"></i>
+                            </div>
+                            <h4>Photo Shoots</h4>
+                            <p class="text-muted">Professional images for websites and marketing</p>
+                            <div class="mt-3">
+                                <span class="badge bg-primary">From $299</span>
+                            </div>
+                            <ul class="list-unstyled mt-3 small">
+                                <li><i class="bi bi-check text-success"></i> 25+ edited photos</li>
+                                <li><i class="bi bi-check text-success"></i> 2-3 hour session</li>
+                                <li><i class="bi bi-check text-success"></i> 24-hour delivery</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-3">
+                        <div class="service-option" data-service="video">
+                            <div class="service-icon">
+                                <i class="bi bi-camera-reels"></i>
+                            </div>
+                            <h4>Video Sessions</h4>
+                            <p class="text-muted">Dynamic video content for social media</p>
+                            <div class="mt-3">
+                                <span class="badge bg-primary">From $499</span>
+                            </div>
+                            <ul class="list-unstyled mt-3 small">
+                                <li><i class="bi bi-check text-success"></i> 2-3 minute video</li>
+                                <li><i class="bi bi-check text-success"></i> 3-4 hour session</li>
+                                <li><i class="bi bi-check text-success"></i> 48-hour delivery</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-3">
+                        <div class="service-option" data-service="drone">
+                            <div class="service-icon">
+                                <i class="bi bi-camera-video"></i>
+                            </div>
+                            <h4>Drone Footage</h4>
+                            <p class="text-muted">Aerial perspectives for large projects</p>
+                            <div class="mt-3">
+                                <span class="badge bg-primary">From $399</span>
+                            </div>
+                            <ul class="list-unstyled mt-3 small">
+                                <li><i class="bi bi-check text-success"></i> CASA certified pilot</li>
+                                <li><i class="bi bi-check text-success"></i> Aerial shots included</li>
+                                <li><i class="bi bi-check text-success"></i> Full insurance</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-3">
+                        <div class="service-option" data-service="combo">
+                            <div class="service-icon">
+                                <i class="bi bi-collection-play"></i>
+                            </div>
+                            <h4>Full Package</h4>
+                            <p class="text-muted">Complete visual package</p>
+                            <div class="mt-3">
+                                <span class="badge bg-primary">From $799</span>
+                            </div>
+                            <ul class="list-unstyled mt-3 small">
+                                <li><i class="bi bi-check text-success"></i> Photos + Video</li>
+                                <li><i class="bi bi-check text-success"></i> Drone footage</li>
+                                <li><i class="bi bi-check text-success"></i> Priority delivery</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-5 pt-4 border-top">
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-outline-secondary" disabled>Back</button>
+                        <button class="btn btn-primary" id="nextStep1">Next: Choose Date & Time</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 2: Date & Time -->
+            <div class="booking-content d-none" id="step2">
+                <h2 class="mb-4">Select Date & Time</h2>
+                <p class="text-muted mb-5">Choose a convenient time for your shoot. We recommend weekdays for best lighting.</p>
+                
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="calendar-container">
+                            <div class="calendar-header">
+                                <button class="btn btn-outline-secondary" id="prevMonth">
+                                    <i class="bi bi-chevron-left"></i>
+                                </button>
+                                <h4 class="mb-0" id="currentMonth">March 2024</h4>
+                                <button class="btn btn-outline-secondary" id="nextMonth">
+                                    <i class="bi bi-chevron-right"></i>
+                                </button>
+                            </div>
+                            
+                            <div class="calendar-grid" id="calendarDays">
+                                <!-- Calendar will be generated by JavaScript -->
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <h5>Available Time Slots</h5>
+                            <div id="timeSlots" class="mt-3">
+                                <!-- Time slots will be generated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 mt-4 mt-lg-0">
+                        <div class="booking-summary">
+                            <h5 class="mb-3">Booking Summary</h5>
+                            <div class="summary-item">
+                                <span>Service:</span>
+                                <span id="summaryService">Not selected</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Date:</span>
+                                <span id="summaryDate">Not selected</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Time:</span>
+                                <span id="summaryTime">Not selected</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Estimated Price:</span>
+                                <span id="summaryPrice">$0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-5 pt-4 border-top">
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-outline-secondary" id="backStep2">Back</button>
+                        <button class="btn btn-primary" id="nextStep2">Next: Your Details</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 3: Details -->
+            <div class="booking-content d-none" id="step3">
+                <h2 class="mb-4">Your Project Details</h2>
+                <p class="text-muted mb-5">Tell us about your project so we can prepare for the perfect shoot.</p>
+                
+                <div class="row">
+                    <div class="col-lg-8">
+                        <form id="bookingForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="fullName" class="form-label">Full Name *</label>
+                                    <input type="text" class="form-control" id="fullName" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="businessName" class="form-label">Business Name</label>
+                                    <input type="text" class="form-control" id="businessName">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label">Email Address *</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="phone" class="form-label">Phone Number *</label>
+                                    <input type="tel" class="form-control" id="phone" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="projectAddress" class="form-label">Project Address *</label>
+                                    <input type="text" class="form-control" id="projectAddress" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="tradeType" class="form-label">Type of Trade *</label>
+                                    <select class="form-select" id="tradeType" required>
+                                        <option value="">Select your trade</option>
+                                        <option value="builder">Builder</option>
+                                        <option value="plumber">Plumber</option>
+                                        <option value="electrician">Electrician</option>
+                                        <option value="plasterer">Plasterer</option>
+                                        <option value="landscaper">Landscaper</option>
+                                        <option value="carpenter">Carpenter</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="projectSize" class="form-label">Project Size</label>
+                                    <select class="form-select" id="projectSize">
+                                        <option value="">Select project size</option>
+                                        <option value="small">Small (1-2 days work)</option>
+                                        <option value="medium">Medium (1-2 weeks work)</option>
+                                        <option value="large">Large (1+ month work)</option>
+                                        <option value="ongoing">Ongoing/Multiple sites</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label for="projectDetails" class="form-label">Project Details / Special Requests</label>
+                                    <textarea class="form-control" id="projectDetails" rows="4" placeholder="Tell us about your project, specific shots you need, access instructions, etc."></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <label for="referencePhotos" class="form-label">Upload Reference Photos (Optional)</label>
+                                    <input type="file" class="form-control" id="referencePhotos" multiple>
+                                    <div class="form-text">Upload photos of your project site for reference (max 5 files, 10MB each)</div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="col-lg-4 mt-4 mt-lg-0">
+                        <div class="booking-summary">
+                            <h5 class="mb-3">Final Summary</h5>
+                            <div class="summary-item">
+                                <span>Service:</span>
+                                <span id="finalService">Photo Shoots</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Date:</span>
+                                <span id="finalDate">March 15, 2024</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Time:</span>
+                                <span id="finalTime">9:00 AM</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Duration:</span>
+                                <span id="finalDuration">2-3 hours</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Total:</span>
+                                <span id="finalTotal">$299</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="termsCheck" required>
+                                <label class="form-check-label small" for="termsCheck">
+                                    I agree to the <a href="#">Terms of Service</a> and understand bookings are confirmed manually within 24 hours.
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-5 pt-4 border-top">
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-outline-secondary" id="backStep3">Back</button>
+                        <button class="btn btn-primary" id="submitBooking">Confirm Booking</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 4: Confirmation -->
+            <div class="booking-content d-none" id="step4">
+                <div class="text-center py-5">
+                    <div class="mb-4">
+                        <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
+                    </div>
+                    <h2 class="mb-3">Booking Request Submitted!</h2>
+                    <p class="lead mb-4">Thank you for choosing TradieMate. We'll contact you within 24 hours to confirm your appointment.</p>
+                    
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="card border-0 shadow-sm mb-4">
+                                <div class="card-body">
+                                    <h5 class="card-title mb-3">Booking Details</h5>
+                                    <div class="row text-start">
+                                        <div class="col-md-6 mb-2"><strong>Reference:</strong> <span id="confirmationRef">TM-001234</span></div>
+                                        <div class="col-md-6 mb-2"><strong>Service:</strong> <span id="confirmationService">Photo Shoots</span></div>
+                                        <div class="col-md-6 mb-2"><strong>Date:</strong> <span id="confirmationDate">March 15, 2024</span></div>
+                                        <div class="col-md-6 mb-2"><strong>Time:</strong> <span id="confirmationTime">9:00 AM</span></div>
+                                        <div class="col-md-6 mb-2"><strong>Name:</strong> <span id="confirmationName">-</span></div>
+                                        <div class="col-md-6 mb-2"><strong>Email:</strong> <span id="confirmationEmail">-</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-muted mb-4">
+                        A confirmation email has been sent to your inbox. Please check your spam folder if you don't see it.
+                    </p>
+                    
+                    <div class="d-flex flex-column flex-md-row gap-3 justify-content-center">
+                        <a href="index.html" class="btn btn-primary">Back to Homepage</a>
+                        <a href="booking.html" class="btn btn-outline-secondary">Book Another Service</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/cropped-tradie-mate_01b-261x71-1.png" 
+                         alt="TradieMate Logo" 
+                         class="footer-logo">
+                    <p class="mb-4">Premium photography & videography services for Sydney tradies. Showcasing craftsmanship since 2018.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                        <a href="#"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h5>Services</h5>
+                    <ul>
+                        <li><a href="#services">Photo Shoots</a></li>
+                        <li><a href="#services">Video Sessions</a></li>
+                        <li><a href="#services">Drone Footage</a></li>
+                        <li><a href="#services">Walkthroughs</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h5>Company</h5>
+                    <ul>
+                        <li><a href="#value">Why Choose Us</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="booking.html">Book Now</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h5>Contact Info</h5>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="bi bi-geo-alt"></i>
+                            <span>Sydney NSW, Australia</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-telephone"></i>
+                            <span>1300 123 456</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-envelope"></i>
+                            <span>hello@tradiemate.com.au</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-clock"></i>
+                            <span>Mon-Fri: 7am-6pm<br>Sat: 8am-4pm</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <div>
+                    <p class="mb-2 mb-md-0">&copy; 2023 TradieMate. All rights reserved. ABN: 12 345 678 901</p>
+                </div>
+                <div class="copyright-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Site Map</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+                    
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Initialize variables
+            let selectedService = 'photo';
+            let selectedDate = null;
+            let selectedTime = null;
+            let currentMonth = new Date().getMonth();
+            let currentYear = new Date().getFullYear();
+            
+            // Service selection
+            $('.service-option').on('click', function() {
+                $('.service-option').removeClass('selected');
+                $(this).addClass('selected');
+                selectedService = $(this).data('service');
+                
+                // Update summary
+                updateServiceSummary();
+            });
+            
+            // Step navigation
+            $('#nextStep1').on('click', function() {
+                if (!selectedService) {
+                    alert('Please select a service to continue.');
+                    return;
+                }
+                
+                $('#step1').addClass('d-none');
+                $('#step2').removeClass('d-none');
+                updateBookingTab(2);
+                generateCalendar();
+            });
+            
+            $('#backStep2').on('click', function() {
+                $('#step2').addClass('d-none');
+                $('#step1').removeClass('d-none');
+                updateBookingTab(1);
+            });
+            
+            $('#nextStep2').on('click', function() {
+                if (!selectedDate || !selectedTime) {
+                    alert('Please select a date and time to continue.');
+                    return;
+                }
+                
+                $('#step2').addClass('d-none');
+                $('#step3').removeClass('d-none');
+                updateBookingTab(3);
+                updateFinalSummary();
+            });
+            
+            $('#backStep3').on('click', function() {
+                $('#step3').addClass('d-none');
+                $('#step2').removeClass('d-none');
+                updateBookingTab(2);
+            });
+            
+            // Generate calendar
+            function generateCalendar() {
+                const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+                                   'July', 'August', 'September', 'October', 'November', 'December'];
+                
+                $('#currentMonth').text(`${monthNames[currentMonth]} ${currentYear}`);
+                
+                const firstDay = new Date(currentYear, currentMonth, 1);
+                const lastDay = new Date(currentYear, currentMonth + 1, 0);
+                const daysInMonth = lastDay.getDate();
+                
+                let calendarHTML = `
+                    <div class="calendar-day-header">Sun</div>
+                    <div class="calendar-day-header">Mon</div>
+                    <div class="calendar-day-header">Tue</div>
+                    <div class="calendar-day-header">Wed</div>
+                    <div class="calendar-day-header">Thu</div>
+                    <div class="calendar-day-header">Fri</div>
+                    <div class="calendar-day-header">Sat</div>
+                `;
+                
+                // Empty cells for days before first day of month
+                for (let i = 0; i < firstDay.getDay(); i++) {
+                    calendarHTML += '<div class="calendar-day disabled"></div>';
+                }
+                
+                // Days of the month
+                const today = new Date();
+                for (let day = 1; day <= daysInMonth; day++) {
+                    const date = new Date(currentYear, currentMonth, day);
+                    const isToday = date.toDateString() === today.toDateString();
+                    const isPast = date < today && !isToday;
+                    const isSunday = date.getDay() === 0;
+                    
+                    let dayClass = 'calendar-day';
+                    if (isPast || isSunday) {
+                        dayClass += ' disabled';
+                    }
+                    
+                    if (selectedDate && date.toDateString() === selectedDate.toDateString()) {
+                        dayClass += ' selected';
+                    }
+                    
+                    calendarHTML += `<div class="${dayClass}" data-date="${date.toISOString().split('T')[0]}">${day}</div>`;
+                }
+                
+                $('#calendarDays').html(calendarHTML);
+                generateTimeSlots();
+            }
+            
+            // Date selection
+            $(document).on('click', '.calendar-day:not(.disabled)', function() {
+                $('.calendar-day').removeClass('selected');
+                $(this).addClass('selected');
+                selectedDate = new Date($(this).data('date'));
+                
+                updateDateSummary();
+                generateTimeSlots();
+            });
+            
+            // Month navigation
+            $('#prevMonth').on('click', function() {
+                currentMonth--;
+                if (currentMonth < 0) {
+                    currentMonth = 11;
+                    currentYear--;
+                }
+                generateCalendar();
+            });
+            
+            $('#nextMonth').on('click', function() {
+                currentMonth++;
+                if (currentMonth > 11) {
+                    currentMonth = 0;
+                    currentYear++;
+                }
+                generateCalendar();
+            });
+            
+            // Generate time slots
+            function generateTimeSlots() {
+                if (!selectedDate) return;
+                
+                const timeSlots = ['8:00 AM', '9:30 AM', '11:00 AM', '1:00 PM', '2:30 PM', '4:00 PM'];
+                let slotsHTML = '';
+                
+                timeSlots.forEach(slot => {
+                    const slotClass = selectedTime === slot ? 'time-slot selected' : 'time-slot';
+                    slotsHTML += `<div class="${slotClass}" data-time="${slot}">${slot}</div>`;
+                });
+                
+                $('#timeSlots').html(slotsHTML);
+            }
+            
+            // Time selection
+            $(document).on('click', '.time-slot', function() {
+                $('.time-slot').removeClass('selected');
+                $(this).addClass('selected');
+                selectedTime = $(this).data('time');
+                
+                updateTimeSummary();
+            });
+            
+            // Update booking tabs
+            function updateBookingTab(step) {
+                $('.booking-tab').removeClass('active');
+                $(`.booking-tab[data-step="${step}"]`).addClass('active');
+            }
+            
+            // Update summary functions
+            function updateServiceSummary() {
+                const serviceNames = {
+                    'photo': 'Photo Shoots',
+                    'video': 'Video Sessions',
+                    'drone': 'Drone Footage',
+                    'combo': 'Full Package'
+                };
+                
+                const servicePrices = {
+                    'photo': '$299',
+                    'video': '$499',
+                    'drone': '$399',
+                    'combo': '$799'
+                };
+                
+                $('#summaryService').text(serviceNames[selectedService]);
+                $('#summaryPrice').text(servicePrices[selectedService]);
+            }
+            
+            function updateDateSummary() {
+                if (selectedDate) {
+                    const options = { weekday: 'short', month: 'short', day: 'numeric' };
+                    $('#summaryDate').text(selectedDate.toLocaleDateString('en-AU', options));
+                }
+            }
+            
+            function updateTimeSummary() {
+                if (selectedTime) {
+                    $('#summaryTime').text(selectedTime);
+                }
+            }
+            
+            // Update final summary
+            function updateFinalSummary() {
+                const serviceNames = {
+                    'photo': 'Photo Shoots',
+                    'video': 'Video Sessions',
+                    'drone': 'Drone Footage',
+                    'combo': 'Full Package'
+                };
+                
+                const serviceDurations = {
+                    'photo': '2-3 hours',
+                    'video': '3-4 hours',
+                    'drone': '2-3 hours',
+                    'combo': '4-5 hours'
+                };
+                
+                const servicePrices = {
+                    'photo': '$299',
+                    'video': '$499',
+                    'drone': '$399',
+                    'combo': '$799'
+                };
+                
+                $('#finalService').text(serviceNames[selectedService]);
+                $('#finalDuration').text(serviceDurations[selectedService]);
+                $('#finalTotal').text(servicePrices[selectedService]);
+                
+                if (selectedDate) {
+                    const options = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+                    $('#finalDate').text(selectedDate.toLocaleDateString('en-AU', options));
+                }
+                
+                if (selectedTime) {
+                    $('#finalTime').text(selectedTime);
+                }
+            }
+            
+            // Booking submission
+            $('#submitBooking').on('click', function(e) {
+                e.preventDefault();
+                
+                // Validate form
+                const fullName = $('#fullName').val();
+                const email = $('#email').val();
+                const phone = $('#phone').val();
+                const address = $('#projectAddress').val();
+                const tradeType = $('#tradeType').val();
+                const terms = $('#termsCheck').is(':checked');
+                
+                if (!fullName || !email || !phone || !address || !tradeType || !terms) {
+                    alert('Please fill in all required fields and agree to the terms.');
+                    return;
+                }
+                
+                // Generate confirmation
+                $('#confirmationService').text($('#finalService').text());
+                $('#confirmationDate').text($('#finalDate').text());
+                $('#confirmationTime').text($('#finalTime').text());
+                $('#confirmationName').text(fullName);
+                $('#confirmationEmail').text(email);
+                $('#confirmationRef').text('TM-' + Math.floor(100000 + Math.random() * 900000));
+                
+                // Show confirmation
+                $('#step3').addClass('d-none');
+                $('#step4').removeClass('d-none');
+                updateBookingTab(4);
+                
+                // Reset form (in a real app, you would send data to server)
+                setTimeout(() => {
+                    $('#bookingForm')[0].reset();
+                }, 1000);
+            });
+            
+            // Initialize
+            generateCalendar();
+            updateServiceSummary();
+            $('.service-option[data-service="photo"]').addClass('selected');
+            
+            // Smooth scroll for internal links
+            $('a[href^="#"]').on('click', function(e) {
+                if (this.hash !== '' && this.hash !== '#') {
+                    e.preventDefault();
+                    const hash = this.hash;
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top - 80
+                    }, 800);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
