@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>TradieMate | Premium Photography & Videography for Sydney Tradies</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root{
+            --primary-orange: #FF931E;
+            --primary-dark: #010100;
+            --light-gray: #F8F9FA;
+            --white: #FFFFFF;
+            --navbar-height: 70px;
+            --max-width: 1200px;
+        }
+        
+        * {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        body{
+            font-family:'Open Sans',sans-serif;
+            color:var(--primary-dark);
+            margin:0;
+            line-height:1.6;
+            background:#fff;
+            padding-top: var(--navbar-height);
+            overflow-x: hidden;
+        }
+        
+        .navbar{
+            height:var(--navbar-height);
+            position:fixed;
+            top:0; 
+            left:0; 
+            right:0;
+            z-index:1100;
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(1,1,0,0.08);
+        }
+        
+        .navbar-brand img{
+            height:38px;
+            width:auto;
+        }
+        
+        .nav-link{
+            font-weight:600; 
+            color:var(--primary-dark) !important; 
+            padding:.5rem .75rem;
+            font-size: 0.95rem;
+        }
+        
+        .header-booking-btn{
+            background-color:var(--primary-orange);
+            color:var(--primary-dark);
+            border:none;
+            padding:.6rem 1.2rem;
+            border-radius:8px;
+            font-weight:700;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+        
+        .header-booking-btn:hover {
+            background-color: #ff7b00;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 147, 30, 0.3);
+        }
+        
+        /* Mobile navbar collapse */
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                background: rgba(255,255,255,0.98);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                padding: 1rem;
+                border-radius: 12px;
+                margin-top: 10px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                border: 1px solid rgba(0,0,0,0.05);
+            }
+            
+            .navbar-nav {
+                padding: 0.5rem 0;
+            }
+            
+            .nav-item {
+                margin: 0.25rem 0;
+            }
+            
+            .nav-link {
+                padding: 0.75rem 1rem;
+                border-radius: 8px;
+                transition: background-color 0.2s;
+            }
+            
+            .nav-link:hover {
+                background-color: rgba(255,147,30,0.1);
+            }
+            
+            .navbar-toggler {
+                border: none;
+                padding: 0.5rem;
+            }
+            
+            .navbar-toggler:focus {
+                box-shadow: none;
+            }
+        }
+        
+        /* Gallery Section */
+        .gallery-section {
+            padding: 60px 0 30px 0;
+            background: var(--light-gray);
+        }
+        
+        .gallery-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            letter-spacing: .03em;
+            margin-bottom: 1.5rem;
+            color: var(--primary-dark);
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+        }
+        
+        .project-gallery .card {
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            height: 100%;
+            margin-bottom: 0;
+        }
+        
+        .project-gallery .card:active {
+            transform: scale(0.98);
+        }
+        
+        @media (hover: hover) {
+            .project-gallery .card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+            }
+        }
+        
+        .project-gallery .card-img-top {
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #f5f5f5 25%, #e8e8e8 25%, #e8e8e8 50%, #f5f5f5 50%, #f5f5f5 75%, #e8e8e8 75%);
+            background-size: 20px 20px;
+        }
+        
+        @media (max-width: 576px) {
+            .project-gallery .card-img-top {
+                height: 180px;
+            }
+        }
+        
+        .project-gallery .card-body {
+            background: #fff;
+            padding: 1.25rem 1rem;
+        }
+        
+        .project-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0;
+            color: var(--primary-dark);
+            line-height: 1.3;
+        }
+        
+        /* Modern Centered Lightbox Modal */
+        #projectGalleryModal .modal-dialog {
+            max-width: 1200px;
+            width: 95%;
+            margin: auto;
+            max-height: 95vh;
+        }
+        
+        #projectGalleryModal .modal-content {
+            border: none;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            background: #fff;
+            max-height: 95vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        #projectGalleryModal .modal-header {
+            border: none;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            padding: 1.2rem 1.5rem;
+            position: relative;
+            flex-shrink: 0;
+            min-height: 70px;
+        }
+        
+        #projectGalleryModal .modal-title {
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 0.5px;
+            margin: 0;
+            line-height: 1.2;
+        }
+        
+        #projectGalleryModal .btn-close {
+            filter: invert(1) brightness(2);
+            opacity: 0.8;
+            transition: all 0.3s;
+            background-size: 1.2rem;
+            padding: 0.75rem;
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: transparent;
+            border: none;
+        }
+        
+        #projectGalleryModal .btn-close:hover {
+            opacity: 1;
+            transform: translateY(-50%) rotate(90deg);
+        }
+        
+        #projectGalleryModal .modal-body {
+            padding: 0;
+            background: #fff;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            overflow: hidden;
+        }
+        
+        /* Main Image Container */
+        .modal-main-content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .modal-image-container {
+            position: relative;
+            width: 100%;
+            flex: 1;
+            min-height: 300px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 0;
+        }
+        
+        .modal-gallery-img {
+            display: none;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.4s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        .modal-gallery-img.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Modern Navigation Arrows */
+        .modal-nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 56px;
+            height: 56px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid rgba(0,0,0,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 20;
+            color: var(--primary-dark);
+            font-size: 1.6rem;
+            font-weight: bold;
+        }
+        
+        .modal-nav-arrow:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            color: var(--primary-orange);
+            border-color: var(--primary-orange);
+        }
+        
+        .modal-nav-arrow:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+        
+        .modal-nav-arrow.prev {
+            left: 25px;
+        }
+        
+        .modal-nav-arrow.next {
+            right: 25px;
+        }
+        
+        @media (max-width: 768px) {
+            .modal-nav-arrow {
+                width: 48px;
+                height: 48px;
+                font-size: 1.4rem;
+            }
+            
+            .modal-nav-arrow.prev {
+                left: 15px;
+            }
+            
+            .modal-nav-arrow.next {
+                right: 15px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .modal-nav-arrow {
+                width: 44px;
+                height: 44px;
+                font-size: 1.2rem;
+                border-width: 1px;
+            }
+            
+            .modal-nav-arrow.prev {
+                left: 10px;
+            }
+            
+            .modal-nav-arrow.next {
+                right: 10px;
+            }
+        }
+        
+        /* Thumbnails Section */
+        .modal-thumbnails-section {
+            background: #fff;
+            padding: 1.2rem 1.5rem;
+            border-top: 1px solid #eaeaea;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .thumbnails-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .image-counter {
+            font-size: 0.95rem;
+            color: #666;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #f8f9fa;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+        
+        .image-counter i {
+            color: var(--primary-orange);
+        }
+        
+        .image-caption {
+            font-size: 1.1rem;
+            color: var(--primary-dark);
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.3;
+            flex: 1;
+            padding-right: 1rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        /* Modern Thumbnails */
+        .modal-gallery-thumbs {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-orange) #eaeaea;
+            padding: 5px 0;
+        }
+        
+        .modal-gallery-thumbs::-webkit-scrollbar {
+            height: 6px;
+        }
+        
+        .modal-gallery-thumbs::-webkit-scrollbar-track {
+            background: #eaeaea;
+            border-radius: 10px;
+        }
+        
+        .modal-gallery-thumbs::-webkit-scrollbar-thumb {
+            background: var(--primary-orange);
+            border-radius: 10px;
+        }
+        
+        .modal-gallery-thumbs img {
+            height: 70px;
+            width: 90px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 3px solid transparent;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            background: #f8f9fa;
+        }
+        
+        .modal-gallery-thumbs img:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .modal-gallery-thumbs img.active {
+            border-color: var(--primary-orange);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 147, 30, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .modal-gallery-thumbs img {
+                height: 60px;
+                width: 75px;
+            }
+            
+            .modal-thumbnails-section {
+                padding: 1rem;
+            }
+            
+            .image-caption {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .modal-gallery-thumbs img {
+                height: 50px;
+                width: 65px;
+            }
+            
+            .thumbnails-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .image-caption {
+                white-space: normal;
+                padding-right: 0;
+                text-align: center;
+                width: 100%;
+            }
+            
+            .image-counter {
+                align-self: center;
+            }
+        }
+        
+        /* FIXED: CTA Button Section - CLEAN & CONSISTENT */
+        .modal-cta-section {
+            background: #fff;
+            padding: 1.5rem;
+            border-top: 1px solid #eaeaea;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        
+        /* FIXED: Clean CTA Button - Always centered, consistent sizing */
+        .modal-cta-button {
+            background: linear-gradient(135deg, var(--primary-orange) 0%, #ff7b00 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 6px 20px rgba(255, 147, 30, 0.3);
+            white-space: nowrap;
+            min-width: 280px;
+            max-width: 100%;
+            height: 56px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .modal-cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 147, 30, 0.4);
+            color: white;
+            text-decoration: none;
+        }
+        
+        .modal-cta-button:active {
+            transform: translateY(-1px);
+        }
+        
+        .modal-cta-button i {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .modal-cta-button:hover i {
+            transform: translateX(3px);
+        }
+        
+        /* Button ripple effect */
+        .modal-cta-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+        
+        .modal-cta-button:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(20, 20);
+                opacity: 0;
+            }
+        }
+        
+        /* Responsive button sizing */
+        @media (max-width: 768px) {
+            .modal-cta-section {
+                padding: 1.25rem;
+            }
+            
+            .modal-cta-button {
+                min-width: 260px;
+                padding: 0.9rem 1.75rem;
+                font-size: 0.95rem;
+                height: 52px;
+                gap: 0.6rem;
+            }
+            
+            .modal-cta-button i {
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .modal-cta-section {
+                padding: 1rem;
+            }
+            
+            .modal-cta-button {
+                min-width: 240px;
+                padding: 0.85rem 1.5rem;
+                font-size: 0.9rem;
+                height: 48px;
+                width: 100%;
+                max-width: 300px;
+                gap: 0.5rem;
+            }
+            
+            .modal-cta-button i {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 375px) {
+            .modal-cta-button {
+                min-width: 220px;
+                padding: 0.8rem 1.25rem;
+                font-size: 0.85rem;
+                height: 46px;
+            }
+            
+            .modal-cta-button i {
+                font-size: 0.95rem;
+            }
+        }
+        
+        /* Loading animation for modal images */
+        .modal-gallery-img.loading {
+            opacity: 0.5;
+            filter: blur(5px);
+            background: #f8f9fa;
+        }
+        
+        /* Footer Mobile Optimization */
+        footer {
+            background: var(--primary-dark);
+            color: rgba(255,255,255,0.8);
+            padding: 50px 0 20px 0;
+            margin-top: 40px;
+        }
+        
+        .footer-logo {
+            height: 35px;
+            filter: brightness(0) invert(1);
+            margin-bottom: 15px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+        
+        .social-links a:active {
+            transform: scale(0.95);
+        }
+        
+        @media (hover: hover) {
+            .social-links a:hover {
+                background: var(--primary-orange);
+                transform: translateY(-3px);
+            }
+        }
+        
+        .footer-section h5 {
+            color: #fff;
+            margin-bottom: 18px;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.2s;
+            display: inline-block;
+            padding: 4px 0;
+            font-size: 0.95rem;
+        }
+        
+        .footer-section a:active {
+            color: var(--primary-orange);
+        }
+        
+        @media (hover: hover) {
+            .footer-section a:hover {
+                color: var(--primary-orange);
+                text-decoration: underline;
+            }
+        }
+        
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+        
+        .contact-info i {
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            margin-top: 30px;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+        }
+        
+        @media (min-width: 768px) {
+            .copyright {
+                text-align: left;
+            }
+        }
+        
+        .copyright a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.2s;
+            display: inline-block;
+            margin: 0 8px 8px 0;
+        }
+        
+        .copyright a:last-child {
+            margin-right: 0;
+        }
+        
+        .copyright a:active {
+            color: var(--primary-orange);
+        }
+        
+        @media (hover: hover) {
+            .copyright a:hover {
+                color: var(--primary-orange);
+            }
+        }
+        
+        /* Grid adjustments for mobile */
+        @media (max-width: 768px) {
+            .gallery-section {
+                padding: 40px 0 20px 0;
+            }
+            
+            .project-gallery .row {
+                --bs-gutter-x: 1rem;
+                --bs-gutter-y: 1rem;
+            }
+            
+            footer {
+                padding: 40px 0 15px 0;
+            }
+            
+            .footer-section {
+                margin-bottom: 30px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            :root {
+                --navbar-height: 65px;
+            }
+            
+            .navbar-brand img {
+                height: 34px;
+            }
+            
+            .gallery-section {
+                padding: 30px 0 15px 0;
+            }
+            
+            .project-gallery .row {
+                --bs-gutter-x: 0.75rem;
+                --bs-gutter-y: 0.75rem;
+            }
+            
+            footer {
+                padding: 30px 0 10px 0;
+            }
+        }
+        
+        /* Safe area insets for modern phones */
+        @supports (padding: max(0px)) {
+            body {
+                padding-left: min(0vmin, env(safe-area-inset-left));
+                padding-right: min(0vmin, env(safe-area-inset-right));
+                padding-bottom: env(safe-area-inset-bottom);
+            }
+            
+            .navbar {
+                padding-left: max(1rem, env(safe-area-inset-left));
+                padding-right: max(1rem, env(safe-area-inset-right));
+            }
+            
+            footer .container {
+                padding-left: max(1rem, env(safe-area-inset-left));
+                padding-right: max(1rem, env(safe-area-inset-right));
+            }
+        }
+        
+        /* Prevent horizontal scroll */
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
+        /* Loading optimization */
+        .card-img-top {
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .card-img-top.loaded {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation/Header -->
+    <nav class="navbar navbar-expand-lg navbar-light" aria-label="Main navigation">
+        <div class="container" style="max-width:var(--max-width);">
+            <a class="navbar-brand" href="index.html" aria-label="TradieMate home">
+                <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/cropped-tradie-mate_01b-261x71-1.png" alt="TradieMate logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+                    aria-controls="navbarNav">
+                <span class="navbar-toggler-icon" aria-hidden="true"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#value">Why Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+                    <li class="nav-item d-block d-lg-none mt-2">
+                        <a href="booking.html" class="header-booking-btn w-100 text-center d-block py-2">Book a Shoot</a>
+                    </li>
+                    <li class="nav-item d-none d-lg-block ms-2">
+                        <a href="booking.html" class="header-booking-btn">Book a Shoot</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Project Gallery Section -->
+    <section class="gallery-section" id="projects">
+        <div class="container px-3 px-sm-4" style="max-width:var(--max-width);">
+            <div class="text-center">
+                <h2 class="gallery-title mb-3">Project Gallery</h2>
+                <p class="lead mb-4 text-secondary px-2">Browse featured projects — tap to explore photos of each project.</p>
+            </div>
+            <div class="row project-gallery g-3 g-sm-4">
+                <!-- McMahons Point -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card h-100" onclick="openProjectGallery('mcmahons')" role="button" 
+                         aria-label="View McMahons Point project" tabindex="0">
+                        <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/LIVING-ROOM-3-1024x683-1.jpg" 
+                             class="card-img-top" alt="McMahons Point Living Room" loading="lazy">
+                        <div class="card-body text-center">
+                            <div class="project-title">McMahons Point</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Mosman -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card h-100" onclick="openProjectGallery('mosman')" role="button"
+                         aria-label="View Mosman project" tabindex="0">
+                        <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/Mosman-15-1.jpg" 
+                             class="card-img-top" alt="Mosman Living Area" loading="lazy">
+                        <div class="card-body text-center">
+                            <div class="project-title">Mosman</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Balgowlah -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card h-100" onclick="openProjectGallery('balgowlah')" role="button"
+                         aria-label="View Balgowlah project" tabindex="0">
+                        <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/DJI_0164-1024x768-1.jpg" 
+                             class="card-img-top" alt="Balgowlah Aerial View" loading="lazy">
+                        <div class="card-body text-center">
+                            <div class="project-title">Balgowlah</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Bellevue Hill -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card h-100" onclick="openProjectGallery('bellevue')" role="button"
+                         aria-label="View Bellevue Hill project" tabindex="0">
+                        <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/bellevuehill-1-1024x683-1.jpg" 
+                             class="card-img-top" alt="Bellevue Hill Living Space" loading="lazy">
+                        <div class="card-body text-center">
+                            <div class="project-title">Bellevue Hill</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modern Centered Lightbox Modal - FIXED CTA BUTTON -->
+    <div class="modal fade" id="projectGalleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="galleryModalLabel">Project Gallery</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-main-content">
+                        <!-- Main Image Area -->
+                        <div class="modal-image-container">
+                            <div class="modal-image-wrapper" id="modalImageContainer"></div>
+                            
+                            <!-- Navigation Arrows -->
+                            <button class="modal-nav-arrow prev" onclick="prevGalleryImage()" aria-label="Previous image">
+                                <i class="bi bi-chevron-left"></i>
+                            </button>
+                            <button class="modal-nav-arrow next" onclick="nextGalleryImage()" aria-label="Next image">
+                                <i class="bi bi-chevron-right"></i>
+                            </button>
+                        </div>
+                        
+                        <!-- Thumbnails & Info -->
+                        <div class="modal-thumbnails-section">
+                            <div class="thumbnails-header">
+                                <div class="image-caption" id="modalGalleryCaption"></div>
+                                <div class="image-counter" id="imageCounter">
+                                    <i class="bi bi-image"></i> <span id="currentImageCount">1</span> of <span id="totalImageCount">8</span>
+                                </div>
+                            </div>
+                            <div class="modal-gallery-thumbs"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FIXED: Clean CTA Button Section -->
+                <div class="modal-cta-section">
+                    <a href="booking.html" class="modal-cta-button">
+                        <i class="bi bi-calendar-check"></i> Book This Project Style
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container px-3 px-sm-4" style="max-width:var(--max-width);">
+            <div class="row">
+                <div class="col-lg-4 mb-4 footer-section">
+                    <img class="footer-logo" src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/cropped-tradie-mate_01b-261x71-1.png" alt="TradieMate logo">
+                    <p>Premium photography & videography services for Sydney tradies. Showcasing craftsmanship since 2018.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 mb-4 footer-section">
+                    <h5>Services</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#services">Photo Shoots</a></li>
+                        <li><a href="#services">Video Sessions</a></li>
+                        <li><a href="#services">Drone Footage</a></li>
+                        <li><a href="#services">Walkthroughs</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-2 mb-4 footer-section">
+                    <h5>Company</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#value">Why Choose Us</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="booking.html">Book Now</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4 footer-section">
+                    <h5>Contact Info</h5>
+                    <ul class="list-unstyled contact-info">
+                        <li class="mb-2"><i class="bi bi-geo-alt me-2" style="color:var(--primary-orange)"></i>Sydney NSW, Australia</li>
+                        <li class="mb-2"><i class="bi bi-telephone me-2" style="color:var(--primary-orange)"></i>1300 123 456</li>
+                        <li class="mb-2"><i class="bi bi-envelope me-2" style="color:var(--primary-orange)"></i>hello@tradiemate.com.au</li>
+                        <li class="mb-2"><i class="bi bi-clock me-2" style="color:var(--primary-orange)"></i>Mon-Fri: 7am-6pm | Sat: 8am-4pm</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <div class="mb-2 mb-md-0">&copy; 2025 TradieMate. All rights reserved. ABN: 12 345 678 901</div>
+                <div>
+                    <a href="#" class="me-2">Privacy Policy</a>
+                    <a href="#" class="me-2">Terms of Service</a>
+                    <a href="#">Site Map</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+    // Updated Project Images Data
+    const projectGalleries = {
+        mcmahons: {
+            title: "McMahons Point",
+            images: [
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/LIVING-ROOM-3-1024x683-1.jpg", caption: "Living Room - McMahons Point"},
+                {src: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80", caption: "Kitchen - McMahons Point"},
+                {src: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=800&q=80", caption: "Exterior - McMahons Point"}
+            ]
+        },
+        mosman: {
+            title: "Mosman",
+            images: [
+                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/mosman5-768x512-1-2.jpg", caption: "Mosman Project - Image 1"},
+                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/untitled-1-1-1024x683-1.png", caption: "Mosman Project - Image 2"},
+                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/dfsfsfdfdfmosman2-768x512-1.jpg", caption: "Mosman Project - Image 3"},
+                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/edit-00261-768x1152-1-683x1024.jpg", caption: "Mosman Project - Image 4"},
+                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/edit-00261-768x1152-1-683x1024.jpg", caption: "Mosman Project - Image 5"},
+                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/asasasadetails1-768x512-1-683x1024.jpg", caption: "Mosman Project - Details"},
+                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/mosman-december-2021-5-768x606-1.jpg", caption: "Mosman Project - Overview"}
+            ]
+        },
+        balgowlah: {
+            title: "Balgowlah",
+            images: [
+                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/1b8a6911-768x512-1.jpg", caption: "Balgowlah Project - Exterior 1"},
+                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/dji-0158-768x576-1-2.jpg", caption: "Balgowlah Project - Aerial 1"},
+                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/dji-0145-768x576-1-2.jpg", caption: "Balgowlah Project - Aerial 2"},
+                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/dji-0150-1024x768-1-2.jpg", caption: "Balgowlah Project - Aerial 3"},
+                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/dji-0156-768x576-1-2.jpg", caption: "Balgowlah Project - Aerial 4"},
+                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/dji-0169-scaled-2-2-1024x768.jpg", caption: "Balgowlah Project - Aerial 5"},
+                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/dji-0176-768x576-1-2.jpg", caption: "Balgowlah Project - Aerial 6"},
+                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/untitled-1-768x512-1-2.png", caption: "Balgowlah Project - Interior 1"},
+                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/untitled-1-768x512-1-2.png", caption: "Balgowlah Project - Interior 2"}
+            ]
+        },
+        bellevue: {
+            title: "Bellevue Hill",
+            images: [
+                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/1b8a6328-scaled-1-1024x683.jpg", caption: "Bellevue Hill - Exterior View 1"},
+                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/khjkhjkh1b8a6364-300x200-1-150x150-2.jpg", caption: "Bellevue Hill - Detail Shot 1"},
+                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/lhjlhlhl1b8a6412-scaled-1-150x150-1.jpg", caption: "Bellevue Hill - Detail Shot 2"},
+                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/1b8a6412-scaled-1-1024x683.jpg", caption: "Bellevue Hill - Exterior View 2"},
+                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/jhkljkljl1b8a6346-300x200-1.jpg", caption: "Bellevue Hill - Architectural Detail"},
+                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/hkhkjk1b8a6320-scaled-1-1024x682.jpg", caption: "Bellevue Hill - Front Facade"},
+                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/1b8a7048-1-scaled-1-300x200-2.jpg", caption: "Bellevue Hill - Garden View"},
+                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/hkjhjkhjkhjkhkh1b8a6412-scaled-1-300x200-2.jpg", caption: "Bellevue Hill - Exterior Detail"}
+            ]
+        }
+    };
+
+    // Modal/Slider State
+    let galleryState = {
+        projectKey: null,
+        currentIndex: 0,
+        touchStartX: 0,
+        touchEndX: 0
+    };
+
+    // Image lazy loading
+    document.addEventListener('DOMContentLoaded', function() {
+        const images = document.querySelectorAll('.card-img-top');
+        images.forEach(img => {
+            if (img.complete) {
+                img.classList.add('loaded');
+            } else {
+                img.addEventListener('load', function() {
+                    this.classList.add('loaded');
+                });
+            }
+        });
+        
+        // Add keyboard support for cards
+        document.querySelectorAll('.card[role="button"]').forEach(card => {
+            card.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.click();
+                }
+            });
+        });
+    });
+
+    function openProjectGallery(projectKey) {
+        galleryState.projectKey = projectKey;
+        galleryState.currentIndex = 0;
+        const gallery = projectGalleries[projectKey];
+
+        // Set Title
+        document.getElementById('galleryModalLabel').textContent = gallery.title;
+
+        // Clear and create image containers dynamically
+        const modalContainer = document.getElementById('modalImageContainer');
+        modalContainer.innerHTML = '';
+        
+        // Set total image count
+        document.getElementById('totalImageCount').textContent = gallery.images.length;
+        
+        gallery.images.forEach((img, idx) => {
+            const imgElement = document.createElement('img');
+            imgElement.className = 'modal-gallery-img';
+            imgElement.id = `modalGalleryImg${idx}`;
+            imgElement.src = img.src;
+            imgElement.alt = img.caption;
+            imgElement.loading = 'lazy';
+            imgElement.style.display = 'none';
+            
+            // Add loading state
+            imgElement.classList.add('loading');
+            imgElement.addEventListener('load', function() {
+                this.classList.remove('loading');
+            });
+            
+            modalContainer.appendChild(imgElement);
+        });
+
+        showGalleryImage(0);
+
+        // Thumbnails
+        const thumbsContainer = document.querySelector('.modal-gallery-thumbs');
+        thumbsContainer.innerHTML = '';
+        gallery.images.forEach((img, idx) => {
+            const thumb = document.createElement('img');
+            thumb.src = img.src;
+            thumb.alt = img.caption;
+            thumb.className = idx === 0 ? 'active' : '';
+            thumb.tabIndex = 0;
+            thumb.setAttribute('role', 'button');
+            thumb.setAttribute('aria-label', `View image ${idx + 1}`);
+            thumb.onclick = () => showGalleryImage(idx);
+            thumbsContainer.appendChild(thumb);
+        });
+
+        // Add touch events for swipe
+        const modalBody = document.querySelector('.modal-image-container');
+        modalBody.addEventListener('touchstart', handleTouchStart, {passive: true});
+        modalBody.addEventListener('touchend', handleTouchEnd, {passive: true});
+
+        // Show Modal
+        const modalElement = document.getElementById('projectGalleryModal');
+        const modal = new bootstrap.Modal(modalElement);
+        modal.show();
+        
+        // Focus management for accessibility
+        setTimeout(() => {
+            document.querySelector('.modal-nav-arrow.next').focus();
+        }, 300);
+    }
+
+    function showGalleryImage(idx) {
+        const gallery = projectGalleries[galleryState.projectKey];
+        
+        if (!gallery || !gallery.images[idx]) return;
+
+        // Hide all images
+        const modalImgs = document.querySelectorAll('.modal-gallery-img');
+        modalImgs.forEach(img => { 
+            img.classList.remove('active'); 
+            img.style.display = 'none'; 
+        });
+
+        // Show current image
+        const currentImg = document.getElementById(`modalGalleryImg${idx}`);
+        if (currentImg) {
+            currentImg.classList.add('active');
+            currentImg.style.display = 'block';
+            document.getElementById('modalGalleryCaption').textContent = gallery.images[idx].caption;
+            
+            // Update image counter
+            document.getElementById('currentImageCount').textContent = idx + 1;
+        }
+
+        // Highlight thumbnail and scroll it into view
+        const thumbs = document.querySelectorAll('.modal-gallery-thumbs img');
+        thumbs.forEach((img, i) => {
+            img.classList.toggle('active', i === idx);
+            // Scroll thumb into view smoothly
+            if (i === idx) {
+                setTimeout(() => {
+                    img.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                }, 100);
+            }
+        });
+
+        galleryState.currentIndex = idx;
+    }
+
+    function prevGalleryImage() {
+        const gallery = projectGalleries[galleryState.projectKey];
+        let idx = galleryState.currentIndex;
+        idx = (idx - 1 + gallery.images.length) % gallery.images.length;
+        showGalleryImage(idx);
+    }
+
+    function nextGalleryImage() {
+        const gallery = projectGalleries[galleryState.projectKey];
+        let idx = galleryState.currentIndex;
+        idx = (idx + 1) % gallery.images.length;
+        showGalleryImage(idx);
+    }
+
+    // Touch swipe handling for mobile
+    function handleTouchStart(evt) {
+        galleryState.touchStartX = evt.touches[0].clientX;
+    }
+
+    function handleTouchEnd(evt) {
+        galleryState.touchEndX = evt.changedTouches[0].clientX;
+        handleSwipe();
+    }
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = galleryState.touchStartX - galleryState.touchEndX;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                // Swipe left - next image
+                nextGalleryImage();
+            } else {
+                // Swipe right - previous image
+                prevGalleryImage();
+            }
+        }
+    }
+
+    // Keyboard navigation
+    window.addEventListener('keydown', function (ev) {
+        const modal = document.getElementById('projectGalleryModal');
+        if (!modal.classList.contains('show')) return;
+        
+        switch(ev.key) {
+            case 'ArrowLeft':
+                prevGalleryImage();
+                ev.preventDefault();
+                break;
+            case 'ArrowRight':
+                nextGalleryImage();
+                ev.preventDefault();
+                break;
+            case 'Escape':
+                const bsModal = bootstrap.Modal.getInstance(modal);
+                bsModal.hide();
+                break;
+            case ' ':
+                // Space bar toggles next image
+                nextGalleryImage();
+                ev.preventDefault();
+                break;
+        }
+    });
+
+    // Close modal when clicking on backdrop
+    document.getElementById('projectGalleryModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            const modal = bootstrap.Modal.getInstance(this);
+            modal.hide();
+        }
+    });
+
+    // Prevent body scroll when modal is open
+    document.getElementById('projectGalleryModal').addEventListener('shown.bs.modal', function () {
+        document.body.style.overflow = 'hidden';
+    });
+
+    document.getElementById('projectGalleryModal').addEventListener('hidden.bs.modal', function () {
+        document.body.style.overflow = 'auto';
+    });
+    </script>
+</body>
+</html>
