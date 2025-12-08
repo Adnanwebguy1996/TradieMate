@@ -1,32 +1,33 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TradieMate | Premium Photography & Videography for Sydney Tradies</title>
+    <meta name="description" content="Premium photography & videography services for Sydney tradies. Showcase your craftsmanship and win more clients with professional visuals.">
     
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- Bootstrap Icons (updated for newer icon set including bi-drone) -->
+    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     
     <style>
         :root {
-            --primary-orange: #FF931E;
+            --primary-orange: #F7931E;
             --primary-dark: #010100;
             --secondary-dark: #1A1A1A;
             --light-gray: #F8F9FA;
             --medium-gray: #6C757D;
             --border-gray: #E0E0E0;
             --white: #FFFFFF;
+            --card-bg: #F7F7F7;
         }
         
         * {
@@ -35,11 +36,24 @@
             box-sizing: border-box;
         }
         
+        html {
+            scroll-behavior: smooth;
+        }
+        
         body {
             font-family: 'Open Sans', sans-serif;
             color: var(--primary-dark);
             line-height: 1.6;
             overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+            -webkit-font-smoothing: antialiased;
+            padding-top: 70px; /* Fixed header offset - UPDATED */
+        }
+        
+        @media (max-width: 991px) {
+            body {
+                padding-top: 65px; /* UPDATED */
+            }
         }
         
         h1, h2, h3, h4, h5, h6 {
@@ -48,21 +62,30 @@
             margin-bottom: 1rem;
         }
         
+        /* Button Styles */
         .btn-primary {
             background-color: var(--primary-orange);
             border-color: var(--primary-orange);
-            color: var(--primary-dark);
+            color: var(--white);
             font-weight: 600;
-            padding: 0.75rem 2rem;
+            padding: 14px 34px;
             border-radius: 8px;
             transition: all 0.3s ease;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
         }
         
-        .btn-primary:hover {
+        .btn-primary:hover, .btn-primary:focus {
             background-color: #E6820B;
             border-color: #E6820B;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 147, 30, 0.3);
+            box-shadow: 0 5px 15px rgba(247, 147, 30, 0.3);
+            color: var(--white);
         }
         
         .btn-secondary {
@@ -70,43 +93,67 @@
             border: 2px solid var(--white);
             color: var(--white);
             font-weight: 600;
-            padding: 0.75rem 2rem;
+            padding: 12px 32px;
             border-radius: 8px;
             transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
         }
         
-        .btn-secondary:hover {
+        .btn-secondary:hover, .btn-secondary:focus {
             background-color: var(--white);
             border-color: var(--white);
             color: var(--primary-dark);
             transform: translateY(-2px);
         }
         
-        .section-padding {
-            padding: 80px 0;
+        /* Contact Form Button */
+        .btn-contact {
+            background-color: var(--primary-orange);
+            border-color: var(--primary-orange);
+            color: var(--white);
+            font-weight: 600;
+            padding: 14px 34px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            -webkit-tap-highlight-color: transparent;
         }
         
-        /* Hero Section - Clean Video Fix */
+        .btn-contact:hover, .btn-contact:focus {
+            background-color: #E6820B;
+            border-color: #E6820B;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(247, 147, 30, 0.3);
+            color: var(--white);
+        }
+        
+        /* Mobile Touch Improvements */
+        button, .btn, .nav-link {
+            touch-action: manipulation;
+        }
+        
+        /* Hero Section - Mobile First */
         .hero-section {
             position: relative;
-            min-height: 100vh;
+            height: 88vh;
             display: flex;
             align-items: center;
             overflow: hidden;
-            margin: 0;
-            padding: 0;
             background: var(--primary-dark);
+            width: 100%;
+            margin-top: -70px; /* Compensate for fixed header - UPDATED */
         }
         
-        @media (max-width: 767px) {
+        @media (min-width: 768px) {
             .hero-section {
-                min-height: 85vh;
-            }
-        }
-        
-        @media (max-width: 575px) {
-            .hero-section {
-                min-height: 80vh;
+                height: 95vh;
             }
         }
         
@@ -126,161 +173,418 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            -o-object-fit: cover;
+            object-position: center;
         }
         
-        .video-overlay {
+        /* Gradient overlay - left side only */
+        .gradient-overlay {
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
+            width: 70%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(1,1,0,0.55) 0%, rgba(1,1,0,0.45) 100%);
+            background: linear-gradient(90deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0) 100%);
             z-index: 1;
+        }
+        
+        @media (min-width: 768px) {
+            .gradient-overlay {
+                width: 55%;
+            }
         }
         
         .hero-content {
             position: relative;
             z-index: 2;
             color: var(--white);
-            padding: 180px 20px 140px;
-            text-align: center;
+            max-width: 100%;
+            padding: 120px 24px 80px;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            max-width: 900px;
-            margin: 0 auto;
+            gap: 16px;
+            text-align: center;
+            width: 100%;
+        }
+        
+        @media (min-width: 768px) {
+            .hero-content {
+                max-width: 520px;
+                margin-left: 80px;
+                padding: 140px 0 120px;
+                text-align: left;
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .hero-content {
+                margin-left: 120px;
+            }
         }
         
         .hero-section h1 {
-            font-size: 3.5rem;
+            font-size: 34px;
             font-weight: 800;
-            margin-bottom: 1.5rem;
             line-height: 1.2;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            display: block;
-            width: 100%;
-            text-align: center;
+            margin-bottom: 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
         
-        /* Hero Title Stacking Fix */
-        .hero-title {
-            display: block;
-            overflow: hidden;
-        }
-        
-        .hero-title-line {
-            display: block;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: titleReveal 0.8s forwards;
-        }
-        
-        .hero-title-line:nth-child(1) { animation-delay: 0.2s; }
-        .hero-title-line:nth-child(2) { animation-delay: 0.4s; }
-        .hero-title-line:nth-child(3) { animation-delay: 0.6s; }
-        
-        @keyframes titleReveal {
-            to {
-                opacity: 1;
-                transform: translateY(0);
+        @media (min-width: 768px) {
+            .hero-section h1 {
+                font-size: 54px;
             }
         }
         
         .hero-section .lead {
-            font-size: 1.5rem;
-            margin-bottom: 2.5rem;
+            font-size: 16px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 0;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        @media (min-width: 768px) {
+            .hero-section .lead {
+                font-size: 20px;
+            }
+        }
+        
+        .micro-proof {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.75);
             font-weight: 400;
-            opacity: 0.95;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-top: 8px;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        @media (min-width: 768px) {
+            .hero-buttons {
+                justify-content: flex-start;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .hero-buttons .btn {
+                width: 100%;
+                text-align: center;
+                padding: 16px;
+                font-size: 1rem;
+            }
+        }
+        
+        /* ===== FIXED NAVIGATION - PADDING & MARGIN ===== */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.98) !important;
+            box-shadow: 0 2px 30px rgba(1, 1, 0, 0.1);
+            padding: 0.5rem 0; /* Reduced vertical padding - UPDATED */
+            transition: all 0.3s ease;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1050;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            height: 70px; /* Consistent height - UPDATED */
+            display: flex;
+            align-items: center;
+        }
+        
+        /* Container inside navbar */
+        .navbar > .container {
+            padding: 0 15px; /* Consistent container padding - ADDED */
+        }
+        
+        @media (max-width: 991px) {
+            .navbar {
+                height: 65px; /* Slightly smaller on mobile - UPDATED */
+                padding: 0.4rem 0; /* Less padding on mobile - UPDATED */
+            }
+            
+            .navbar > .container {
+                padding: 0 12px; /* Slightly less padding on mobile - ADDED */
+            }
+        }
+        
+        /* Logo sizing - consistent */
+        .navbar-brand {
+            padding: 0;
+            margin: 0;
+        }
+        
+        .navbar-brand img {
+            height: 40px; /* Consistent size - UPDATED */
+            width: auto;
+            transition: all 0.3s ease;
+        }
+        
+        /* Mobile menu button */
+        .navbar-toggler {
+            border: none;
+            padding: 0.4rem; /* Reduced padding - UPDATED */
+            font-size: 1.4rem; /* Slightly smaller - UPDATED */
+            background: transparent;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            margin: 0;
+        }
+        
+        .navbar-toggler:focus {
+            box-shadow: 0 0 0 3px rgba(247, 147, 30, 0.25);
+            outline: none;
+        }
+        
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(1, 1, 0, 0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+            width: 1.5em;
+            height: 1.5em;
+            background-size: 100%;
+        }
+        
+        /* Nav links - better spacing */
+        .nav-link {
+            font-weight: 600;
+            color: var(--primary-dark) !important;
+            margin: 0;
+            padding: 0.5rem 0.75rem !important; /* Reduced padding - UPDATED */
+            transition: all 0.3s ease;
+            font-size: 0.95rem; /* Slightly smaller - UPDATED */
+            -webkit-tap-highlight-color: transparent;
+            display: block;
+        }
+        
+        .nav-link:hover, .nav-link:focus {
+            color: var(--primary-orange) !important;
+        }
+        
+        /* Mobile menu dropdown */
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                background: var(--white);
+                border-radius: 0 0 10px 10px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                padding: 0.75rem 1rem; /* Reduced padding - UPDATED */
+                margin-top: 8px; /* Less margin - UPDATED */
+                position: absolute;
+                top: 100%;
+                left: 12px; /* Match container padding - UPDATED */
+                right: 12px; /* Match container padding - UPDATED */
+                z-index: 1000;
+                max-height: calc(100vh - 65px);
+                overflow-y: auto;
+            }
+            
+            .nav-item {
+                margin-bottom: 0.25rem; /* Less space between items - UPDATED */
+            }
+            
+            .nav-link {
+                padding: 0.5rem 0 !important; /* Reduced padding - UPDATED */
+                border-bottom: 1px solid var(--border-gray);
+            }
+            
+            .nav-link:last-child {
+                border-bottom: none;
+            }
+            
+            .nav-link.active {
+                color: var(--primary-orange) !important;
+            }
+            
+            .header-booking-btn {
+                width: 100%;
+                margin-top: 0.75rem; /* Less margin - UPDATED */
+                padding: 12px 20px; /* Slightly smaller - UPDATED */
+                font-size: 0.95rem;
+            }
+        }
+        
+        /* Desktop Navigation */
+        @media (min-width: 992px) {
+            .navbar-collapse {
+                background: transparent;
+                box-shadow: none;
+                margin-top: 0;
+            }
+            
+            .nav-item {
+                margin-left: 0.25rem; /* Less space between items - UPDATED */
+            }
+            
+            .nav-link {
+                padding: 0.4rem 0.75rem !important; /* Reduced padding - UPDATED */
+            }
+            
+            .nav-link.active {
+                color: var(--primary-orange) !important;
+            }
+        }
+        
+        /* Header booking button */
+        .header-booking-btn {
+            background-color: var(--primary-orange);
+            color: var(--white);
+            border: none;
+            padding: 0.5rem 1.25rem; /* Reduced padding - UPDATED */
+            border-radius: 6px; /* Slightly smaller radius - UPDATED */
+            font-weight: 600;
+            font-size: 0.9rem; /* Smaller font - UPDATED */
+            transition: all 0.3s ease;
+            display: inline-block;
             text-align: center;
+            text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
+            margin: 0;
+        }
+        
+        .header-booking-btn:hover, .header-booking-btn:focus {
+            background-color: #E6820B;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(247, 147, 30, 0.3);
+            color: var(--white);
+            text-decoration: none;
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+            color: var(--white);
+            padding: 60px 0;
+        }
+        
+        @media (min-width: 768px) {
+            .stats-section {
+                padding: 80px 0;
+            }
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .stat-item {
+                padding: 2rem;
+            }
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-orange);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        @media (min-width: 768px) {
+            .stat-number {
+                font-size: 3.5rem;
+            }
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+        }
+        
+        @media (min-width: 768px) {
+            .stat-label {
+                font-size: 1.1rem;
+            }
+        }
+        
+        /* Services Section */
+        .section-padding {
+            padding: 60px 0;
+        }
+        
+        @media (min-width: 768px) {
+            .section-padding {
+                padding: 80px 0;
+            }
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 0 15px;
+        }
+        
+        @media (min-width: 768px) {
+            .section-header {
+                margin-bottom: 50px;
+                padding: 0;
+            }
+        }
+        
+        .section-header h2 {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        @media (min-width: 768px) {
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        .section-header p {
+            font-size: 1rem;
+            color: var(--medium-gray);
+            max-width: 700px;
+            margin: 0 auto;
             line-height: 1.6;
         }
         
-        /* FAQ Section - Professional Restored */
-        .faq-section {
-            background: var(--light-gray);
-            padding: 100px 0;
+        @media (min-width: 768px) {
+            .section-header p {
+                font-size: 1.1rem;
+            }
         }
         
-        .accordion-item {
-            border: 1px solid var(--border-gray);
-            border-radius: 12px;
-            margin-bottom: 15px;
-            overflow: hidden;
-            background: var(--white);
-        }
-        
-        .accordion-button {
-            padding: 1.5rem;
-            font-weight: 600;
-            background: var(--white);
-            border: none;
-            box-shadow: none;
-            font-size: 1.1rem;
-            color: var(--primary-dark);
-        }
-        
-        .accordion-button:not(.collapsed) {
-            background: rgba(255, 147, 30, 0.1);
-            color: var(--primary-dark);
-            border-bottom: 1px solid var(--primary-orange);
-        }
-        
-        .accordion-button:focus {
-            box-shadow: 0 0 0 0.25rem rgba(255, 147, 30, 0.25);
-            border-color: var(--primary-orange);
-        }
-        
-        .accordion-button::after {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23FF931E'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
-        }
-        
-        .accordion-button:not(.collapsed)::after {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23FF931E'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
-            transform: rotate(180deg);
-        }
-        
-        .accordion-body {
-            padding: 1.5rem;
-            font-size: 1rem;
-            line-height: 1.8;
-            color: var(--medium-gray);
-            background: var(--white);
-        }
-        
-        .faq-icon {
-            color: var(--primary-orange);
-            margin-right: 12px;
-            font-size: 1.2rem;
-        }
-        
-        /* Professional Icons Fix */
-        .benefit-icon {
-            font-size: 2.5rem;
-            color: var(--primary-orange);
-            margin-bottom: 1.5rem;
-            display: inline-block;
-            padding: 15px;
-            background: rgba(255, 147, 30, 0.1);
-            border-radius: 12px;
-        }
-        
-        /* Services Cards - Professional Fix */
         .service-card {
             border: 1px solid var(--border-gray);
             border-radius: 16px;
-            padding: 2.5rem 2rem;
-            height: 100%;
+            padding: 1.5rem;
             transition: all 0.3s ease;
             background: var(--white);
             text-align: center;
-            margin-bottom: 30px;
-            position: relative;
-            cursor: pointer;
+            margin-bottom: 24px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        @media (min-width: 768px) {
+            .service-card {
+                padding: 2rem;
+                margin-bottom: 30px;
+            }
         }
         
         .service-card:hover {
@@ -289,62 +593,205 @@
             border-color: var(--primary-orange);
         }
         
-        .service-card-link {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 1;
-            text-decoration: none;
-        }
-        
-        .service-card .btn {
-            position: relative;
-            z-index: 2;
-        }
-        
         .service-icon {
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: var(--primary-orange);
             margin-bottom: 1.5rem;
             display: inline-block;
-            padding: 20px;
-            background: rgba(255, 147, 30, 0.1);
+            padding: 15px;
+            background: rgba(247, 147, 30, 0.1);
             border-radius: 16px;
         }
         
-        /* Portfolio Section - Professional Grid Fix */
-        .portfolio-section {
-            background: var(--light-gray);
+        @media (min-width: 768px) {
+            .service-icon {
+                font-size: 3rem;
+                padding: 20px;
+            }
         }
         
+        .service-card h4 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        @media (min-width: 768px) {
+            .service-card h4 {
+                font-size: 1.5rem;
+            }
+        }
+        
+        .service-card p {
+            font-size: 0.95rem;
+            color: var(--medium-gray);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        @media (min-width: 768px) {
+            .service-card p {
+                font-size: 1rem;
+            }
+        }
+        
+        .price-badge {
+            background-color: var(--primary-orange);
+            color: var(--white);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin: 1rem 0;
+        }
+        
+        @media (min-width: 768px) {
+            .price-badge {
+                font-size: 0.95rem;
+            }
+        }
+        
+        /* Service Areas Section - NEW */
+        .service-areas-section {
+            background: var(--light-gray);
+            padding: 60px 0;
+        }
+        
+        @media (min-width: 768px) {
+            .service-areas-section {
+                padding: 80px 0;
+            }
+        }
+        
+        .area-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-gray);
+            height: 100%;
+            margin-bottom: 20px;
+        }
+        
+        @media (min-width: 768px) {
+            .area-card {
+                margin-bottom: 0;
+                padding: 2.5rem;
+            }
+        }
+        
+        .area-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: var(--primary-orange);
+        }
+        
+        .area-icon {
+            font-size: 2.5rem;
+            color: var(--primary-orange);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            padding: 15px;
+            background: rgba(247, 147, 30, 0.1);
+            border-radius: 12px;
+        }
+        
+        .area-card h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+        
+        .area-card p {
+            font-size: 0.95rem;
+            color: var(--medium-gray);
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        /* Built for Tradies Section */
+        .tradies-section {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+            color: var(--white);
+            padding: 60px 0;
+        }
+        
+        @media (min-width: 768px) {
+            .tradies-section {
+                padding: 80px 0;
+            }
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 2rem 0;
+        }
+        
+        .feature-list li {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        
+        @media (min-width: 768px) {
+            .feature-list li {
+                font-size: 1.1rem;
+            }
+        }
+        
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary-orange);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        /* Portfolio Section - UPDATED */
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            margin-top: 40px;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        @media (min-width: 576px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+                margin-top: 40px;
+            }
+        }
+        
+        @media (min-width: 1200px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
         
         .portfolio-item {
             position: relative;
             overflow: hidden;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
             aspect-ratio: 4/3;
             cursor: pointer;
-        }
-        
-        .portfolio-item a {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 3;
-            text-decoration: none;
-            display: block;
+            width: 100%;
         }
         
         .portfolio-item img {
@@ -352,6 +799,7 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.6s ease;
+            display: block;
         }
         
         .portfolio-item:hover {
@@ -370,9 +818,15 @@
             right: 0;
             background: linear-gradient(transparent, rgba(1, 1, 0, 0.9));
             color: var(--white);
-            padding: 30px;
+            padding: 20px;
             transform: translateY(100%);
             transition: transform 0.3s ease;
+        }
+        
+        @media (min-width: 768px) {
+            .portfolio-overlay {
+                padding: 24px;
+            }
         }
         
         .portfolio-item:hover .portfolio-overlay {
@@ -380,9 +834,10 @@
         }
         
         .portfolio-overlay h5 {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             margin-bottom: 0.5rem;
             color: var(--white);
+            font-weight: 700;
         }
         
         .portfolio-overlay p {
@@ -391,173 +846,401 @@
             margin: 0;
         }
         
-        /* Stats Section - Professional Fix */
-        .stats-section {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
-            color: var(--white);
-            padding: 80px 0;
-        }
-        
-        .stat-item {
-            text-align: center;
-            padding: 2rem;
-        }
-        
-        .stat-number {
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: var(--primary-orange);
-            line-height: 1;
-            margin-bottom: 0.5rem;
-        }
-        
-        .stat-label {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.8);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        /* Navigation - Professional Mobile Hamburger Fix */
-        .navbar {
-            background-color: rgba(255, 255, 255, 0.98) !important;
-            box-shadow: 0 2px 30px rgba(1, 1, 0, 0.1);
-            padding: 1rem 0;
-            transition: all 0.3s ease;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-        }
-        
-        .navbar-brand {
-            padding: 0;
-        }
-        
-        .navbar-brand img {
-            height: 45px;
-            width: auto;
-        }
-        
-        /* Mobile Hamburger Menu Fix */
-        .navbar-toggler {
-            border: none;
-            padding: 0.5rem;
-            font-size: 1.5rem;
-        }
-        
-        .navbar-toggler:focus {
-            box-shadow: 0 0 0 3px rgba(255, 147, 30, 0.25);
-            outline: none;
-        }
-        
-        .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(1, 1, 0, 0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-            width: 1.5em;
-            height: 1.5em;
-        }
-        
-        .nav-link {
-            font-weight: 600;
-            color: var(--primary-dark) !important;
-            margin: 0;
-            padding: 0.75rem 1rem !important;
-            transition: all 0.3s ease;
-            position: relative;
-            font-size: 1rem;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 1rem;
-            right: 1rem;
-            height: 2px;
-            background-color: var(--primary-orange);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-        
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            transform: scaleX(1);
-        }
-        
-        /* Mobile Navigation Dropdown */
-        .navbar-collapse {
-            background: var(--white);
-            border-radius: 0 0 10px 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            margin-top: 10px;
-        }
-        
-        @media (min-width: 992px) {
-            .navbar-collapse {
-                background: transparent;
-                box-shadow: none;
-                margin-top: 0;
-            }
-        }
-        
-        .header-booking-btn {
-            background-color: var(--primary-orange);
-            color: var(--primary-dark);
-            border: none;
-            padding: 0.75rem 1.75rem;
+        /* Testimonials Section */
+        .testimonial-card {
+            background: var(--card-bg);
             border-radius: 8px;
-            font-weight: 600;
+            padding: 1.5rem;
+            height: 100%;
             transition: all 0.3s ease;
-            display: inline-block;
-            text-align: center;
-            width: 100%;
-            margin: 0.5rem 0;
-        }
-        
-        @media (min-width: 992px) {
-            .header-booking-btn {
-                width: auto;
-                margin: 0 0 0 1rem;
-            }
-        }
-        
-        .header-booking-btn:hover {
-            background-color: #E6820B;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 147, 30, 0.3);
-        }
-        
-        /* Footer - Professional Mobile Ready */
-        footer {
-            background-color: var(--primary-dark);
-            color: var(--white);
-            padding: 60px 0 30px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(1, 1fr);
-            gap: 40px;
-            margin-bottom: 40px;
+            border: 1px solid var(--border-gray);
+            margin-bottom: 20px;
         }
         
         @media (min-width: 768px) {
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 30px;
+            .testimonial-card {
+                padding: 24px;
+                margin-bottom: 0;
             }
         }
         
-        @media (min-width: 992px) {
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .testimonial-card .stars {
+            color: var(--primary-orange);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        
+        @media (min-width: 768px) {
+            .testimonial-card .stars {
+                font-size: 1.1rem;
+            }
+        }
+        
+        .testimonial-card .quote {
+            font-style: italic;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--medium-gray);
+            margin-bottom: 1.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .testimonial-card .quote {
+                font-size: 1rem;
+            }
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .author-info h6 {
+            margin-bottom: 0.25rem;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        
+        .author-info small {
+            color: var(--medium-gray);
+            font-size: 0.85rem;
+        }
+        
+        /* FAQ Section */
+        .accordion-item {
+            border: 1px solid var(--border-gray);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            background: var(--white);
+        }
+        
+        .accordion-button {
+            padding: 1.25rem;
+            font-weight: 600;
+            background: var(--white);
+            border: none;
+            box-shadow: none;
+            font-size: 1rem;
+            color: var(--primary-dark);
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        @media (min-width: 768px) {
+            .accordion-button {
+                padding: 1.5rem;
+                font-size: 1.1rem;
+            }
+        }
+        
+        .accordion-button:not(.collapsed) {
+            background: rgba(247, 147, 30, 0.1);
+            color: var(--primary-dark);
+            border-bottom: 1px solid var(--primary-orange);
+        }
+        
+        .accordion-button:focus {
+            box-shadow: 0 0 0 0.25rem rgba(247, 147, 30, 0.25);
+            border-color: var(--primary-orange);
+        }
+        
+        .accordion-body {
+            padding: 1.25rem;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--medium-gray);
+            background: var(--white);
+        }
+        
+        @media (min-width: 768px) {
+            .accordion-body {
+                padding: 1.5rem;
+                font-size: 1rem;
+            }
+        }
+        
+        /* Contact Form Section - NEW STYLE */
+        .contact-form-section {
+            background: var(--white);
+            padding: 60px 0;
+        }
+        
+        @media (min-width: 768px) {
+            .contact-form-section {
+                padding: 80px 0;
+            }
+        }
+        
+        .contact-form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background: var(--light-gray);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        
+        @media (max-width: 767px) {
+            .contact-form-container {
+                padding: 30px 20px;
+            }
+        }
+        
+        .contact-form-section h2 {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        @media (min-width: 768px) {
+            .contact-form-section h2 {
+                font-size: 40px;
+            }
+        }
+        
+        .contact-form-section .lead {
+            font-size: 18px;
+            color: var(--medium-gray);
+            text-align: center;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        
+        @media (min-width: 768px) {
+            .contact-form-section .lead {
+                font-size: 20px;
+            }
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        
+        .form-control, .form-select {
+            padding: 14px 16px;
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+            background: var(--white);
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-orange);
+            box-shadow: 0 0 0 3px rgba(247, 147, 30, 0.1);
+            outline: none;
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        /* Contact CTA Section - IMPROVED */
+        .contact-cta-section {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+            color: var(--white);
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        @media (min-width: 768px) {
+            .contact-cta-section {
+                padding: 100px 0;
+            }
+        }
+        
+        .contact-cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/DJI_0164-1024x768-1.jpg') center/cover;
+            opacity: 0.15;
+            z-index: 1;
+        }
+        
+        .contact-cta-section .container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .contact-cta-section h2 {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        @media (min-width: 768px) {
+            .contact-cta-section h2 {
+                font-size: 48px;
+            }
+        }
+        
+        .contact-cta-section .lead {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        @media (min-width: 768px) {
+            .contact-cta-section .lead {
+                font-size: 24px;
+            }
+        }
+        
+        .reply-time {
+            font-size: 18px;
+            color: var(--primary-orange);
+            font-weight: 700;
+            margin-bottom: 40px;
+            display: block;
+            padding: 10px 20px;
+            background: rgba(247, 147, 30, 0.1);
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        @media (min-width: 768px) {
+            .reply-time {
+                font-size: 20px;
+                padding: 12px 24px;
+            }
+        }
+        
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 500px;
+            margin: 0 auto 40px;
+        }
+        
+        @media (min-width: 576px) {
+            .cta-buttons {
+                flex-direction: row;
+                justify-content: center;
+                gap: 25px;
+            }
+        }
+        
+        .btn-call, .btn-whatsapp {
+            padding: 18px 36px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
+            border: 2px solid transparent;
+            min-width: 200px;
+        }
+        
+        @media (max-width: 575px) {
+            .btn-call, .btn-whatsapp {
+                width: 100%;
+                padding: 20px;
+            }
+        }
+        
+        .btn-call {
+            background-color: var(--primary-orange);
+            color: var(--white);
+            border-color: var(--primary-orange);
+        }
+        
+        .btn-call:hover, .btn-call:focus {
+            background-color: #E6820B;
+            border-color: #E6820B;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(247, 147, 30, 0.3);
+        }
+        
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: var(--white);
+            border-color: #25D366;
+        }
+        
+        .btn-whatsapp:hover, .btn-whatsapp:focus {
+            background-color: #128C7E;
+            border-color: #128C7E;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+        }
+        
+        .contact-hours {
+            margin-top: 30px;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (min-width: 768px) {
+            .contact-hours {
+                font-size: 18px;
+            }
+        }
+        
+        .contact-hours p {
+            margin: 0;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 50px 0 25px;
+        }
+        
+        @media (min-width: 768px) {
             footer {
                 padding: 80px 0 30px;
             }
-            
-            .footer-content {
-                grid-template-columns: 2fr 1fr 1fr 2fr;
-                gap: 30px;
+        }
+        
+        .footer-logo {
+            height: 35px;
+            width: auto;
+            margin-bottom: 1.5rem;
+            filter: brightness(0) invert(1);
+            display: block;
+        }
+        
+        @media (min-width: 768px) {
+            .footer-logo {
+                height: 40px;
             }
         }
         
@@ -571,32 +1254,11 @@
             }
         }
         
-        .footer-logo {
-            height: 40px;
-            width: auto;
-            margin-bottom: 1.5rem;
-            filter: brightness(0) invert(1);
-            cursor: pointer;
-            transition: opacity 0.3s ease;
-        }
-        
-        .footer-logo:hover {
-            opacity: 0.8;
-        }
-        
-        .footer-section p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-        
         .footer-section h5 {
             color: var(--white);
             margin-bottom: 1.5rem;
             font-size: 1.1rem;
             font-weight: 700;
-            font-family: 'Montserrat', sans-serif;
         }
         
         .footer-section ul {
@@ -624,23 +1286,38 @@
         
         .social-links {
             display: flex;
-            gap: 15px;
+            gap: 12px;
             margin-top: 1.5rem;
             flex-wrap: wrap;
+        }
+        
+        @media (min-width: 768px) {
+            .social-links {
+                gap: 15px;
+            }
         }
         
         .social-links a {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             color: var(--white);
             text-decoration: none;
             transition: all 0.3s ease;
-            font-size: 1.1rem;
+            font-size: 1rem;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        @media (min-width: 768px) {
+            .social-links a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
         }
         
         .social-links a:hover {
@@ -661,6 +1338,7 @@
             margin-bottom: 1rem;
             color: rgba(255, 255, 255, 0.7);
             font-size: 0.95rem;
+            line-height: 1.5;
         }
         
         .contact-info li i {
@@ -670,22 +1348,9 @@
             font-size: 1.1rem;
         }
         
-        .contact-info li span {
-            line-height: 1.5;
-        }
-        
-        .contact-info li span a {
-            transition: color 0.3s ease;
-        }
-        
-        .contact-info li span a:hover {
-            color: var(--primary-orange) !important;
-            text-decoration: underline;
-        }
-        
         .copyright {
-            padding-top: 40px;
-            margin-top: 40px;
+            padding-top: 30px;
+            margin-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 0.9rem;
             color: rgba(255, 255, 255, 0.5);
@@ -694,6 +1359,8 @@
         
         @media (min-width: 768px) {
             .copyright {
+                padding-top: 40px;
+                margin-top: 40px;
                 text-align: left;
                 display: flex;
                 justify-content: space-between;
@@ -701,11 +1368,6 @@
                 flex-wrap: wrap;
                 gap: 1rem;
             }
-        }
-        
-        .copyright p {
-            margin: 0;
-            color: rgba(255, 255, 255, 0.5);
         }
         
         .copyright-links {
@@ -736,669 +1398,13 @@
             color: var(--primary-orange);
         }
         
-        /* Mobile Footer Adjustments - Center Aligned */
-        @media (max-width: 767px) {
-            footer {
-                padding: 50px 0 25px;
-            }
-            
-            .footer-content {
-                gap: 35px;
-            }
-            
-            .footer-section {
-                margin-bottom: 35px;
-                text-align: center;
-            }
-            
-            .footer-section:last-child {
-                margin-bottom: 0;
-            }
-            
-            .footer-logo {
-                height: 35px;
-                margin-bottom: 1rem;
-                margin-left: auto;
-                margin-right: auto;
-                display: block;
-            }
-            
-            .footer-section p {
-                text-align: center;
-            }
-            
-            .footer-section h5 {
-                font-size: 1rem;
-                margin-bottom: 1rem;
-                text-align: center;
-            }
-            
-            .footer-section ul {
-                text-align: center;
-            }
-            
-            .footer-section ul li {
-                text-align: center;
-            }
-            
-            .footer-section ul li a {
-                display: inline-block;
-            }
-            
-            .social-links {
-                gap: 12px;
-                margin-top: 1rem;
-                justify-content: center;
-            }
-            
-            .social-links a {
-                width: 40px;
-                height: 40px;
-                font-size: 1rem;
-            }
-            
-            .contact-info {
-                text-align: center;
-            }
-            
-            .contact-info li {
-                font-size: 0.9rem;
-                margin-bottom: 0.875rem;
-                justify-content: center;
-                text-align: center;
-            }
-            
-            .contact-info li i {
-                margin-right: 8px;
-            }
-            
-            .copyright {
-                padding-top: 30px;
-                margin-top: 30px;
-                font-size: 0.9rem;
-                text-align: center;
-            }
-            
-            .copyright p {
-                font-size: 0.9rem;
-            }
-            
-            .copyright-links {
-                margin-top: 0.75rem;
-                gap: 0.25rem;
-                justify-content: center;
-            }
-            
-            .copyright-links a {
-                font-size: 0.9rem;
-                padding: 0.25rem 0.5rem;
-            }
-        }
-        
-        @media (max-width: 575px) {
-            footer {
-                padding: 40px 0 20px;
-            }
-            
-            .footer-content {
-                gap: 30px;
-            }
-            
-            .footer-section p {
-                font-size: 0.9rem;
-            }
-            
-            .copyright {
-                font-size: 0.9rem;
-            }
-            
-            .copyright p {
-                font-size: 0.9rem;
-            }
-            
-            .copyright-links a {
-                font-size: 0.9rem;
-            }
-        }
-        
-        /* Testimonials - Professional Fix */
-        .testimonial-card {
-            border: 1px solid var(--border-gray);
-            border-radius: 16px;
-            padding: 2.5rem;
-            height: 100%;
-            background: var(--white);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .testimonial-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-        
-        .testimonial-card .stars {
-            color: var(--primary-orange);
-            margin-bottom: 1.5rem;
-        }
-        
-        .testimonial-card .quote {
-            font-style: italic;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--medium-gray);
-            margin-bottom: 2rem;
-        }
-        
-        .testimonial-card .author {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .testimonial-card .author-info h6 {
-            margin-bottom: 0.25rem;
-            font-weight: 700;
-        }
-        
-        .testimonial-card .author-info small {
-            color: var(--medium-gray);
-            font-size: 0.9rem;
-        }
-        
-        /* Final CTA - Professional Fix */
-        .final-cta {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
-            color: var(--white);
-            padding: 100px 0;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .final-cta::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('https://img.freepik.com/free-psd/bathtub-with-gold-vase-towel-sea-view-generative-ai_587448-1973.jpg?ga=GA1.1.1602915563.1760398856&semt=ais_hybrid&w=740&q=80') center/cover;
-            opacity: 0.1;
-        }
-        
-        /* Responsive Design Fixes */
-        @media (max-width: 1199px) {
-            .hero-section h1 {
-                font-size: 3rem;
-            }
-            
-            .hero-section .lead {
-                font-size: 1.3rem;
-            }
-            
-            .portfolio-grid {
-                gap: 25px;
-            }
-        }
-        
-        @media (max-width: 991px) {
-            .section-padding {
-                padding: 60px 0;
-            }
-            
-            .hero-content {
-                padding: 140px 15px 100px;
-            }
-            
-            .hero-section h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-section .lead {
-                font-size: 1.2rem;
-            }
-            
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .service-card {
-                margin-bottom: 20px;
-                padding: 2rem 1.5rem;
-            }
-            
-            .service-icon {
-                font-size: 2.5rem;
-                padding: 15px;
-            }
-            
-            .service-card h4 {
-                font-size: 1.25rem;
-            }
-            
-            .service-card p {
-                font-size: 0.95rem;
-            }
-        }
-        
-        @media (max-width: 767px) {
-            .service-card {
-                padding: 1.75rem 1.25rem;
-                margin-bottom: 1.5rem;
-            }
-            
-            .service-icon {
-                font-size: 2.25rem;
-                padding: 12px;
-                margin-bottom: 1.25rem;
-            }
-            
-            .service-card h4 {
-                font-size: 1.15rem;
-                margin-bottom: 0.75rem;
-            }
-            
-            .service-card p {
-                font-size: 0.9rem;
-                margin-bottom: 1rem;
-            }
-            
-            .service-card .btn {
-                min-height: 44px;
-                font-size: 0.9rem;
-            }
-            
-            .portfolio-grid {
-                gap: 15px;
-            }
-            
-            .portfolio-item {
-                border-radius: 12px;
-            }
-            
-            .portfolio-overlay {
-                padding: 20px;
-            }
-            
-            .portfolio-overlay h5 {
-                font-size: 1.25rem;
-            }
-            
-            .portfolio-overlay p {
-                font-size: 0.85rem;
-            }
-            
-            .text-center.p-4 {
-                padding: 1.5rem 1rem !important;
-            }
-            
-            .text-center.p-4 h4 {
-                font-size: 1.15rem;
-                margin-bottom: 0.75rem;
-            }
-            
-            .text-center.p-4 p {
-                font-size: 0.9rem;
-            }
-            
-            .testimonial-card {
-                margin-bottom: 1.5rem;
-            }
-        }
-        
-        @media (max-width: 767px) {
-            .hero-content {
-                padding: 100px 15px 60px;
-            }
-            
-            .hero-section h1 {
-                font-size: 2rem;
-                line-height: 1.3;
-                margin-bottom: 1.25rem;
-            }
-            
-            .hero-title-line {
-                display: block;
-                margin-bottom: 0.5rem;
-            }
-            
-            .hero-section .lead {
-                font-size: 1.1rem;
-                padding: 0 10px;
-                margin-bottom: 2rem;
-            }
-            
-            .hero-buttons {
-                width: 100%;
-                max-width: 100%;
-                padding: 0 15px;
-            }
-            
-            .hero-buttons .btn {
-                width: 100%;
-                margin-bottom: 0.75rem;
-                min-height: 48px;
-                font-size: 0.95rem;
-            }
-            
-            .navbar-brand img {
-                height: 35px;
-            }
-            
-            .stat-number {
-                font-size: 2.5rem;
-            }
-            
-            .stat-item {
-                padding: 1.5rem 1rem;
-            }
-            
-            .stat-label {
-                font-size: 0.95rem;
-            }
-            
-            .footer-section {
-                margin-bottom: 30px;
-            }
-            
-            .footer-section:last-child {
-                margin-bottom: 0;
-            }
-            
-            .accordion-button {
-                padding: 1.25rem;
-                font-size: 0.95rem;
-            }
-            
-            .accordion-body {
-                padding: 1.25rem;
-                font-size: 0.9rem;
-            }
-            
-            .section-header h2 {
-                font-size: 1.75rem;
-                margin-bottom: 0.75rem;
-            }
-            
-            .section-header p {
-                font-size: 1rem;
-            }
-            
-            .section-padding {
-                padding: 50px 0;
-            }
-        }
-        
-        @media (max-width: 575px) {
-            .hero-section h1 {
-                font-size: 1.75rem;
-            }
-            
-            .hero-section .lead {
-                font-size: 0.95rem;
-                line-height: 1.5;
-            }
-            
-            .section-padding {
-                padding: 40px 0;
-            }
-            
-            .btn-primary,
-            .btn-secondary {
-                padding: 0.75rem 1.5rem;
-                font-size: 0.9rem;
-                display: block;
-                width: 100%;
-                margin-bottom: 0.75rem;
-                min-height: 48px;
-            }
-            
-            .btn-secondary {
-                margin-bottom: 0;
-            }
-            
-            .hero-buttons {
-                display: flex;
-                flex-direction: column;
-                gap: 0.75rem;
-                width: 100%;
-                max-width: 100%;
-                margin: 0 auto;
-                padding: 0 10px;
-            }
-            
-            .faq-section {
-                padding: 50px 0;
-            }
-            
-            .testimonial-card {
-                padding: 1.75rem 1.5rem;
-            }
-            
-            .testimonial-card .quote {
-                font-size: 1rem;
-                line-height: 1.6;
-                margin-bottom: 1.5rem;
-            }
-            
-            .stat-number {
-                font-size: 2.25rem;
-            }
-            
-            .stat-label {
-                font-size: 0.85rem;
-            }
-            
-            .stat-item {
-                padding: 1.25rem 0.75rem;
-            }
-            
-            .benefit-icon {
-                font-size: 2rem;
-                padding: 12px;
-                margin-bottom: 1.25rem;
-            }
-            
-            .section-header h2 {
-                font-size: 1.5rem;
-            }
-            
-            .section-header p {
-                font-size: 0.95rem;
-            }
-            
-            .final-cta {
-                padding: 60px 0;
-            }
-            
-            .final-cta h2 {
-                font-size: 1.5rem;
-            }
-            
-            .final-cta .lead {
-                font-size: 1rem;
-            }
-            
-            .final-cta .btn {
-                width: 100%;
-                margin-bottom: 0.75rem;
-                min-height: 48px;
-            }
-            
-            .d-flex.flex-column.flex-md-row {
-                flex-direction: column;
-            }
-        }
-        
-        /* Hero Title Mobile Specific Fix */
-        @media (max-width: 767px) {
-            .hero-title {
-                display: flex;
-                flex-direction: column;
-                gap: 0.5rem;
-                width: 100%;
-            }
-            
-            .hero-title-line {
-                display: block;
-                width: 100%;
-                text-align: center;
-            }
-            
-            .hero-title-line:nth-child(1) { 
-                font-size: 1.75rem;
-                font-weight: 800;
-            }
-            
-            .hero-title-line:nth-child(2) { 
-                font-size: 1.6rem;
-                font-weight: 700;
-            }
-            
-            .hero-title-line:nth-child(3) { 
-                font-size: 1.5rem;
-                font-weight: 700;
-            }
-        }
-        
-        @media (max-width: 575px) {
-            .hero-title-line:nth-child(1) { 
-                font-size: 1.5rem;
-            }
-            
-            .hero-title-line:nth-child(2) { 
-                font-size: 1.4rem;
-            }
-            
-            .hero-title-line:nth-child(3) { 
-                font-size: 1.3rem;
-            }
-        }
-        
-        /* Ensure proper spacing */
-        .container {
-            max-width: 1200px;
-            padding-left: 15px;
-            padding-right: 15px;
-        }
-        
-        @media (max-width: 767px) {
-            .container {
-                padding-left: 15px;
-                padding-right: 15px;
-            }
-            
-            .row {
-                margin-left: -10px;
-                margin-right: -10px;
-            }
-            
-            .row > [class*="col-"] {
-                padding-left: 10px;
-                padding-right: 10px;
-            }
-            
-            .row.g-4 {
-                margin-left: -0.5rem;
-                margin-right: -0.5rem;
-            }
-            
-            .row.g-4 > [class*="col-"] {
-                padding-left: 0.5rem;
-                padding-right: 0.5rem;
-                margin-bottom: 1rem;
-            }
-        }
-        
-        @media (max-width: 575px) {
-            .container {
-                padding-left: 12px;
-                padding-right: 12px;
-            }
-            
-            .stats-section .row {
-                margin: 0;
-            }
-            
-            .stats-section .col-md-3 {
-                padding: 0.5rem;
-                margin-bottom: 1rem;
-            }
-            
-            .stats-section .col-6 {
-                padding: 0.5rem;
-            }
-        }
-        
-        /* Mobile Menu Animation */
-        @media (max-width: 991px) {
-            .navbar-nav {
-                padding: 1rem;
-            }
-            
-            .nav-item {
-                margin-bottom: 0.5rem;
-            }
-            
-            .nav-link {
-                padding: 0.75rem 1rem !important;
-                border-radius: 8px;
-                transition: all 0.3s ease;
-                font-size: 0.95rem;
-            }
-            
-            .nav-link:hover,
-            .nav-link.active {
-                background: rgba(255, 147, 30, 0.1);
-                color: var(--primary-orange) !important;
-            }
-            
-            .nav-link::after {
-                display: none;
-            }
-            
-            .navbar {
-                padding: 0.75rem 0;
-            }
-        }
-        
-        @media (max-width: 575px) {
-            .navbar-nav {
-                padding: 0.75rem;
-            }
-            
-            .nav-link {
-                padding: 0.65rem 0.875rem !important;
-                font-size: 0.9rem;
-            }
-            
-            .header-booking-btn {
-                padding: 0.65rem 1.25rem;
-                font-size: 0.9rem;
-                min-height: 44px;
-            }
-        }
-        
-        /* Loading animation for video */
+        /* Remove loading animation for video */
         .video-loading {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 2;
-            color: var(--white);
-            text-align: center;
+            display: none; /* Removed as requested */
         }
         
         .loading-spinner {
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top: 4px solid var(--primary-orange);
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
+            display: none; /* Removed as requested */
         }
         
         @keyframes spin {
@@ -1406,67 +1412,70 @@
             100% { transform: rotate(360deg); }
         }
         
-        /* Section Headers */
-        .section-header {
-            text-align: center;
-            margin-bottom: 50px;
+        /* Image optimization */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
         }
         
-        .section-header h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--primary-dark);
-            margin-bottom: 1rem;
+        /* Form controls for mobile */
+        input, textarea, select {
+            font-size: 16px !important; /* Prevents iOS zoom */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
         }
         
-        .section-header p {
-            font-size: 1.1rem;
-            color: var(--medium-gray);
-            max-width: 700px;
-            margin: 0 auto;
+        /* Hide mobile browser autofill background */
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 30px white inset !important;
         }
         
-        @media (max-width: 767px) {
-            .section-header {
-                margin-bottom: 35px;
-                padding: 0 15px;
-            }
-            
-            .section-header h2 {
-                font-size: 1.75rem;
-                margin-bottom: 0.75rem;
-                line-height: 1.3;
-            }
-            
-            .section-header p {
-                font-size: 1rem;
-                line-height: 1.5;
-            }
+        /* Form validation styles */
+        .was-validated .form-control:valid,
+        .was-validated .form-select:valid {
+            border-color: #198754;
+            padding-right: calc(1.5em + 0.75rem);
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill-rule='evenodd' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right calc(0.375em + 0.1875rem) center;
+            background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
         }
         
-        @media (max-width: 575px) {
-            .section-header {
-                margin-bottom: 30px;
-                padding: 0 10px;
-            }
-            
-            .section-header h2 {
-                font-size: 1.5rem;
-            }
-            
-            .section-header p {
-                font-size: 0.95rem;
-            }
+        .was-validated .form-control:invalid,
+        .was-validated .form-select:invalid {
+            border-color: #dc3545;
+            padding-right: calc(1.5em + 0.75rem);
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right calc(0.375em + 0.1875rem) center;
+            background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+        }
+        
+        .invalid-feedback {
+            display: none;
+            width: 100%;
+            margin-top: 0.25rem;
+            font-size: 0.875em;
+            color: #dc3545;
+        }
+        
+        .was-validated .invalid-feedback {
+            display: block;
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- Navigation - FIXED -->
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
             <a class="navbar-brand" href="index.html">
                 <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/cropped-tradie-mate_01b-261x71-1.png" 
-                     alt="TradieMate Logo" 
+                     alt="TradieMate Logo - Professional photography for Sydney tradies" 
                      class="logo-img">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
@@ -1476,25 +1485,31 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-lg-center">
                     <li class="nav-item">
-                        <a class="nav-link active" href="index.html">Home</a>
+                        <a class="nav-link active" href="#home">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#value">Why Us</a>
+                        <a class="nav-link" href="#built-for-tradies">Built for Tradies</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#services">Services</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="#service-areas">Service Areas</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#portfolio">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Testimonials</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#faq">FAQ</a>
                     </li>
                     <li class="nav-item d-block d-lg-none mt-3">
-                        <a href="booking.html" class="header-booking-btn">Book a Shoot</a>
+                        <a href="booking.html" class="header-booking-btn btn-primary w-100">Get a Quote</a>
                     </li>
                     <li class="nav-item d-none d-lg-block ms-3">
-                        <a href="booking.html" class="header-booking-btn">Book a Shoot</a>
+                        <a href="booking.html" class="header-booking-btn">Get a Quote</a>
                     </li>
                 </ul>
             </div>
@@ -1503,51 +1518,34 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero-section">
-        <!-- Video Background Container -->
         <div class="video-background">
-            <!-- Loading animation -->
-            <div class="video-loading d-flex flex-column align-items-center justify-content-center">
-                <div class="loading-spinner"></div>
-                <p>Loading video...</p>
-            </div>
-            
-            <!-- Updated Clean MP4 Video Source -->
-            <video id="heroVideo" autoplay muted loop playsinline>
-                <source src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/TAMARAMA-homepage-hero-2.webm" type="video/mp4">
+            <video id="heroVideo" autoplay muted loop playsinline preload="metadata">
+                <source src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/TAMARAMA-homepage-hero-2.webm" type="video/webm">
                 Your browser does not support the video tag.
             </video>
         </div>
         
-        <!-- Video Overlay -->
-        <div class="video-overlay"></div>
+        <div class="gradient-overlay"></div>
         
-        <!-- Hero Content -->
-        <div class="container">
-            <div class="row">
-                <div class="col-12 hero-content">
-                    <h1 class="hero-title">
-                        <span class="hero-title-line">Show Your Craftsmanship.</span>
-                        <span class="hero-title-line">Win More Clients.Stand Out.</span>
-                    </h1>
-                    <p class="lead">Premium photography & videography services exclusively for Sydney tradies who want to showcase their best work.</p>
-                    <div class="hero-buttons">
-                        <a href="booking.html" class="btn btn-primary btn-lg">
-                            <i class="bi bi-calendar-check me-2"></i>Book a Shoot
-                        </a>
-                        <a href="portfolio.html" class="btn btn-secondary btn-lg">
-                            <i class="bi bi-images me-2"></i>View Portfolio
-                        </a>
-                    </div>
-                </div>
+        <div class="hero-content">
+            <h1>Show Your Craftsmanship. Win More Clients.</h1>
+            <p class="lead">Premium photography & videography services exclusively for Sydney tradies</p>
+            <p class="micro-proof">Over 500 projects completed • 98% client satisfaction</p>
+            <div class="hero-buttons">
+                <a href="#contact-form" class="btn btn-primary">
+                    <i class="bi bi-calendar-check me-2"></i>Get a Quote
+                </a>
+                <a href="#portfolio" class="btn btn-secondary">
+                    <i class="bi bi-images me-2"></i>View Portfolio
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Rest of the content remains the same... -->
     <!-- Stats Section -->
     <section class="stats-section">
         <div class="container">
-            <div class="row">
+            <div class="row text-center">
                 <div class="col-md-3 col-6 mb-4 mb-md-0">
                     <div class="stat-item">
                         <div class="stat-number" data-count="500">0</div>
@@ -1560,7 +1558,7 @@
                         <div class="stat-label">Client Satisfaction</div>
                     </div>
                 </div>
-                <div class="col-md-3 col-6">
+                <div class="col-md-3 col-6 mb-4 mb-md-0">
                     <div class="stat-item">
                         <div class="stat-number" data-count="24">0</div>
                         <div class="stat-label">Hour Turnaround</div>
@@ -1576,218 +1574,257 @@
         </div>
     </section>
 
-    <!-- Value Proposition Section -->
-    <section id="value" class="section-padding">
+    <!-- BUILT FOR TRADIES SECTION -->
+    <section id="built-for-tradies" class="section-padding tradies-section">
         <div class="container">
-            <div class="section-header">
-                <h2>Visuals That Get Tradies More Work</h2>
-                <p>Professional visuals that showcase craftsmanship and win bigger projects</p>
-            </div>
-            
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6">
-                    <div class="text-center p-4">
-                        <div class="benefit-icon">
-                            <i class="bi bi-camera"></i>
-                        </div>
-                        <h4>Premium Visuals</h4>
-                        <p class="text-muted mb-0">High-quality photography & videography captured by professionals who understand construction sites.</p>
-                    </div>
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2 class="mb-4">Built Specifically for Tradies</h2>
+                    <p class="lead mb-4">We understand the unique needs of trade businesses and work around your schedule and requirements.</p>
+                    <ul class="feature-list">
+                        <li>Fast turnaround for builder deadlines</li>
+                        <li>Early-morning and on-site availability</li>
+                        <li>Drone + ground coverage</li>
+                        <li>Content that wins more jobs</li>
+                        <li>Trade-focused photography</li>
+                        <li>Flexible scheduling around your projects</li>
+                    </ul>
+                    <a href="booking.html" class="btn btn-primary mt-3">Get Started Today</a>
                 </div>
-                
-                <div class="col-lg-4 col-md-6">
-                    <div class="text-center p-4">
-                        <div class="benefit-icon">
-                            <i class="bi bi-laptop"></i>
-                        </div>
-                        <h4>Optimized for Business</h4>
-                        <p class="text-muted mb-0">Images perfectly formatted for websites, social media, quotes, and client proposals.</p>
-                    </div>
-                </div>
-                
-                <div class="col-lg-4 col-md-6">
-                    <div class="text-center p-4">
-                        <div class="benefit-icon">
-                            <i class="bi bi-hammer"></i>
-                        </div>
-                        <h4>Craftsmanship Focused</h4>
-                        <p class="text-muted mb-0">We highlight the fine details and quality that set your work apart from competitors.</p>
-                    </div>
+                <div class="col-lg-6">
+                    <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/505786309_17965460930919242_346004945939808555_n.jpg" 
+                         alt="Tradie working on construction site with drone photography coverage in Sydney" 
+                         class="img-fluid rounded shadow-lg" loading="lazy">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="section-padding bg-light">
+    <section id="services" class="section-padding">
         <div class="container">
             <div class="section-header">
-                <h2>Capture, Create, Showcase Work</h2>
-                <p>Comprehensive visual solutions designed specifically for trade professionals.</p>
+                <h2>Visual Packages Built for Tradies</h2>
+                <p>High-quality photo, video and drone content designed to help tradies showcase their work and win more clients.</p>
             </div>
             
             <div class="row">
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6 mb-4">
                     <div class="service-card">
-                        <a href="booking.html" class="service-card-link" aria-label="Book Photo Shoots"></a>
                         <div class="service-icon">
-                            <i class="bi bi-camera2"></i>
+                            <i class="bi bi-camera"></i>
                         </div>
                         <h4>Photo Shoots</h4>
-                        <p class="text-muted">High-res images highlighting precision and quality in every detail</p>
-                        <div class="mt-3">
-                            <span class="badge bg-primary">From $299</span>
-                        </div>
-                        <a href="booking.html" class="btn btn-outline-dark w-100 mt-3">Book Now</a>
+                        <p class="text-muted">Before & afters, progress photos and finished-work shots — perfect for quoting and portfolios.</p>
+                        <div class="price-badge">From $299</div>
+                        <a href="booking.html" class="btn btn-primary w-100 mt-3">Get Quote</a>
                     </div>
                 </div>
                 
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6 mb-4">
                     <div class="service-card">
-                        <a href="booking.html" class="service-card-link" aria-label="Book Video Sessions"></a>
                         <div class="service-icon">
                             <i class="bi bi-camera-reels"></i>
                         </div>
                         <h4>Video Sessions</h4>
-                        <p class="text-muted">Dynamic video content for websites, social media, and client presentations.</p>
-                        <div class="mt-3">
-                            <span class="badge bg-primary">From $499</span>
-                        </div>
-                        <a href="booking.html" class="btn btn-outline-dark w-100 mt-3">Book Now</a>
+                        <p class="text-muted">Clean walk-throughs and project videos for websites, socials and client updates.</p>
+                        <div class="price-badge">From $499</div>
+                        <a href="booking.html" class="btn btn-primary w-100 mt-3">Get Quote</a>
                     </div>
                 </div>
                 
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6 mb-4">
                     <div class="service-card">
-                        <a href="booking.html" class="service-card-link" aria-label="Book Drone Footage"></a>
                         <div class="service-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16" style="display: inline-block;">
-                                <!-- Drone body -->
-                                <rect x="5" y="6" width="6" height="4" rx="0.5"/>
-                                <!-- Propellers -->
-                                <circle cx="3" cy="4" r="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                                <circle cx="13" cy="4" r="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                                <circle cx="3" cy="12" r="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                                <circle cx="13" cy="12" r="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                                <!-- Propeller blades -->
-                                <line x1="3" y1="4" x2="1.5" y2="4" stroke="currentColor" stroke-width="1"/>
-                                <line x1="3" y1="4" x2="4.5" y2="4" stroke="currentColor" stroke-width="1"/>
-                                <line x1="3" y1="4" x2="3" y2="2.5" stroke="currentColor" stroke-width="1"/>
-                                <line x1="3" y1="4" x2="3" y2="5.5" stroke="currentColor" stroke-width="1"/>
-                                <line x1="13" y1="4" x2="11.5" y2="4" stroke="currentColor" stroke-width="1"/>
-                                <line x1="13" y1="4" x2="14.5" y2="4" stroke="currentColor" stroke-width="1"/>
-                                <line x1="13" y1="4" x2="13" y2="2.5" stroke="currentColor" stroke-width="1"/>
-                                <line x1="13" y1="4" x2="13" y2="5.5" stroke="currentColor" stroke-width="1"/>
-                                <line x1="3" y1="12" x2="1.5" y2="12" stroke="currentColor" stroke-width="1"/>
-                                <line x1="3" y1="12" x2="4.5" y2="12" stroke="currentColor" stroke-width="1"/>
-                                <line x1="3" y1="12" x2="3" y2="10.5" stroke="currentColor" stroke-width="1"/>
-                                <line x1="3" y1="12" x2="3" y2="13.5" stroke="currentColor" stroke-width="1"/>
-                                <line x1="13" y1="12" x2="11.5" y2="12" stroke="currentColor" stroke-width="1"/>
-                                <line x1="13" y1="12" x2="14.5" y2="12" stroke="currentColor" stroke-width="1"/>
-                                <line x1="13" y1="12" x2="13" y2="10.5" stroke="currentColor" stroke-width="1"/>
-                                <line x1="13" y1="12" x2="13" y2="13.5" stroke="currentColor" stroke-width="1"/>
-                                <!-- Arms connecting body to propellers -->
-                                <line x1="5" y1="6" x2="3" y2="4" stroke="currentColor" stroke-width="1.5"/>
-                                <line x1="11" y1="6" x2="13" y2="4" stroke="currentColor" stroke-width="1.5"/>
-                                <line x1="5" y1="10" x2="3" y2="12" stroke="currentColor" stroke-width="1.5"/>
-                                <line x1="11" y1="10" x2="13" y2="12" stroke="currentColor" stroke-width="1.5"/>
-                                <!-- Camera lens -->
-                                <circle cx="8" cy="8" r="1"/>
-                            </svg>
+                            <i class="bi bi-camera-video"></i>
                         </div>
                         <h4>Drone Footage</h4>
-                        <p class="text-muted">Aerial views for projects, progress and property showcases.</p>
-                        <div class="mt-3">
-                            <span class="badge bg-primary">From $399</span>
-                        </div>
-                        <a href="booking.html" class="btn btn-outline-dark w-100 mt-3">Book Now</a>
+                        <p class="text-muted">Aerial shots for site layout, progress tracking and full-property coverage.</p>
+                        <div class="price-badge">From $399</div>
+                        <a href="booking.html" class="btn btn-primary w-100 mt-3">Get Quote</a>
                     </div>
                 </div>
                 
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6 mb-4">
                     <div class="service-card">
-                        <a href="booking.html" class="service-card-link" aria-label="Book Interviews"></a>
                         <div class="service-icon">
-                            <i class="bi bi-person-video3"></i>
+                            <i class="bi bi-person-video"></i>
                         </div>
                         <h4>Interviews</h4>
-                        <p class="text-muted">Storytelling content blending client testimonials with project walkthroughs.</p>
-                        <div class="mt-3">
-                            <span class="badge bg-primary">From $599</span>
-                        </div>
-                        <a href="booking.html" class="btn btn-outline-dark w-100 mt-3">Book Now</a>
+                        <p class="text-muted">Client testimonials + walkthroughs that help tradies close more jobs.</p>
+                        <div class="price-badge">From $599</div>
+                        <a href="booking.html" class="btn btn-primary w-100 mt-3">Get Quote</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="section-padding portfolio-section">
+    <!-- Service Areas Section - NEW -->
+    <section id="service-areas" class="service-areas-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Sydney Service Areas</h2>
+                <p>We service tradies across Greater Sydney with fast response times and flexible scheduling</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="area-card">
+                        <div class="area-icon">
+                            <i class="bi bi-buildings"></i>
+                        </div>
+                        <h4>Sydney CBD</h4>
+                        <p>Commercial & residential projects in the heart of Sydney with easy access to all business districts.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="area-card">
+                        <div class="area-icon">
+                            <i class="bi bi-house"></i>
+                        </div>
+                        <h4>Eastern Suburbs</h4>
+                        <p>Bondi, Bronte, Coogee, Paddington, and surrounding areas for luxury residential projects.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="area-card">
+                        <div class="area-icon">
+                            <i class="bi bi-water"></i>
+                        </div>
+                        <h4>Northern Beaches</h4>
+                        <p>Manly, Dee Why, Newport, Palm Beach and coastal properties with spectacular views.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="area-card">
+                        <div class="area-icon">
+                            <i class="bi bi-tree"></i>
+                        </div>
+                        <h4>Inner West</h4>
+                        <p>Newtown, Marrickville, Leichhardt, Balmain and heritage renovation specialists.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="area-card">
+                        <div class="area-icon">
+                            <i class="bi bi-bank"></i>
+                        </div>
+                        <h4>North Shore</h4>
+                        <p>Chatswood, Lane Cove, St Ives, Gordon and premium residential developments.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="area-card">
+                        <div class="area-icon">
+                            <i class="bi bi-building"></i>
+                        </div>
+                        <h4>Western Sydney</h4>
+                        <p>Parramatta, Penrith, Liverpool, Campbelltown for commercial and large-scale projects.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="area-card">
+                        <div class="area-icon">
+                            <i class="bi bi-house-heart"></i>
+                        </div>
+                        <h4>Southern Suburbs</h4>
+                        <p>Sutherland Shire, Cronulla, Miranda, Caringbah for family homes and renovations.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="area-card">
+                        <div class="area-icon">
+                            <i class="bi bi-geo-alt"></i>
+                        </div>
+                        <h4>Greater Sydney</h4>
+                        <p>All surrounding areas with flexible travel arrangements for larger projects.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- "Check Your Location" button removed as requested -->
+        </div>
+    </section>
+
+    <!-- Portfolio Section - UPDATED (Removed first 3 cards and last card) -->
+    <section id="portfolio" class="section-padding bg-light">
         <div class="container">
             <div class="section-header">
                 <h2>Our Work Around Sydney</h2>
-                <p>See how we've helped tradies showcase their work across Sydney's suburbs.</p>
+                <p>Professional photography and videography for tradies across Sydney's suburbs</p>
             </div>
             
             <div class="portfolio-grid">
+                <!-- Only 4 images kept as requested -->
                 <div class="portfolio-item">
-                    <a href="booking.html" aria-label="View Balgowlah Project"></a>
-                    <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/DJI_0164-1024x768-1.jpg" alt="Balgowlah Project">
+                    <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/Mosman-15.jpg" 
+                         alt="Interior design photography for trade professionals in Sydney" 
+                         loading="lazy">
                     <div class="portfolio-overlay">
-                        <h5>Balgowlah</h5>
-                        <p>Custom Home Build</p>
+                        <h5>Interior Design</h5>
+                        <p>Residential interior styling</p>
                     </div>
                 </div>
                 
                 <div class="portfolio-item">
-                    <a href="booking.html" aria-label="View Bellevue Hill Project"></a>
-                    <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/bellevuehill-1-1024x683-1.jpg" alt="Bellevue Hill Project">
+                    <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/LIVING-ROOM-3-1024x683-1.jpg" 
+                         alt="Living room renovation photography in Sydney apartments" 
+                         loading="lazy">
                     <div class="portfolio-overlay">
-                        <h5>Bellevue Hill</h5>
-                        <p>Luxury Renovation</p>
+                        <h5>Apartment Living Room</h5>
+                        <p>Complete living space renovation</p>
                     </div>
                 </div>
                 
                 <div class="portfolio-item">
-                    <a href="booking.html" aria-label="View Mosman Project"></a>
-                    <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/Mosman-15-1.jpg" alt="Mosman Project">
+                    <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/DJI_0164-1024x768-1.jpg" 
+                         alt="Drone aerial photography of Sydney construction site" 
+                         loading="lazy">
                     <div class="portfolio-overlay">
-                        <h5>Mosman</h5>
-                        <p>Waterfront Property</p>
+                        <h5>Aerial Site Coverage</h5>
+                        <p>Drone progress photography</p>
                     </div>
                 </div>
                 
                 <div class="portfolio-item">
-                    <a href="booking.html" aria-label="View McMahons Point Project"></a>
-                    <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/LIVING-ROOM-3-1024x683-1.jpg" alt="McMahons Point Project">
+                    <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/bellevuehill-1-1024x683-1.jpg" 
+                         alt="Bellevue Hill Sydney luxury home photography for builders" 
+                         loading="lazy">
                     <div class="portfolio-overlay">
-                        <h5>McMahons Point</h5>
-                        <p>Apartment Complex</p>
+                        <h5>Bellevue Hill Luxury</h5>
+                        <p>High-end residential project</p>
                     </div>
                 </div>
             </div>
             
             <div class="text-center mt-5">
-                <a href="portfolio.html" class="btn btn-primary btn-lg">
-                    <i class="bi bi-images me-2"></i>View Full Portfolio
+                <a href="portfolio.html" class="btn btn-primary btn-lg px-5 py-3">
+                    <i class="bi bi-chat-right-text me-2"></i>Request More Photos
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Testimonials Section -->
-    <section class="section-padding">
+    <section id="testimonials" class="section-padding">
         <div class="container">
             <div class="section-header">
                 <h2>What Tradies Say About Us</h2>
-                <p>Hear from Sydney tradies who've used our services to grow their business.</p>
+                <p>Hear from Sydney tradies who've used our services to grow their business</p>
             </div>
             
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
                     <div class="testimonial-card">
-                        <div class="stars">
+                        <div class="stars mb-3">
                             <i class="bi bi-star-fill"></i>
                             <i class="bi bi-star-fill"></i>
                             <i class="bi bi-star-fill"></i>
@@ -1795,7 +1832,7 @@
                             <i class="bi bi-star-fill"></i>
                         </div>
                         <p class="quote">"The photos helped us win a $150k renovation project. Best investment we've made in marketing."</p>
-                        <div class="author">
+                        <div class="testimonial-author">
                             <div class="author-info">
                                 <h6 class="mb-0">Mike Johnson</h6>
                                 <small>Builder, North Sydney</small>
@@ -1804,9 +1841,9 @@
                     </div>
                 </div>
                 
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6 mb-4">
                     <div class="testimonial-card">
-                        <div class="stars">
+                        <div class="stars mb-3">
                             <i class="bi bi-star-fill"></i>
                             <i class="bi bi-star-fill"></i>
                             <i class="bi bi-star-fill"></i>
@@ -1814,7 +1851,7 @@
                             <i class="bi bi-star-fill"></i>
                         </div>
                         <p class="quote">"Professional, on-time, and understood exactly what we needed. The drone footage was incredible."</p>
-                        <div class="author">
+                        <div class="testimonial-author">
                             <div class="author-info">
                                 <h6 class="mb-0">Sarah Chen</h6>
                                 <small>Landscaper, Eastern Suburbs</small>
@@ -1823,9 +1860,9 @@
                     </div>
                 </div>
                 
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6 mb-4">
                     <div class="testimonial-card">
-                        <div class="stars">
+                        <div class="stars mb-3">
                             <i class="bi bi-star-fill"></i>
                             <i class="bi bi-star-fill"></i>
                             <i class="bi bi-star-fill"></i>
@@ -1833,7 +1870,7 @@
                             <i class="bi bi-star-fill"></i>
                         </div>
                         <p class="quote">"Our social media engagement tripled after using their video content. Highly recommend!"</p>
-                        <div class="author">
+                        <div class="testimonial-author">
                             <div class="author-info">
                                 <h6 class="mb-0">David Wilson</h6>
                                 <small>Electrician, Inner West</small>
@@ -1845,12 +1882,12 @@
         </div>
     </section>
 
-    <!-- FAQ Section - RESTORED -->
-    <section id="faq" class="section-padding faq-section">
+    <!-- FAQ Section -->
+    <section id="faq" class="section-padding bg-light">
         <div class="container">
             <div class="section-header">
                 <h2>Frequently Asked Questions</h2>
-                <p>Got questions? We've got answers for Sydney tradies.</p>
+                <p>Got questions? We've got answers for Sydney tradies</p>
             </div>
             
             <div class="row justify-content-center">
@@ -1859,7 +1896,7 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
-                                    <i class="bi bi-house-door faq-icon"></i> What types of projects do you cover?
+                                    What types of projects do you cover?
                                 </button>
                             </h2>
                             <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
@@ -1872,7 +1909,7 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
-                                    <i class="bi bi-clock faq-icon"></i> How long does a typical shoot take?
+                                    How long does a typical shoot take?
                                 </button>
                             </h2>
                             <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
@@ -1885,7 +1922,7 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
-                                    <i class="bi bi-airplane faq-icon"></i> Do you handle drone permits and safety?
+                                    Do you handle drone permits and safety?
                                 </button>
                             </h2>
                             <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
@@ -1898,7 +1935,7 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
-                                    <i class="bi bi-calendar faq-icon"></i> How soon can I get my photos/videos?
+                                    How soon can I get my photos/videos?
                                 </button>
                             </h2>
                             <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
@@ -1911,12 +1948,12 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
-                                    <i class="bi bi-credit-card faq-icon"></i> What's included in your pricing?
+                                    What's your service area?
                                 </button>
                             </h2>
                             <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    Our pricing includes on-site shooting, professional editing, and delivery of high-resolution digital files. Travel within Sydney metro is included. Additional services like expedited delivery or extra editing are available.
+                                    We service all of Greater Sydney including Northern Beaches, Eastern Suburbs, Inner West, North Shore, and Western Sydney. Travel fees may apply for locations outside the metro area.
                                 </div>
                             </div>
                         </div>
@@ -1926,26 +1963,109 @@
         </div>
     </section>
 
-    <!-- Final CTA Section -->
-    <section class="final-cta">
+    <!-- Contact Form Section - NEW -->
+    <section id="contact-form" class="contact-form-section">
+        <div class="container">
+            <div class="contact-form-container">
+                <h2>Get Your Custom Quote</h2>
+                <p class="lead">Fill out the form below and we'll get back to you within 2-3 hours with a personalized quote</p>
+                
+                <form id="contactForm" class="needs-validation" novalidate>
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label for="name" class="form-label">Full Name *</label>
+                            <input type="text" class="form-control" id="name" required>
+                            <div class="invalid-feedback">
+                                Please enter your name.
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="phone" class="form-label">Phone Number *</label>
+                            <input type="tel" class="form-control" id="phone" required>
+                            <div class="invalid-feedback">
+                                Please enter a valid phone number.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label for="email" class="form-label">Email Address *</label>
+                            <input type="email" class="form-control" id="email" required>
+                            <div class="invalid-feedback">
+                                Please enter a valid email address.
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="suburb" class="form-label">Suburb / Location *</label>
+                            <input type="text" class="form-control" id="suburb" required placeholder="e.g., Bondi, Parramatta, etc.">
+                            <div class="invalid-feedback">
+                                Please enter your suburb or location.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label for="service" class="form-label">Service Type *</label>
+                            <select class="form-select" id="service" required>
+                                <option value="" selected disabled>Select a service</option>
+                                <option value="photo-shoot">Photo Shoot</option>
+                                <option value="video-session">Video Session</option>
+                                <option value="drone-footage">Drone Footage</option>
+                                <option value="interviews">Interviews & Testimonials</option>
+                                <option value="package">Complete Package</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Please select a service type.
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="business" class="form-label">Business / Trade Type</label>
+                            <input type="text" class="form-control" id="business" placeholder="e.g., Builder, Electrician, Landscaper">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="notes" class="form-label">Project Details / Notes</label>
+                        <textarea class="form-control form-textarea" id="notes" rows="4" placeholder="Tell us about your project, timeline, specific requirements..."></textarea>
+                    </div>
+                    
+                    <div class="d-grid">
+                        <button type="submit" class="btn-contact">
+                            <i class="bi bi-send me-2"></i>Send Quote Request
+                        </button>
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        <p class="text-muted small">We'll contact you within 2-3 hours during business hours</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA Section - IMPROVED -->
+    <section id="contact" class="contact-cta-section">
         <div class="container">
             <div class="row justify-content-center text-center">
                 <div class="col-lg-8">
                     <h2 class="mb-4">Ready to Showcase Your Best Work?</h2>
-                    <p class="lead mb-5">Professional visuals that help you win more projects and grow your business.</p>
+                    <p class="lead mb-3">Professional visuals that help you win more projects and grow your business.</p>
+                    <span class="reply-time">We reply within 2–3 hours</span>
                     
-                    <div class="row justify-content-center">
-                        <div class="col-md-8">
-                            <div class="d-flex flex-column flex-md-row gap-3 justify-content-center">
-                                <a href="booking.html" class="btn btn-primary btn-lg">
-                                    <i class="bi bi-calendar-check me-2"></i>Book Online Now
-                                </a>
-                                <a href="tel:1300123456" class="btn btn-outline-light btn-lg">
-                                    <i class="bi bi-telephone me-2"></i>Call 1300 123 456
-                                </a>
-                            </div>
-                            <p class="text-light mt-4"><small>Operating Hours: Mon-Fri 7am-6pm | Sat 8am-4pm</small></p>
-                        </div>
+                    <div class="cta-buttons">
+                        <a href="tel:1300123456" class="btn-call">
+                            <i class="bi bi-telephone me-2"></i>Call 1300 123 456
+                        </a>
+                        <a href="https://wa.me/61000000000" class="btn-whatsapp">
+                            <i class="bi bi-whatsapp me-2"></i>WhatsApp
+                        </a>
+                    </div>
+                    
+                    <div class="contact-hours">
+                        <p class="mb-0">Operating Hours: Mon-Fri 7am-6pm | Sat 8am-4pm</p>
                     </div>
                 </div>
             </div>
@@ -1955,70 +2075,72 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
                     <a href="index.html">
                         <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/cropped-tradie-mate_01b-261x71-1.png" 
-                             alt="TradieMate Logo" 
-                             class="footer-logo">
+                             alt="TradieMate Logo - Professional photography for Sydney tradies" 
+                             class="footer-logo mb-3">
                     </a>
-                    <p class="mb-4">Premium photography & videography services for Sydney tradies. Showcasing craftsmanship since 2018.</p>
+                    <p class="text-light">Premium photography & videography services for Sydney tradies. Showcasing craftsmanship since 2018.</p>
                     <div class="social-links">
-                        <a href="https://www.instagram.com/tradie.mate/?hl=en"><i class="bi bi-instagram"></i></a>
+                        <a href="https://www.instagram.com/tradie.mate/?hl=en" aria-label="Follow us on Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="https://facebook.com" aria-label="Follow us on Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="https://linkedin.com" aria-label="Connect on LinkedIn"><i class="bi bi-linkedin"></i></a>
                     </div>
                 </div>
                 
-                <div class="footer-section">
-                    <h5>Services</h5>
-                    <ul>
-                        <li><a href="#services">Photo Shoots</a></li>
-                        <li><a href="#services">Video Sessions</a></li>
-                        <li><a href="#services">Drone Footage</a></li>
-                        <li><a href="#services">Walkthroughs</a></li>
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h5 class="text-white mb-3">Services</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#services" class="text-light text-decoration-none">Photo Shoots</a></li>
+                        <li class="mb-2"><a href="#services" class="text-light text-decoration-none">Video Sessions</a></li>
+                        <li class="mb-2"><a href="#services" class="text-light text-decoration-none">Drone Footage</a></li>
+                        <li><a href="#services" class="text-light text-decoration-none">Interviews</a></li>
                     </ul>
                 </div>
                 
-                <div class="footer-section">
-                    <h5>Company</h5>
-                    <ul>
-                        <li><a href="#value">Why Choose Us</a></li>
-                        <li><a href="#portfolio">Portfolio</a></li>
-                        <li><a href="#faq">FAQ</a></li>
-                        <li><a href="booking.html">Book Now</a></li>
+                <div class="col-lg-3 col-md-4 mb-4 mb-md-0">
+                    <h5 class="text-white mb-3">Locations</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2 text-light">Sydney CBD</li>
+                        <li class="mb-2 text-light">Eastern Suburbs</li>
+                        <li class="mb-2 text-light">Northern Beaches</li>
+                        <li class="text-light">Inner West</li>
                     </ul>
                 </div>
                 
-                <div class="footer-section">
-                    <h5>Contact Info</h5>
-                    <ul class="contact-info">
-                        <li>
-                            <i class="bi bi-geo-alt"></i>
-                            <span>Sydney NSW, Australia</span>
+                <div class="col-lg-3 col-md-4">
+                    <h5 class="text-white mb-3">Contact Info</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-3">
+                            <i class="bi bi-geo-alt text-primary me-2"></i>
+                            <span class="text-light">Sydney NSW, Australia</span>
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-telephone text-primary me-2"></i>
+                            <a href="tel:1300123456" class="text-light text-decoration-none">1300 123 456</a>
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-envelope text-primary me-2"></i>
+                            <a href="mailto:hello@tradiemate.com.au" class="text-light text-decoration-none">hello@tradiemate.com.au</a>
                         </li>
                         <li>
-                            <i class="bi bi-telephone"></i>
-                            <span><a href="tel:1300123456" style="color: inherit; text-decoration: none;">1300 123 456</a></span>
-                        </li>
-                        <li>
-                            <i class="bi bi-envelope"></i>
-                            <span><a href="mailto:hello@tradiemate.com.au" style="color: inherit; text-decoration: none;">hello@tradiemate.com.au</a></span>
-                        </li>
-                        <li>
-                            <i class="bi bi-clock"></i>
-                            <span>Mon-Fri: 7am-6pm<br>Sat: 8am-4pm</span>
+                            <i class="bi bi-clock text-primary me-2"></i>
+                            <span class="text-light">Mon-Fri: 7am-6pm<br>Sat: 8am-4pm</span>
                         </li>
                     </ul>
                 </div>
             </div>
             
-            <div class="copyright">
-                <div>
-                    <p class="mb-2 mb-md-0">&copy; 2023 TradieMate. All rights reserved. ABN: 12 345 678 901</p>
+            <div class="row mt-5 pt-4 border-top border-secondary">
+                <div class="col-md-6">
+                    <p class="text-light mb-0">&copy; 2023 TradieMate. All rights reserved. ABN: 12 345 678 901</p>
                 </div>
-                <div class="copyright-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                    <a href="#">Site Map</a>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-light text-decoration-none me-3">Privacy Policy</a>
+                    <a href="#" class="text-light text-decoration-none me-3">Terms of Service</a>
+                    <a href="#" class="text-light text-decoration-none">Site Map</a>
                 </div>
             </div>
         </div>
@@ -2029,13 +2151,18 @@
     
     <script>
         $(document).ready(function() {
-            // Smooth scrolling for navigation links
+            // Mobile first adjustments
+            function isMobile() {
+                return window.innerWidth < 768;
+            }
+            
+            // Smooth scrolling for navigation links - UPDATED OFFSET
             $('a.nav-link, .btn-primary, .btn-secondary').on('click', function(e) {
                 if (this.hash !== '' && this.hash !== '#') {
                     e.preventDefault();
                     const hash = this.hash;
                     $('html, body').animate({
-                        scrollTop: $(hash).offset().top - 80
+                        scrollTop: $(hash).offset().top - 70 // Updated to match new header height
                     }, 800);
                     
                     // Close mobile menu when clicking a link
@@ -2045,65 +2172,50 @@
                 }
             });
             
-            // Video elements - clean video setup
+            // Video loading - simplified (no loading circle)
             const heroVideo = document.getElementById('heroVideo');
-            const videoLoading = document.querySelector('.video-loading');
             
-            // Video loading events
-            heroVideo.addEventListener('loadeddata', function() {
-                if (videoLoading) {
-                    videoLoading.style.display = 'none';
-                    console.log('Video loaded successfully');
-                }
-            });
-            
-            heroVideo.addEventListener('error', function(e) {
-                console.log('Video error:', e);
-                if (videoLoading) {
-                    videoLoading.innerHTML = '<p>Video failed to load. Please check your connection.</p>';
-                }
-            });
-            
-            // Show loading if video takes time to load
-            setTimeout(function() {
-                if (videoLoading && heroVideo.readyState < 3) {
-                    videoLoading.style.display = 'flex';
-                }
-            }, 500);
-            
-            // Force video to play
-            heroVideo.play().catch(function(error) {
-                console.log('Video play failed:', error);
-            });
+            if (heroVideo) {
+                heroVideo.addEventListener('error', function(e) {
+                    console.log('Video error:', e);
+                });
+                
+                // Force video to play on mobile
+                heroVideo.play().catch(function(error) {
+                    console.log('Video play failed:', error);
+                });
+            }
             
             // Animate stats counter
             function animateCounter() {
                 $('.stat-number').each(function() {
                     const $this = $(this);
-                    const countTo = $this.attr('data-count');
-                    $({ countNum: 0 }).animate({
-                        countNum: countTo
-                    }, {
-                        duration: 2000,
-                        easing: 'swing',
-                        step: function() {
-                            $this.text(Math.floor(this.countNum));
-                        },
-                        complete: function() {
-                            $this.text(this.countNum);
+                    const countTo = parseInt($this.attr('data-count'));
+                    const duration = 2000;
+                    const steps = 60;
+                    const stepTime = duration / steps;
+                    let current = 0;
+                    const increment = countTo / steps;
+                    
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= countTo) {
+                            $this.text(countTo);
+                            clearInterval(timer);
+                        } else {
+                            $this.text(Math.floor(current));
                         }
-                    });
+                    }, stepTime);
                 });
             }
             
             // Trigger counter animation when in viewport
             function isElementInViewport(el) {
+                if (!el) return false;
                 const rect = el.getBoundingClientRect();
                 return (
-                    rect.top >= 0 &&
-                    rect.left >= 0 &&
-                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                    rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8 &&
+                    rect.bottom >= 0
                 );
             }
             
@@ -2114,16 +2226,136 @@
                     statsAnimated = true;
                 }
                 
-                // Navbar scroll effect
+                // Navbar scroll effect - fixed
                 if ($(window).scrollTop() > 50) {
-                    $('.navbar').css('background-color', 'rgba(255, 255, 255, 0.98)');
+                    $('.navbar').css({
+                        'background-color': 'rgba(255, 255, 255, 0.98)',
+                        'box-shadow': '0 2px 30px rgba(1, 1, 0, 0.1)'
+                    });
+                } else {
+                    $('.navbar').css({
+                        'background-color': 'rgba(255, 255, 255, 0.98)',
+                        'box-shadow': '0 2px 30px rgba(1, 1, 0, 0.1)'
+                    });
                 }
             });
             
             // Mobile menu improvements
             $('.navbar-nav .nav-link').on('click', function() {
                 if ($(window).width() < 992) {
-                    $(this).addClass('active').siblings().removeClass('active');
+                    $('.nav-link').removeClass('active');
+                    $(this).addClass('active');
+                    $('.navbar-collapse').collapse('hide');
+                }
+            });
+            
+            // Set active nav link based on scroll position - UPDATED OFFSET
+            $(window).scroll(function() {
+                var currentPosition = $(this).scrollTop();
+                
+                $('section').each(function() {
+                    var top = $(this).offset().top - 90; // Adjusted for smaller header
+                    var bottom = top + $(this).outerHeight();
+                    var id = $(this).attr('id');
+                    
+                    if (currentPosition >= top && currentPosition <= bottom) {
+                        $('.nav-link').removeClass('active');
+                        $('a[href="#' + id + '"]').addClass('active');
+                    }
+                });
+            });
+            
+            // Fix iOS video autoplay
+            if (/iPad|iPhone|iPod/.test(navigator.userAgent) && heroVideo) {
+                heroVideo.setAttribute('playsinline', '');
+                heroVideo.setAttribute('webkit-playsinline', '');
+                heroVideo.setAttribute('muted', '');
+                heroVideo.setAttribute('autoplay', '');
+            }
+            
+            // Mobile touch improvements
+            $('a, button').on('touchstart', function() {
+                $(this).addClass('touch-active');
+            }).on('touchend', function() {
+                $(this).removeClass('touch-active');
+            });
+            
+            // Prevent zoom on input focus in iOS
+            if (isMobile()) {
+                $('input, textarea, select').on('focus', function() {
+                    $(this).css('font-size', '16px');
+                });
+            }
+            
+            // Lazy loading for images
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src || img.src;
+                            imageObserver.unobserve(img);
+                        }
+                    });
+                }, {
+                    rootMargin: '50px 0px',
+                    threshold: 0.1
+                });
+                
+                images.forEach(img => {
+                    if (!img.src) {
+                        img.src = img.dataset.src;
+                    }
+                    imageObserver.observe(img);
+                });
+            }
+            
+            // Contact form validation
+            (function() {
+                'use strict'
+                
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.querySelectorAll('.needs-validation')
+                
+                // Loop over them and prevent submission
+                Array.prototype.slice.call(forms)
+                    .forEach(function(form) {
+                        form.addEventListener('submit', function(event) {
+                            if (!form.checkValidity()) {
+                                event.preventDefault()
+                                event.stopPropagation()
+                            } else {
+                                event.preventDefault()
+                                // Form is valid - show success message
+                                alert('Thank you for your inquiry! We will contact you within 2-3 hours.');
+                                form.reset();
+                                form.classList.remove('was-validated');
+                            }
+                            
+                            form.classList.add('was-validated')
+                        }, false)
+                    })
+            })()
+            
+            // Phone number formatting
+            $('#phone').on('input', function() {
+                let value = $(this).val().replace(/\D/g, '');
+                if (value.length > 0) {
+                    value = value.match(/.{1,4}/g).join(' ');
+                }
+                $(this).val(value);
+            });
+            
+            // Trigger initial scroll check
+            $(window).trigger('scroll');
+            
+            // Mobile menu close on outside click
+            $(document).on('click', function(e) {
+                if ($(window).width() < 992) {
+                    if (!$(e.target).closest('.navbar').length) {
+                        $('.navbar-collapse').collapse('hide');
+                    }
                 }
             });
             
@@ -2132,21 +2364,18 @@
                 e.preventDefault();
             });
             
-            // Animate hero title on load
-            setTimeout(function() {
-                $('.hero-title-line').each(function(index) {
-                    $(this).css({
-                        'opacity': '1',
-                        'transform': 'translateY(0)'
-                    });
-                });
-            }, 300);
+            // Add loading class to body for initial load
+            $('body').addClass('loaded');
+        });
+        
+        // Handle page load
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
             
-            // Fix iOS video autoplay
-            if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
-                heroVideo.setAttribute('playsinline', '');
-                heroVideo.setAttribute('webkit-playsinline', '');
-                heroVideo.setAttribute('muted', '');
+            // Force video to play if it's not playing
+            const heroVideo = document.getElementById('heroVideo');
+            if (heroVideo && heroVideo.paused) {
+                heroVideo.play().catch(e => console.log('Video play on load failed:', e));
             }
         });
     </script>
