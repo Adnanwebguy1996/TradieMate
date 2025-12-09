@@ -119,9 +119,9 @@
             }
         }
         
-        /* Gallery Section */
+        /* ENHANCED: Gallery Section with More Spacing */
         .gallery-section {
-            padding: 60px 0 30px 0;
+            padding: 80px 0 40px 0;
             background: var(--light-gray);
         }
         
@@ -129,17 +129,30 @@
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
             letter-spacing: .03em;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             color: var(--primary-dark);
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-size: clamp(2rem, 5vw, 3rem);
+            line-height: 1.2;
+        }
+        
+        .text-center p.lead {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 3rem auto;
+            color: #666;
+            padding: 0 20px;
+        }
+        
+        .row.project-gallery {
+            margin-top: 2rem;
         }
         
         .project-gallery .card {
             border: none;
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             height: 100%;
             margin-bottom: 0;
@@ -151,8 +164,8 @@
         
         @media (hover: hover) {
             .project-gallery .card:hover {
-                transform: translateY(-8px);
-                box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+                transform: translateY(-12px);
+                box-shadow: 0 20px 40px rgba(0,0,0,0.15);
             }
         }
         
@@ -160,9 +173,15 @@
             aspect-ratio: 4/3;
             object-fit: cover;
             width: 100%;
-            height: 200px;
+            height: 250px;
             background: linear-gradient(45deg, #f5f5f5 25%, #e8e8e8 25%, #e8e8e8 50%, #f5f5f5 50%, #f5f5f5 75%, #e8e8e8 75%);
             background-size: 20px 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .project-gallery .card-img-top {
+                height: 200px;
+            }
         }
         
         @media (max-width: 576px) {
@@ -173,18 +192,18 @@
         
         .project-gallery .card-body {
             background: #fff;
-            padding: 1.25rem 1rem;
+            padding: 1.75rem 1.5rem;
         }
         
         .project-title {
-            font-size: 1.1rem;
+            font-size: 1.25rem;
             font-weight: 700;
             margin-bottom: 0;
             color: var(--primary-dark);
             line-height: 1.3;
         }
         
-        /* Modern Centered Lightbox Modal */
+        /* ENHANCED: Professional Gymshark-Style Lightbox Modal */
         #projectGalleryModal .modal-dialog {
             max-width: 1200px;
             width: 95%;
@@ -194,10 +213,10 @@
         
         #projectGalleryModal .modal-content {
             border: none;
-            border-radius: 24px;
+            border-radius: 0;
             overflow: hidden;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-            background: #fff;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            background: #000;
             max-height: 95vh;
             display: flex;
             flex-direction: column;
@@ -205,28 +224,30 @@
         
         #projectGalleryModal .modal-header {
             border: none;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-            padding: 1.2rem 1.5rem;
+            background: #000;
+            padding: 1.5rem 2rem;
             position: relative;
             flex-shrink: 0;
-            min-height: 70px;
+            min-height: 80px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         
         #projectGalleryModal .modal-title {
             color: white;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 700;
             font-family: 'Montserrat', sans-serif;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
             margin: 0;
             line-height: 1.2;
+            text-transform: uppercase;
         }
         
         #projectGalleryModal .btn-close {
             filter: invert(1) brightness(2);
             opacity: 0.8;
             transition: all 0.3s;
-            background-size: 1.2rem;
+            background-size: 1.5rem;
             padding: 0.75rem;
             position: absolute;
             right: 1.5rem;
@@ -234,11 +255,15 @@
             transform: translateY(-50%);
             background-color: transparent;
             border: none;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
         }
         
         #projectGalleryModal .btn-close:hover {
             opacity: 1;
             transform: translateY(-50%) rotate(90deg);
+            background-color: rgba(255,255,255,0.2);
         }
         
         #projectGalleryModal .modal-body {
@@ -263,8 +288,8 @@
             position: relative;
             width: 100%;
             flex: 1;
-            min-height: 300px;
-            background: #fff;
+            min-height: 400px;
+            background: #000;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -293,34 +318,34 @@
             to { opacity: 1; }
         }
         
-        /* Modern Navigation Arrows */
+        /* ENHANCED: Professional Navigation Arrows */
         .modal-nav-arrow {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            width: 56px;
-            height: 56px;
-            background: rgba(255, 255, 255, 0.95);
-            border: 2px solid rgba(0,0,0,0.1);
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             z-index: 20;
-            color: var(--primary-dark);
-            font-size: 1.6rem;
+            color: white;
+            font-size: 1.8rem;
             font-weight: bold;
+            backdrop-filter: blur(10px);
         }
         
         .modal-nav-arrow:hover {
-            background: white;
-            transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-50%) scale(1.15);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
             color: var(--primary-orange);
-            border-color: var(--primary-orange);
         }
         
         .modal-nav-arrow:active {
@@ -337,9 +362,9 @@
         
         @media (max-width: 768px) {
             .modal-nav-arrow {
-                width: 48px;
-                height: 48px;
-                font-size: 1.4rem;
+                width: 50px;
+                height: 50px;
+                font-size: 1.6rem;
             }
             
             .modal-nav-arrow.prev {
@@ -355,7 +380,7 @@
             .modal-nav-arrow {
                 width: 44px;
                 height: 44px;
-                font-size: 1.2rem;
+                font-size: 1.4rem;
                 border-width: 1px;
             }
             
@@ -368,11 +393,11 @@
             }
         }
         
-        /* Thumbnails Section */
+        /* ENHANCED: Thumbnails Section */
         .modal-thumbnails-section {
-            background: #fff;
-            padding: 1.2rem 1.5rem;
-            border-top: 1px solid #eaeaea;
+            background: #000;
+            padding: 1.5rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
             flex-shrink: 0;
             position: relative;
             z-index: 10;
@@ -388,14 +413,15 @@
         
         .image-counter {
             font-size: 0.95rem;
-            color: #666;
+            color: rgba(255,255,255,0.8);
             font-weight: 600;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: #f8f9fa;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
+            background: rgba(255,255,255,0.1);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
         }
         
         .image-counter i {
@@ -403,8 +429,8 @@
         }
         
         .image-caption {
-            font-size: 1.1rem;
-            color: var(--primary-dark);
+            font-size: 1.2rem;
+            color: white;
             font-weight: 600;
             margin: 0;
             line-height: 1.3;
@@ -415,15 +441,16 @@
             text-overflow: ellipsis;
         }
         
-        /* Modern Thumbnails */
+        /* ENHANCED: Modern Thumbnails */
         .modal-gallery-thumbs {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: thin;
-            scrollbar-color: var(--primary-orange) #eaeaea;
-            padding: 5px 0;
+            scrollbar-color: var(--primary-orange) transparent;
+            padding: 10px 0;
+            margin-top: 1rem;
         }
         
         .modal-gallery-thumbs::-webkit-scrollbar {
@@ -431,7 +458,7 @@
         }
         
         .modal-gallery-thumbs::-webkit-scrollbar-track {
-            background: #eaeaea;
+            background: #333;
             border-radius: 10px;
         }
         
@@ -441,47 +468,47 @@
         }
         
         .modal-gallery-thumbs img {
-            height: 70px;
-            width: 90px;
+            height: 80px;
+            width: 100px;
             object-fit: cover;
             cursor: pointer;
             border: 3px solid transparent;
             border-radius: 8px;
             transition: all 0.3s ease;
             flex-shrink: 0;
-            background: #f8f9fa;
+            background: rgba(255,255,255,0.1);
         }
         
         .modal-gallery-thumbs img:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
         
         .modal-gallery-thumbs img.active {
             border-color: var(--primary-orange);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 147, 30, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 147, 30, 0.4);
         }
         
         @media (max-width: 768px) {
             .modal-gallery-thumbs img {
-                height: 60px;
-                width: 75px;
+                height: 70px;
+                width: 85px;
             }
             
             .modal-thumbnails-section {
-                padding: 1rem;
+                padding: 1.2rem 1.5rem;
             }
             
             .image-caption {
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
         }
         
         @media (max-width: 576px) {
             .modal-gallery-thumbs img {
-                height: 50px;
-                width: 65px;
+                height: 60px;
+                width: 75px;
             }
             
             .thumbnails-header {
@@ -495,6 +522,7 @@
                 padding-right: 0;
                 text-align: center;
                 width: 100%;
+                font-size: 1rem;
             }
             
             .image-counter {
@@ -502,11 +530,11 @@
             }
         }
         
-        /* FIXED: CTA Button Section - CLEAN & CONSISTENT */
+        /* ENHANCED: Professional CTA Button Section */
         .modal-cta-section {
-            background: #fff;
-            padding: 1.5rem;
-            border-top: 1px solid #eaeaea;
+            background: #000;
+            padding: 1.5rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
             flex-shrink: 0;
             display: flex;
             justify-content: center;
@@ -514,33 +542,35 @@
             width: 100%;
         }
         
-        /* FIXED: Clean CTA Button - Always centered, consistent sizing */
+        /* ENHANCED: Gymshark-Style CTA Button */
         .modal-cta-button {
             background: linear-gradient(135deg, var(--primary-orange) 0%, #ff7b00 100%);
             color: white;
             border: none;
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 1rem;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1.1rem;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 0.75rem;
+            gap: 1rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 6px 20px rgba(255, 147, 30, 0.3);
+            box-shadow: 0 8px 25px rgba(255, 147, 30, 0.3);
             white-space: nowrap;
-            min-width: 280px;
+            min-width: 320px;
             max-width: 100%;
-            height: 56px;
+            height: 60px;
             position: relative;
             overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .modal-cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255, 147, 30, 0.4);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(255, 147, 30, 0.4);
             color: white;
             text-decoration: none;
         }
@@ -550,12 +580,12 @@
         }
         
         .modal-cta-button i {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             transition: transform 0.3s ease;
         }
         
         .modal-cta-button:hover i {
-            transform: translateX(3px);
+            transform: translateX(5px);
         }
         
         /* Button ripple effect */
@@ -595,11 +625,11 @@
             }
             
             .modal-cta-button {
-                min-width: 260px;
-                padding: 0.9rem 1.75rem;
-                font-size: 0.95rem;
-                height: 52px;
-                gap: 0.6rem;
+                min-width: 280px;
+                padding: 1rem 2rem;
+                font-size: 1rem;
+                height: 56px;
+                gap: 0.75rem;
             }
             
             .modal-cta-button i {
@@ -613,10 +643,10 @@
             }
             
             .modal-cta-button {
-                min-width: 240px;
-                padding: 0.85rem 1.5rem;
-                font-size: 0.9rem;
-                height: 48px;
+                min-width: 260px;
+                padding: 0.9rem 1.5rem;
+                font-size: 0.95rem;
+                height: 52px;
                 width: 100%;
                 max-width: 300px;
                 gap: 0.5rem;
@@ -964,13 +994,45 @@
         .card-img-top.loaded {
             opacity: 1;
         }
+        
+        /* Enhanced container spacing */
+        .container.px-3.px-sm-4 {
+            padding-left: clamp(15px, 5vw, 40px) !important;
+            padding-right: clamp(15px, 5vw, 40px) !important;
+        }
+        
+        /* Responsive gallery spacing adjustments */
+        @media (max-width: 768px) {
+            .gallery-section {
+                padding: 60px 0 30px 0;
+            }
+            
+            .gallery-title {
+                margin-bottom: 1.5rem;
+            }
+            
+            .text-center p.lead {
+                margin-bottom: 2rem;
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .gallery-section {
+                padding: 50px 0 25px 0;
+            }
+            
+            .row.project-gallery {
+                margin-top: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Navigation/Header -->
     <nav class="navbar navbar-expand-lg navbar-light" aria-label="Main navigation">
-        <div class="container" style="max-width:var(--max-width);">
-            <a class="navbar-brand" href="index.html" aria-label="TradieMate home">
+        <div class="container px-3 px-sm-4" style="max-width:var(--max-width);">
+            <a aria-label='TradieMate home' class='navbar-brand' href='/'>
                 <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/cropped-tradie-mate_01b-261x71-1.png" alt="TradieMate logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
@@ -980,16 +1042,16 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-lg-center">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class='nav-link active' href='/'>Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#value">Why Us</a></li>
                     <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
                     <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
                     <li class="nav-item d-block d-lg-none mt-2">
-                        <a href="booking.html" class="header-booking-btn w-100 text-center d-block py-2">Book a Shoot</a>
+                        <a class='header-booking-btn w-100 text-center d-block py-2' href='/booking'>Book a Shoot</a>
                     </li>
                     <li class="nav-item d-none d-lg-block ms-2">
-                        <a href="booking.html" class="header-booking-btn">Book a Shoot</a>
+                        <a class='header-booking-btn' href='/booking'>Book a Shoot</a>
                     </li>
                 </ul>
             </div>
@@ -1052,7 +1114,7 @@
         </div>
     </section>
 
-    <!-- Modern Centered Lightbox Modal - FIXED CTA BUTTON -->
+    <!-- Modern Professional Lightbox Modal -->
     <div class="modal fade" id="projectGalleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -1088,9 +1150,9 @@
                     </div>
                 </div>
                 
-                <!-- FIXED: Clean CTA Button Section -->
+                <!-- Professional CTA Button Section -->
                 <div class="modal-cta-section">
-                    <a href="booking.html" class="modal-cta-button">
+                    <a class='modal-cta-button' href='/booking'>
                         <i class="bi bi-calendar-check"></i> Book This Project Style
                     </a>
                 </div>
@@ -1124,7 +1186,7 @@
                         <li><a href="#value">Why Choose Us</a></li>
                         <li><a href="#portfolio">Portfolio</a></li>
                         <li><a href="#faq">FAQ</a></li>
-                        <li><a href="booking.html">Book Now</a></li>
+                        <li><a href='/booking'>Book Now</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3 mb-4 footer-section">
