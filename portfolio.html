@@ -677,7 +677,7 @@
             background: #f8f9fa;
         }
         
-        /* Footer - Mobile Ready */
+        /* Footer - Desktop */
         footer {
             background-color: var(--primary-dark);
             color: var(--white);
@@ -869,19 +869,29 @@
             color: var(--primary-orange);
         }
         
+        /* ====================== */
+        /* CLEAN MOBILE FOOTER */
+        /* ====================== */
+        
         /* Mobile Footer Adjustments */
         @media (max-width: 767px) {
             footer {
                 padding: 50px 0 25px;
+                text-align: center;
             }
             
             .footer-content {
                 gap: 35px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
             }
             
             .footer-section {
                 margin-bottom: 35px;
                 text-align: center;
+                width: 100%;
+                max-width: 300px;
             }
             
             .footer-section:last-child {
@@ -890,7 +900,7 @@
             
             .footer-logo {
                 height: 35px;
-                margin-bottom: 1rem;
+                margin-bottom: 1.25rem;
                 margin-left: auto;
                 margin-right: auto;
                 display: block;
@@ -898,72 +908,190 @@
             
             .footer-section p {
                 text-align: center;
+                font-size: 0.95rem;
+                line-height: 1.6;
+                margin-bottom: 1.5rem;
+                padding: 0 10px;
+                color: rgba(255, 255, 255, 0.75);
             }
             
             .footer-section h5 {
-                font-size: 1rem;
-                margin-bottom: 1rem;
+                font-size: 1.1rem;
+                margin-bottom: 1.25rem;
                 text-align: center;
+                font-weight: 700;
+                color: white;
+                position: relative;
+                padding-bottom: 10px;
+            }
+            
+            .footer-section h5::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 50px;
+                height: 2px;
+                background: var(--primary-orange);
+                border-radius: 2px;
             }
             
             .footer-section ul {
                 text-align: center;
+                padding: 0;
+                margin: 0;
             }
             
             .footer-section ul li {
                 text-align: center;
+                margin-bottom: 0.6rem;
+            }
+            
+            .footer-section ul li:last-child {
+                margin-bottom: 0;
             }
             
             .footer-section ul li a {
                 display: inline-block;
+                font-size: 0.95rem;
+                color: rgba(255, 255, 255, 0.7);
+                text-decoration: none;
+                padding: 0.4rem 0;
+                transition: all 0.3s ease;
+                position: relative;
+            }
+            
+            .footer-section ul li a:hover {
+                color: var(--primary-orange);
+                transform: translateX(3px);
+            }
+            
+            .footer-section ul li a::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 1px;
+                background: var(--primary-orange);
+                transition: width 0.3s ease;
+            }
+            
+            .footer-section ul li a:hover::after {
+                width: 100%;
             }
             
             .social-links {
-                gap: 12px;
-                margin-top: 1rem;
+                gap: 15px;
+                margin-top: 1.5rem;
                 justify-content: center;
+                display: flex;
+                flex-wrap: wrap;
             }
             
             .social-links a {
-                width: 40px;
-                height: 40px;
+                width: 42px;
+                height: 42px;
                 font-size: 1rem;
+                background: rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            
+            .social-links a:hover {
+                background: var(--primary-orange);
+                color: var(--primary-dark);
+                transform: translateY(-3px) scale(1.1);
+                box-shadow: 0 5px 15px rgba(255, 147, 30, 0.3);
+                border-color: transparent;
             }
             
             .contact-info {
                 text-align: center;
+                margin-top: 1rem;
             }
             
             .contact-info li {
-                font-size: 0.9rem;
-                margin-bottom: 0.875rem;
+                font-size: 0.95rem;
+                margin-bottom: 1rem;
                 justify-content: center;
                 text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+                padding: 0 10px;
+            }
+            
+            .contact-info li:last-child {
+                margin-bottom: 0;
             }
             
             .contact-info li i {
-                margin-right: 8px;
+                margin-right: 0;
+                color: var(--primary-orange);
+                font-size: 1.2rem;
+                margin-bottom: 5px;
+            }
+            
+            .contact-info li span {
+                line-height: 1.5;
+                color: rgba(255, 255, 255, 0.75);
             }
             
             .copyright {
                 padding-top: 30px;
                 margin-top: 30px;
+                border-top: 1px solid rgba(255, 255, 255, 0.15);
                 font-size: 0.85rem;
                 text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .copyright p {
+                color: rgba(255, 255, 255, 0.5);
+                margin: 0;
+                line-height: 1.5;
             }
             
             .copyright-links {
-                margin-top: 0.75rem;
-                gap: 0.25rem;
+                margin-top: 0.5rem;
+                gap: 0.75rem;
                 justify-content: center;
+                display: flex;
+                flex-wrap: wrap;
             }
             
             .copyright-links a {
                 font-size: 0.85rem;
-                padding: 0.25rem 0.5rem;
+                padding: 0.25rem 0.75rem;
+                color: rgba(255, 255, 255, 0.5);
+                text-decoration: none;
+                transition: all 0.3s ease;
+                position: relative;
+            }
+            
+            .copyright-links a:hover {
+                color: var(--primary-orange);
+            }
+            
+            .copyright-links a::after {
+                content: '•';
+                position: absolute;
+                right: -0.5rem;
+                color: rgba(255, 255, 255, 0.2);
+            }
+            
+            .copyright-links a:last-child::after {
+                display: none;
             }
         }
         
+        /* Extra Small Mobile Adjustments */
         @media (max-width: 575px) {
             footer {
                 padding: 40px 0 20px;
@@ -973,11 +1101,178 @@
                 gap: 30px;
             }
             
+            .footer-section {
+                margin-bottom: 30px;
+                max-width: 280px;
+            }
+            
             .footer-section p {
                 font-size: 0.9rem;
+                padding: 0 5px;
+            }
+            
+            .footer-section h5 {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .footer-section h5::after {
+                width: 40px;
+            }
+            
+            .footer-section ul li a {
+                font-size: 0.9rem;
+                padding: 0.35rem 0;
+            }
+            
+            .social-links a {
+                width: 40px;
+                height: 40px;
+                font-size: 0.95rem;
+            }
+            
+            .contact-info li {
+                font-size: 0.9rem;
+                margin-bottom: 0.875rem;
+            }
+            
+            .contact-info li i {
+                font-size: 1.1rem;
+            }
+            
+            .copyright {
+                padding-top: 25px;
+                margin-top: 25px;
+                font-size: 0.8rem;
+            }
+            
+            .copyright-links {
+                gap: 0.5rem;
+            }
+            
+            .copyright-links a {
+                font-size: 0.8rem;
+                padding: 0.2rem 0.5rem;
             }
         }
         
+        /* Super Small Screens */
+        @media (max-width: 375px) {
+            footer {
+                padding: 35px 0 18px;
+            }
+            
+            .footer-section {
+                max-width: 260px;
+            }
+            
+            .footer-section h5 {
+                font-size: 0.95rem;
+            }
+            
+            .footer-section p {
+                font-size: 0.85rem;
+            }
+            
+            .social-links {
+                gap: 12px;
+            }
+            
+            .social-links a {
+                width: 38px;
+                height: 38px;
+                font-size: 0.9rem;
+            }
+            
+            .contact-info li {
+                font-size: 0.85rem;
+            }
+            
+            .copyright {
+                font-size: 0.75rem;
+            }
+            
+            .copyright-links a {
+                font-size: 0.75rem;
+            }
+        }
+        
+        /* Touch-friendly footer links for mobile */
+        @media (max-width: 767px) {
+            .footer-section ul li a,
+            .copyright-links a,
+            .social-links a {
+                min-height: 44px; /* Apple's minimum touch target size */
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .footer-section ul li a {
+                padding: 0.6rem 0;
+                min-width: 120px;
+            }
+            
+            .copyright-links a {
+                min-height: 36px;
+                min-width: 80px;
+            }
+        }
+        
+        /* Add subtle animation for footer sections */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .footer-section {
+                animation: fadeInUp 0.5s ease-out forwards;
+                opacity: 0;
+            }
+            
+            .footer-section:nth-child(1) { animation-delay: 0.1s; }
+            .footer-section:nth-child(2) { animation-delay: 0.2s; }
+            .footer-section:nth-child(3) { animation-delay: 0.3s; }
+            .footer-section:nth-child(4) { animation-delay: 0.4s; }
+        }
+        
+        /* Clean up list styles for mobile */
+        @media (max-width: 767px) {
+            .footer-section ul {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .contact-info {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+            
+            .contact-info li {
+                max-width: 250px;
+                text-align: center;
+            }
+        }
+        
+        /* Improve readability on small screens */
+        @media (max-width: 767px) {
+            .footer-section h5,
+            .footer-section p,
+            .footer-section ul li a,
+            .contact-info li span {
+                text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            }
+        }
         
         /* Prevent horizontal scroll */
         html, body {
@@ -1026,6 +1321,25 @@
                 margin-top: 1.5rem;
             }
         }
+        
+        /* Image Counter */
+        .project-image-count {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 1;
+        }
+        
+        .card-img-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
@@ -1065,51 +1379,8 @@
                 <h2 class="gallery-title mb-3">Project Gallery</h2>
                 <p class="lead mb-4 text-secondary px-2">Browse featured projects — tap to explore photos of each project.</p>
             </div>
-            <div class="row project-gallery g-3 g-sm-4">
-                <!-- McMahons Point -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="card h-100" onclick="openProjectGallery('mcmahons')" role="button" 
-                         aria-label="View McMahons Point project" tabindex="0">
-                        <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/LIVING-ROOM-3-1024x683-1.jpg" 
-                             class="card-img-top" alt="McMahons Point Living Room" loading="lazy">
-                        <div class="card-body text-center">
-                            <div class="project-title">McMahons Point</div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Mosman -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="card h-100" onclick="openProjectGallery('mosman')" role="button"
-                         aria-label="View Mosman project" tabindex="0">
-                        <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/Mosman-15-1.jpg" 
-                             class="card-img-top" alt="Mosman Living Area" loading="lazy">
-                        <div class="card-body text-center">
-                            <div class="project-title">Mosman</div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Balgowlah -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="card h-100" onclick="openProjectGallery('balgowlah')" role="button"
-                         aria-label="View Balgowlah project" tabindex="0">
-                        <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/DJI_0164-1024x768-1.jpg" 
-                             class="card-img-top" alt="Balgowlah Aerial View" loading="lazy">
-                        <div class="card-body text-center">
-                            <div class="project-title">Balgowlah</div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Bellevue Hill -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="card h-100" onclick="openProjectGallery('bellevue')" role="button"
-                         aria-label="View Bellevue Hill project" tabindex="0">
-                        <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/bellevuehill-1-1024x683-1.jpg" 
-                             class="card-img-top" alt="Bellevue Hill Living Space" loading="lazy">
-                        <div class="card-body text-center">
-                            <div class="project-title">Bellevue Hill</div>
-                        </div>
-                    </div>
-                </div>
+            <div id="galleryContainer" class="row project-gallery g-3 g-sm-4">
+                <!-- Gallery cards will be dynamically inserted here -->
             </div>
         </div>
     </section>
@@ -1214,56 +1485,145 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-    // Updated Project Images Data
+    // ============================================
+    // 🎯 ALL YOUR IMAGE URLS INTEGRATED & READY
+    // ============================================
+    
     const projectGalleries = {
-        mcmahons: {
-            title: "McMahons Point",
-            images: [
-                {src: "https://scontent.cdninstagram.com/v/t51.71878-15/504335443_972883554782421_4940353200773861363_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=110&ig_cache_key=MzQ0NTA2MzIxOTE5MzQ5MDAxMA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjcyMHgxMjgwLnNkci5DMyJ9&_nc_ohc=sZb9lV5GOZYQ7kNvwGhDGB0&_nc_oc=Adl009YhBAY6s09EwKcqwmzTzeKnLAaVqhjQ54uP837qd0jx-quoeGBEUdv9mHs6DX8&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=0HC1c9_o4_lGxXeo8w7xxg&oh=00_AfnNeULBlmr8nCtwaBt8MSYcY_iZ6cxKb4kUUPDe48sNsQ&oe=69377D46", caption: "Living Room - McMahons Point"},
-                {src: "https://scontent.cdninstagram.com/v/t51.75761-15/476846963_17951704106919242_852351707885795714_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=110&ig_cache_key=MzU2NTI2NzMzOTE5OTc4NzQ4OQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4OTU5LnNkci5DMyJ9&_nc_ohc=qExxWyPyLl4Q7kNvwGCwGCP&_nc_oc=AdkYlw30Acju2sQ_djWJsn_3bjDno4zahjSR6KaWrVjD0_DSdUJEzQX0Mpks3gGzxSg&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=ivmgJ-g0j88w0tRkYLaj7g&oh=00_AfmB-r3A97nwo72cYYUNcSUd0QQWyIm9EnadN64HpjF7ug&oe=69379470", caption: "Bathroom - McMahons Point"},
-                {src: "https://scontent.cdninstagram.com/v/t51.75761-15/475269561_17950097819919242_2414540074676688890_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=101&ig_cache_key=MzU1NTA3NzU4MzYwNjE5NDEyNw%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4MTgwMC5zZHIuQzMifQ%3D%3D&_nc_ohc=97pU0qcYyKcQ7kNvwGlxM6k&_nc_oc=AdkAtWGTakpf3oGjO-wFW-JYyMxwYHeBEJDeXmpFA6ZJiYkwTq5Uc-NwmnhQz0W1Sr8&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=ivmgJ-g0j88w0tRkYLaj7g&oh=00_AfnQ_Bgpx1Qh8nN01w5cIqVOJyzfJkJSfct6JOcgBhFJYw&oe=69379654", caption: "Kitchen - McMahons Point"}
-            ]
-        },
-        mosman: {
-            title: "Mosman",
-            images: [
-                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/mosman5-768x512-1-2.jpg", caption: "Mosman Project - Image 1"},
-                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/untitled-1-1-1024x683-1.png", caption: "Mosman Project - Image 2"},
-                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/dfsfsfdfdfmosman2-768x512-1.jpg", caption: "Mosman Project - Image 3"},
-                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/edit-00261-768x1152-1-683x1024.jpg", caption: "Mosman Project - Image 4"},
-                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/edit-00261-768x1152-1-683x1024.jpg", caption: "Mosman Project - Image 5"},
-                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/asasasadetails1-768x512-1-683x1024.jpg", caption: "Mosman Project - Details"},
-                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/mosman-december-2021-5-768x606-1.jpg", caption: "Mosman Project - Overview"}
-            ]
-        },
+        // Project 1: Balgowlah
         balgowlah: {
             title: "Balgowlah",
+            theme: "Modern Luxury",
+            thumbnail: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/DJI_0164-1024x768-1.jpg", // Main card image
             images: [
-                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/1b8a6911-768x512-1.jpg", caption: "Balgowlah Project - Exterior 1"},
-                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/dji-0158-768x576-1-2.jpg", caption: "Balgowlah Project - Aerial 1"},
-                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/dji-0145-768x576-1-2.jpg", caption: "Balgowlah Project - Aerial 2"},
-                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/dji-0150-1024x768-1-2.jpg", caption: "Balgowlah Project - Aerial 3"},
-                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/dji-0156-768x576-1-2.jpg", caption: "Balgowlah Project - Aerial 4"},
-                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/dji-0169-scaled-2-2-1024x768.jpg", caption: "Balgowlah Project - Aerial 5"},
-                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/dji-0176-768x576-1-2.jpg", caption: "Balgowlah Project - Aerial 6"},
-                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/untitled-1-768x512-1-2.png", caption: "Balgowlah Project - Interior 1"},
-                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/untitled-1-768x512-1-2.png", caption: "Balgowlah Project - Interior 2"}
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/504335443_972883554782421_4940353200773861363_n.jpg", caption: "Balgowlah Living Area"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/504456322_489424747565749_4930958807677657524_n.jpg", caption: "Balgowlah Kitchen Design"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/505786309_17965460930919242_346004945939808555_n.jpg", caption: "Balgowlah Master Bedroom"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/1b8a7007-768x512-1-2.jpeg", caption: "Balgowlah Exterior View"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/dji-0169-768x576-1-2.jpg", caption: "Balgowlah Aerial Shot 1"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/dji-0176-scaled-1-2-768x576-1.jpg", caption: "Balgowlah Aerial Shot 2"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/untitled-1-768x512-1-2.png", caption: "Balgowlah Interior Detail"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/dji-0156-768x576-1-2.jpg", caption: "Balgowlah Garden Area"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/dji-0150-1024x768-1-2-768x576-1.jpg", caption: "Balgowlah Pool View"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/dji-0145-768x576-1-2.jpg", caption: "Balgowlah Outdoor Entertaining"}
             ]
         },
+        
+        // Project 2: Drummoyne (NEW)
+        drummoyne: {
+            title: "Drummoyne",
+            theme: "Contemporary Renovation",
+            thumbnail: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/SIDE-STAIRS-2.jpg", // Main card image
+            images: [
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/SIDE-STAIRS-2-NEW.jpg", caption: "Staircase Design"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/STAIRS-NEW.jpg", caption: "Modern Staircase"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/BATHROOM-1-1.jpg", caption: "Main Bathroom"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/BATHROOM-2-1.jpg", caption: "Bathroom Vanity"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/BATHROOM-3.jpg", caption: "Bathroom Shower"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/BATHROOM-4.jpg", caption: "Bathroom Tile Detail"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/CORRIDOR-1-1.jpg", caption: "Corridor Lighting"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/DECK-2.jpg", caption: "Outdoor Deck"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/DINING-1.jpg", caption: "Dining Area"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/DINING-2.jpg", caption: "Formal Dining"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/KITCHEN-1-1.jpg", caption: "Modern Kitchen"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/KITCHEN-2-1.jpg", caption: "Kitchen Island"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/OUTDOOR-TILES.jpg", caption: "Outdoor Tiling"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/OUTSIDE-1.jpg", caption: "Exterior Facade"}
+            ]
+        },
+        
+        // Project 3: Kenthurst (NEW)
+        kenthurst: {
+            title: "Kenthurst",
+            theme: "Rural Retreat",
+            thumbnail: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/CARPORT-1.jpg", // Main card image
+            images: [
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/BEDROOM-2.jpg", caption: "Guest Bedroom"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/CARPORT-2.jpg", caption: "Carport Design"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/ENSUITE-1.jpg", caption: "Ensuite Bathroom"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/ENSUITE-2.jpg", caption: "Ensuite Vanity"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/ENSUITE-3.jpg", caption: "Ensuite Shower"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/FIREPLACE-2.jpg", caption: "Fireplace Feature"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/FIREPLACE-3.jpg", caption: "Living Room Fireplace"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/FRONT-DOOR-1.jpg", caption: "Entryway"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/KITCHEN-1-2.jpg", caption: "Country Kitchen"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/LAUNDRY-1-1.jpg", caption: "Laundry Room"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/MAIN-BATHROOM-1.jpg", caption: "Main Bathroom"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/MAIN-ROOM-1.jpg", caption: "Great Room"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/MAIN-ROOM-2.jpg", caption: "Living Area"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/OUTDOOR-1.jpg", caption: "Outdoor Landscape"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/OUTDOOR-5.jpg", caption: "Garden View"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/BARN-DOOR-1.jpg", caption: "Barn Door Feature"}
+            ]
+        },
+        
+        // Project 4: McMahons Point
+        mcmahons: {
+            title: "McMahons Point",
+            theme: "Waterfront Luxury",
+            thumbnail: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/LIVING-ROOM-3-1024x683-1.jpg", // Main card image
+            images: [
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/KITCHEN-1-3.jpg", caption: "Gourmet Kitchen"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/KITCHEN-2-2.jpg", caption: "Kitchen Island"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/KITCHEN-3-3.jpg", caption: "Kitchen Appliances"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/LIVING-ROOM-1-1.jpg", caption: "Living Room View"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/LIVING-ROOM-2-1.jpg", caption: "Living Area"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/LIVING-ROOM-4-1.jpg", caption: "Entertainment Area"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/LIVING-ROOM-5-1.jpg", caption: "Bay Window"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/LIVING-ROOM-12-1.jpg", caption: "Formal Living"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/MASTER-1.jpg", caption: "Master Suite"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/MASTER-2.jpg", caption: "Master Bedroom"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/STUDY-1.jpg", caption: "Home Office"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/BATHROOM-1-2.jpg", caption: "Luxury Bathroom"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WINE-CELLAR.jpg", caption: "Wine Cellar"}
+            ]
+        },
+        
+        // Project 5: Mosman
+        mosman: {
+            title: "Mosman",
+            theme: "Heritage Restoration",
+            thumbnail: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/Mosman-15-1.jpg", // Main card image
+            images: [
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.51-AM-2.jpeg", caption: "Restored Facade"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.51-AM.jpeg", caption: "Heritage Details"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.52-AM.jpeg", caption: "Living Room"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.53-AM-1.jpeg", caption: "Original Fireplace"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.53-AM-2.jpeg", caption: "Period Features"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.53-AM.jpeg", caption: "Dining Room"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.54-AM.jpeg", caption: "Kitchen Renovation"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.55-AM-1.jpeg", caption: "Modern Extension"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.55-AM.jpeg", caption: "Garden View"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.56-AM-1.jpeg", caption: "Master Suite"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.56-AM-2.jpeg", caption: "Ensuite Bathroom"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.56-AM.jpeg", caption: "Original Flooring"}
+            ]
+        },
+        
+        // Project 6: Bellevue Hill
         bellevue: {
             title: "Bellevue Hill",
+            theme: "Architectural Excellence",
+            thumbnail: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/bellevuehill-1-1024x683-1.jpg", // Main card image
             images: [
-                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/1b8a6328-scaled-1-1024x683.jpg", caption: "Bellevue Hill - Exterior View 1"},
-                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/khjkhjkh1b8a6364-300x200-1-150x150-2.jpg", caption: "Bellevue Hill - Detail Shot 1"},
-                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/lhjlhlhl1b8a6412-scaled-1-150x150-1.jpg", caption: "Bellevue Hill - Detail Shot 2"},
-                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/1b8a6412-scaled-1-1024x683.jpg", caption: "Bellevue Hill - Exterior View 2"},
-                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/jhkljkljl1b8a6346-300x200-1.jpg", caption: "Bellevue Hill - Architectural Detail"},
-                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/hkhkjk1b8a6320-scaled-1-1024x682.jpg", caption: "Bellevue Hill - Front Facade"},
-                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/1b8a7048-1-scaled-1-300x200-2.jpg", caption: "Bellevue Hill - Garden View"},
-                {src: "https://paramountprojectsco.com.au/wp-content/uploads/2025/09/hkjhjkhjkhjkhkh1b8a6412-scaled-1-300x200-2.jpg", caption: "Bellevue Hill - Exterior Detail"}
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/1b8a6911-768x512-1.jpg", caption: "Architectural Facade"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/1b8a7048-1-scaled-1-300x200-2.jpg", caption: "Garden Oasis"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/hkhkjk1b8a6320-scaled-1-768x512-1.jpg", caption: "Entry Statement"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/jhkljkljl1b8a6346-300x200-1.jpg", caption: "Custom Detailing"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/lhjlhlhl1b8a6412-scaled-1-150x150-1.jpg", caption: "Material Selection"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/1b8a6412-scaled-1-768x512-1.jpg", caption: "Courtyard View"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/1b8a6328-scaled-1-768x512-1.jpg", caption: "Exterior Lighting"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/1b8a6517-scaled-1-768x512-1.jpg", caption: "Landscape Design"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/asasasadetails1-768x512-1.jpg", caption: "Architectural Details"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/dfsfsfdfdfmosman2-768x512-1-768x512-1.jpg", caption: "Interior Flow"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/edit-00261-768x1152-1.jpg", caption: "Custom Finishes"}
             ]
         }
     };
+
+    // ============================================
+    // ⚙️ SYSTEM CODE - DON'T EDIT BELOW THIS LINE
+    // ============================================
 
     // Modal/Slider State
     let galleryState = {
@@ -1273,28 +1633,63 @@
         touchEndX: 0
     };
 
-    // Image lazy loading
+    // Dynamically generate gallery cards on page load
     document.addEventListener('DOMContentLoaded', function() {
-        const images = document.querySelectorAll('.card-img-top');
-        images.forEach(img => {
-            if (img.complete) {
-                img.classList.add('loaded');
-            } else {
-                img.addEventListener('load', function() {
-                    this.classList.add('loaded');
-                });
-            }
-        });
+        const galleryContainer = document.getElementById('galleryContainer');
         
-        // Add keyboard support for cards
-        document.querySelectorAll('.card[role="button"]').forEach(card => {
-            card.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    this.click();
+        // Clear existing content
+        galleryContainer.innerHTML = '';
+        
+        // Create a card for each project
+        Object.keys(projectGalleries).forEach((projectKey, index) => {
+            const project = projectGalleries[projectKey];
+            
+            const colDiv = document.createElement('div');
+            colDiv.className = 'col-12 col-sm-6 col-lg-4';
+            
+            colDiv.innerHTML = `
+                <div class="card h-100" onclick="openProjectGallery('${projectKey}')" role="button" 
+                     aria-label="View ${project.title} project" tabindex="0">
+                    <div class="card-img-wrapper">
+                        <img src="${project.thumbnail}" 
+                             class="card-img-top" alt="${project.title} - ${project.theme}" loading="lazy">
+                        <div class="project-image-count">
+                            <i class="bi bi-images"></i> ${project.images.length} photos
+                        </div>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="project-title">${project.title}</div>
+                        <small class="text-muted">${project.theme}</small>
+                    </div>
+                </div>
+            `;
+            
+            galleryContainer.appendChild(colDiv);
+        });
+
+        // Image lazy loading
+        setTimeout(() => {
+            const images = document.querySelectorAll('.card-img-top');
+            images.forEach(img => {
+                if (img.complete) {
+                    img.classList.add('loaded');
+                } else {
+                    img.addEventListener('load', function() {
+                        this.classList.add('loaded');
+                    });
                 }
             });
-        });
+            
+            // Add keyboard support for cards
+            document.querySelectorAll('.card[role="button"]').forEach(card => {
+                card.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+            });
+        }, 100);
     });
 
     function openProjectGallery(projectKey) {
@@ -1302,8 +1697,8 @@
         galleryState.currentIndex = 0;
         const gallery = projectGalleries[projectKey];
 
-        // Set Title
-        document.getElementById('galleryModalLabel').textContent = gallery.title;
+        // Set Title with Theme
+        document.getElementById('galleryModalLabel').textContent = `${gallery.title} | ${gallery.theme}`;
 
         // Clear and create image containers dynamically
         const modalContainer = document.getElementById('modalImageContainer');
