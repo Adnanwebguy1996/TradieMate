@@ -17,7 +17,7 @@
             --light-gray: #F8F9FA;
             --white: #FFFFFF;
             --navbar-height: 70px;
-            --max-width: 1200px;
+            --max-width: 1400px;
         }
         
         * {
@@ -119,10 +119,11 @@
             }
         }
         
-        /* ENHANCED: Gallery Section with More Spacing */
+        /* Gallery Section */
         .gallery-section {
             padding: 80px 0 40px 0;
             background: var(--light-gray);
+            min-height: calc(100vh - var(--navbar-height));
         }
         
         .gallery-title {
@@ -156,6 +157,7 @@
             cursor: pointer;
             height: 100%;
             margin-bottom: 0;
+            position: relative;
         }
         
         .project-gallery .card:active {
@@ -173,20 +175,38 @@
             aspect-ratio: 4/3;
             object-fit: cover;
             width: 100%;
-            height: 250px;
+            height: 280px;
             background: linear-gradient(45deg, #f5f5f5 25%, #e8e8e8 25%, #e8e8e8 50%, #f5f5f5 50%, #f5f5f5 75%, #e8e8e8 75%);
             background-size: 20px 20px;
         }
         
+        .card-img-wrapper {
+            position: relative;
+        }
+        
+        .project-image-count {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
         @media (max-width: 768px) {
             .project-gallery .card-img-top {
-                height: 200px;
+                height: 220px;
             }
         }
         
         @media (max-width: 576px) {
             .project-gallery .card-img-top {
-                height: 180px;
+                height: 200px;
             }
         }
         
@@ -203,32 +223,132 @@
             line-height: 1.3;
         }
         
-        /* ENHANCED: Professional Gymshark-Style Lightbox Modal */
+        /* ============================================
+           📸 FULL SCREEN GALLERY VIEWER WITH ZOOM
+           ============================================ */
+        
+        /* 1. Make modal FULL SCREEN */
         #projectGalleryModal .modal-dialog {
-            max-width: 1200px;
-            width: 95%;
+            max-width: 95vw !important;
+            width: 95vw !important;
             margin: auto;
             max-height: 95vh;
+            height: 95vh;
         }
         
+        /* 2. Make modal content fill screen */
         #projectGalleryModal .modal-content {
             border: none;
             border-radius: 0;
             overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.7);
             background: #000;
             max-height: 95vh;
+            height: 95vh;
             display: flex;
             flex-direction: column;
         }
         
+        /* 3. Make image container FULL SCREEN */
+        .modal-image-container {
+            position: relative;
+            width: 100%;
+            flex: 1; /* Takes ALL available space */
+            min-height: 500px;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 0;
+            cursor: grab;
+        }
+        
+        .modal-image-container:active {
+            cursor: grabbing;
+        }
+        
+        /* 4. Make images FULL SIZE with zoom support */
+        .modal-gallery-img {
+            display: none;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain !important; /* Show FULL image */
+            object-position: center;
+            transition: transform 0.3s ease;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1);
+            transform-origin: center center;
+            cursor: default;
+        }
+        
+        .modal-gallery-img.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* 5. Make navigation arrows bigger */
+        .modal-nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.25);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+            z-index: 20;
+            color: white;
+            font-size: 2.2rem;
+            font-weight: bold;
+            backdrop-filter: blur(15px);
+        }
+        
+        .modal-nav-arrow:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-50%) scale(1.15);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            color: var(--primary-orange);
+        }
+        
+        .modal-nav-arrow:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+        
+        .modal-nav-arrow.prev {
+            left: 25px;
+        }
+        
+        .modal-nav-arrow.next {
+            right: 25px;
+        }
+        
+        /* 6. REMOVE THUMBNAILS SECTION COMPLETELY */
+        .modal-thumbnails-section {
+            display: none !important;
+        }
+        
+        /* 7. Make modal header smaller to give more space to images */
         #projectGalleryModal .modal-header {
             border: none;
             background: #000;
-            padding: 1.5rem 2rem;
+            padding: 1rem 2rem;
             position: relative;
             flex-shrink: 0;
-            min-height: 80px;
+            min-height: 60px;
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         
@@ -266,9 +386,10 @@
             background-color: rgba(255,255,255,0.2);
         }
         
+        /* 8. Make modal body fill ALL available space */
         #projectGalleryModal .modal-body {
             padding: 0;
-            background: #fff;
+            background: #000;
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -276,55 +397,52 @@
             overflow: hidden;
         }
         
-        /* Main Image Container */
+        /* 9. Main content wrapper - takes all space */
         .modal-main-content {
             display: flex;
             flex-direction: column;
             height: 100%;
             overflow: hidden;
+            flex: 1;
         }
         
-        .modal-image-container {
-            position: relative;
-            width: 100%;
-            flex: 1;
-            min-height: 400px;
-            background: #000;
+        /* 10. Image counter in top right corner */
+        .modal-image-counter {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
             display: flex;
             align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            padding: 0;
+            gap: 5px;
+            z-index: 10;
+            backdrop-filter: blur(10px);
         }
         
-        .modal-gallery-img {
-            display: none;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: opacity 0.4s ease;
+        /* 11. ZOOM CONTROLS */
+        .modal-zoom-controls {
             position: absolute;
-            top: 0;
-            left: 0;
+            bottom: 20px;
+            right: 20px;
+            z-index: 25;
+            display: flex;
+            gap: 10px;
+            opacity: 0.8;
+            transition: opacity 0.3s;
         }
         
-        .modal-gallery-img.active {
-            display: block;
-            animation: fadeIn 0.4s ease;
+        .modal-zoom-controls:hover {
+            opacity: 1;
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        /* ENHANCED: Professional Navigation Arrows */
-        .modal-nav-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 60px;
-            height: 60px;
+        .zoom-button {
+            width: 45px;
+            height: 45px;
             background: rgba(255, 255, 255, 0.15);
             border: none;
             border-radius: 50%;
@@ -332,205 +450,49 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            z-index: 20;
             color: white;
-            font-size: 1.8rem;
+            font-size: 1.3rem;
             font-weight: bold;
             backdrop-filter: blur(10px);
+            transition: all 0.3s;
         }
         
-        .modal-nav-arrow:hover {
+        .zoom-button:hover {
             background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-50%) scale(1.15);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-            color: var(--primary-orange);
+            transform: scale(1.1);
         }
         
-        .modal-nav-arrow:active {
-            transform: translateY(-50%) scale(0.95);
+        .zoom-button:active {
+            transform: scale(0.95);
         }
         
-        .modal-nav-arrow.prev {
-            left: 25px;
-        }
-        
-        .modal-nav-arrow.next {
-            right: 25px;
-        }
-        
-        @media (max-width: 768px) {
-            .modal-nav-arrow {
-                width: 50px;
-                height: 50px;
-                font-size: 1.6rem;
-            }
-            
-            .modal-nav-arrow.prev {
-                left: 15px;
-            }
-            
-            .modal-nav-arrow.next {
-                right: 15px;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .modal-nav-arrow {
-                width: 44px;
-                height: 44px;
-                font-size: 1.4rem;
-                border-width: 1px;
-            }
-            
-            .modal-nav-arrow.prev {
-                left: 10px;
-            }
-            
-            .modal-nav-arrow.next {
-                right: 10px;
-            }
-        }
-        
-        /* ENHANCED: Thumbnails Section */
-        .modal-thumbnails-section {
-            background: #000;
-            padding: 1.5rem 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            flex-shrink: 0;
-            position: relative;
-            z-index: 10;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
-        }
-        
-        .thumbnails-header {
+        /* Fullscreen button */
+        .modal-fullscreen-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 25;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            border-radius: 50%;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
-        }
-        
-        .image-counter {
-            font-size: 0.95rem;
-            color: rgba(255,255,255,0.8);
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(255,255,255,0.1);
-            padding: 0.6rem 1.2rem;
-            border-radius: 30px;
-            backdrop-filter: blur(10px);
-        }
-        
-        .image-counter i {
-            color: var(--primary-orange);
-        }
-        
-        .image-caption {
-            font-size: 1.2rem;
-            color: white;
-            font-weight: 600;
-            margin: 0;
-            line-height: 1.3;
-            flex: 1;
-            padding-right: 1rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        
-        /* ENHANCED: Modern Thumbnails */
-        .modal-gallery-thumbs {
-            display: flex;
-            gap: 12px;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: thin;
-            scrollbar-color: var(--primary-orange) transparent;
-            padding: 10px 0;
-            margin-top: 1rem;
-        }
-        
-        .modal-gallery-thumbs::-webkit-scrollbar {
-            height: 6px;
-        }
-        
-        .modal-gallery-thumbs::-webkit-scrollbar-track {
-            background: #333;
-            border-radius: 10px;
-        }
-        
-        .modal-gallery-thumbs::-webkit-scrollbar-thumb {
-            background: var(--primary-orange);
-            border-radius: 10px;
-        }
-        
-        .modal-gallery-thumbs img {
-            height: 80px;
-            width: 100px;
-            object-fit: cover;
+            justify-content: center;
             cursor: pointer;
-            border: 3px solid transparent;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            flex-shrink: 0;
-            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 1.3rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
         }
         
-        .modal-gallery-thumbs img:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        .modal-fullscreen-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
         }
         
-        .modal-gallery-thumbs img.active {
-            border-color: var(--primary-orange);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 147, 30, 0.4);
-        }
-        
-        @media (max-width: 768px) {
-            .modal-gallery-thumbs img {
-                height: 70px;
-                width: 85px;
-            }
-            
-            .modal-thumbnails-section {
-                padding: 1.2rem 1.5rem;
-            }
-            
-            .image-caption {
-                font-size: 1.1rem;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .modal-gallery-thumbs img {
-                height: 60px;
-                width: 75px;
-            }
-            
-            .thumbnails-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
-            }
-            
-            .image-caption {
-                white-space: normal;
-                padding-right: 0;
-                text-align: center;
-                width: 100%;
-                font-size: 1rem;
-            }
-            
-            .image-counter {
-                align-self: center;
-            }
-        }
-        
-        /* ENHANCED: Professional CTA Button Section */
+        /* 12. CTA Button Section */
         .modal-cta-section {
             background: #000;
             padding: 1.5rem 2rem;
@@ -542,7 +504,6 @@
             width: 100%;
         }
         
-        /* ENHANCED: Gymshark-Style CTA Button */
         .modal-cta-button {
             background: linear-gradient(135deg, var(--primary-orange) 0%, #ff7b00 100%);
             color: white;
@@ -588,38 +549,49 @@
             transform: translateX(5px);
         }
         
-        /* Button ripple effect */
-        .modal-cta-button::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 5px;
-            height: 5px;
-            background: rgba(255, 255, 255, 0.5);
-            opacity: 0;
-            border-radius: 100%;
-            transform: scale(1, 1) translate(-50%);
-            transform-origin: 50% 50%;
-        }
-        
-        .modal-cta-button:focus:not(:active)::after {
-            animation: ripple 1s ease-out;
-        }
-        
-        @keyframes ripple {
-            0% {
-                transform: scale(0, 0);
-                opacity: 0.5;
+        /* 13. Mobile responsiveness */
+        @media (max-width: 992px) {
+            #projectGalleryModal .modal-dialog {
+                max-width: 98vw !important;
+                width: 98vw !important;
+                height: 95vh;
             }
-            100% {
-                transform: scale(20, 20);
-                opacity: 0;
+            
+            #projectGalleryModal .modal-content {
+                height: 95vh;
+            }
+            
+            .modal-nav-arrow {
+                width: 55px;
+                height: 55px;
+                font-size: 1.6rem;
             }
         }
         
-        /* Responsive button sizing */
         @media (max-width: 768px) {
+            #projectGalleryModal .modal-title {
+                font-size: 1.2rem;
+            }
+            
+            .modal-nav-arrow {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+            
+            .modal-nav-arrow.prev {
+                left: 15px;
+            }
+            
+            .modal-nav-arrow.next {
+                right: 15px;
+            }
+            
+            #projectGalleryModal .modal-header {
+                padding: 1rem 1.5rem;
+                min-height: 55px;
+            }
+            
             .modal-cta-section {
                 padding: 1.25rem;
             }
@@ -632,12 +604,64 @@
                 gap: 0.75rem;
             }
             
-            .modal-cta-button i {
-                font-size: 1.1rem;
+            .modal-image-counter {
+                top: 15px;
+                right: 15px;
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+            
+            .modal-zoom-controls {
+                bottom: 15px;
+                right: 15px;
+            }
+            
+            .zoom-button {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .modal-fullscreen-button {
+                top: 15px;
+                left: 15px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
             }
         }
         
         @media (max-width: 576px) {
+            #projectGalleryModal .modal-dialog {
+                max-width: 100vw !important;
+                width: 100vw !important;
+                height: 100vh;
+                margin: 0;
+            }
+            
+            #projectGalleryModal .modal-content {
+                height: 100vh;
+                border-radius: 0;
+            }
+            
+            .modal-nav-arrow {
+                width: 44px;
+                height: 44px;
+                font-size: 1.4rem;
+            }
+            
+            .modal-nav-arrow.prev {
+                left: 10px;
+            }
+            
+            .modal-nav-arrow.next {
+                right: 10px;
+            }
+            
+            #projectGalleryModal .modal-title {
+                font-size: 1.1rem;
+            }
+            
             .modal-cta-section {
                 padding: 1rem;
             }
@@ -652,71 +676,114 @@
                 gap: 0.5rem;
             }
             
-            .modal-cta-button i {
+            .modal-image-counter {
+                top: 12px;
+                right: 12px;
+                padding: 5px 10px;
+                font-size: 0.75rem;
+            }
+            
+            .modal-zoom-controls {
+                bottom: 10px;
+                right: 10px;
+                gap: 8px;
+            }
+            
+            .zoom-button {
+                width: 38px;
+                height: 38px;
+                font-size: 1.1rem;
+            }
+            
+            .modal-fullscreen-button {
+                top: 12px;
+                left: 12px;
+                width: 38px;
+                height: 38px;
+                font-size: 1.1rem;
+            }
+        }
+        
+        /* Loading animation */
+        .modal-gallery-img.loading {
+            opacity: 0.5;
+            filter: blur(10px);
+            background: linear-gradient(90deg, #222 25%, #333 50%, #222 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        /* Loading optimization */
+        .card-img-top {
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .card-img-top.loaded {
+            opacity: 1;
+        }
+        
+        /* Enhanced container spacing */
+        .container.px-3.px-sm-4 {
+            padding-left: clamp(15px, 5vw, 40px) !important;
+            padding-right: clamp(15px, 5vw, 40px) !important;
+        }
+        
+        /* Responsive gallery spacing */
+        @media (max-width: 768px) {
+            .gallery-section {
+                padding: 60px 0 30px 0;
+            }
+            
+            .gallery-title {
+                margin-bottom: 1.5rem;
+            }
+            
+            .text-center p.lead {
+                margin-bottom: 2rem;
                 font-size: 1rem;
             }
         }
         
-        @media (max-width: 375px) {
-            .modal-cta-button {
-                min-width: 220px;
-                padding: 0.8rem 1.25rem;
-                font-size: 0.85rem;
-                height: 46px;
+        @media (max-width: 576px) {
+            .gallery-section {
+                padding: 50px 0 25px 0;
             }
             
-            .modal-cta-button i {
-                font-size: 0.95rem;
+            .row.project-gallery {
+                margin-top: 1.5rem;
             }
         }
         
-        /* Loading animation for modal images */
-        .modal-gallery-img.loading {
-            opacity: 0.5;
-            filter: blur(5px);
-            background: #f8f9fa;
-        }
+        /* ============================================
+           🦶 FIXED FOOTER FOR ALL SCREENS
+           ============================================ */
         
-        /* Footer - Desktop */
         footer {
             background-color: var(--primary-dark);
             color: var(--white);
             padding: 60px 0 30px;
+            width: 100%;
         }
         
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(1, 1fr);
-            gap: 40px;
-            margin-bottom: 40px;
+        .footer-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
         }
         
-        @media (min-width: 768px) {
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 30px;
-            }
+        /* Desktop Footer Layout */
+        .footer-desktop {
+            display: block;
         }
         
-        @media (min-width: 992px) {
-            footer {
-                padding: 80px 0 30px;
-            }
-            
-            .footer-content {
-                grid-template-columns: 2fr 1fr 1fr 2fr;
-                gap: 30px;
-            }
-        }
-        
-        .footer-section {
-            margin-bottom: 30px;
-        }
-        
-        @media (min-width: 768px) {
-            .footer-section {
-                margin-bottom: 0;
-            }
+        .footer-mobile {
+            display: none;
         }
         
         .footer-logo {
@@ -726,19 +793,19 @@
             filter: brightness(0) invert(1);
         }
         
-        .footer-section p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-        
         .footer-section h5 {
             color: var(--white);
             margin-bottom: 1.5rem;
             font-size: 1.1rem;
             font-weight: 700;
             font-family: 'Montserrat', sans-serif;
+        }
+        
+        .footer-section p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
         }
         
         .footer-section ul {
@@ -792,10 +859,6 @@
             box-shadow: 0 5px 15px rgba(255, 147, 30, 0.3);
         }
         
-        .contact-info {
-            margin-top: 1rem;
-        }
-        
         .contact-info li {
             display: flex;
             align-items: flex-start;
@@ -812,28 +875,12 @@
             font-size: 1.1rem;
         }
         
-        .contact-info li span {
-            line-height: 1.5;
-        }
-        
         .copyright {
             padding-top: 40px;
             margin-top: 40px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 0.9rem;
             color: rgba(255, 255, 255, 0.5);
-            text-align: center;
-        }
-        
-        @media (min-width: 768px) {
-            .copyright {
-                text-align: left;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                flex-wrap: wrap;
-                gap: 1rem;
-            }
         }
         
         .copyright p {
@@ -842,18 +889,9 @@
         }
         
         .copyright-links {
-            margin-top: 1rem;
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
             gap: 0.5rem;
-        }
-        
-        @media (min-width: 768px) {
-            .copyright-links {
-                margin-top: 0;
-                justify-content: flex-end;
-            }
         }
         
         .copyright-links a {
@@ -869,279 +907,230 @@
             color: var(--primary-orange);
         }
         
+        /* Tablet Footer (768px - 991px) */
+        @media (max-width: 991px) {
+            footer {
+                padding: 50px 0 25px;
+            }
+            
+            .footer-desktop {
+                display: none;
+            }
+            
+            .footer-tablet {
+                display: block;
+            }
+            
+            .footer-tablet .row {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+            
+            .footer-tablet .col-md-6 {
+                width: 100%;
+            }
+            
+            .footer-section {
+                margin-bottom: 30px;
+            }
+            
+            .footer-section:last-child {
+                margin-bottom: 0;
+            }
+            
+            .footer-logo {
+                height: 35px;
+                margin-bottom: 1.25rem;
+            }
+            
+            .footer-section h5 {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .social-links {
+                gap: 12px;
+            }
+            
+            .social-links a {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .copyright {
+                padding-top: 30px;
+                margin-top: 30px;
+                text-align: center;
+            }
+            
+            .copyright-links {
+                justify-content: center;
+                margin-top: 1rem;
+            }
+        }
+        
+        /* Mobile Footer (up to 767px) */
         @media (max-width: 767px) {
-    /* Define the missing animation */
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    footer {
-        padding: 50px 0 25px;
-        text-align: center;
-    }
-
-    /* More specific column targeting to avoid conflicts */
-    footer > .container > .row > [class*="col-"],
-    footer .footer-content > [class*="col-"] {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
-        float: none; /* Prevent Bootstrap float issues */
-    }
-
-    .footer-content {
-        gap: 35px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .footer-section {
-        margin-bottom: 30px;
-        text-align: center;
-        width: 100%;
-        max-width: 300px;
-        animation: fadeInUp 0.5s ease-out forwards;
-        opacity: 0;
-        animation-fill-mode: both;
-    }
-
-    /* Stagger animations for better visual flow */
-    .footer-section:nth-child(1) { animation-delay: 0.1s; }
-    .footer-section:nth-child(2) { animation-delay: 0.2s; }
-    .footer-section:nth-child(3) { animation-delay: 0.3s; }
-    .footer-section:nth-child(4) { animation-delay: 0.4s; }
-
-    .footer-section:last-child {
-        margin-bottom: 0;
-    }
-
-    .footer-logo {
-        height: 35px;
-        margin: 0 auto 1.25rem;
-        display: block;
-        -webkit-user-select: none;
-        user-select: none;
-    }
-
-    .footer-section h5 {
-        font-size: 1.1rem;
-        margin-bottom: 1.25rem;
-        font-weight: 700;
-        color: white;
-        position: relative;
-        padding-bottom: 10px;
-        text-align: center;
-    }
-
-    .footer-section h5::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 50px;
-        height: 2px;
-        background: var(--primary-orange);
-        border-radius: 2px;
-    }
-
-    .footer-section p {
-        text-align: center;
-        font-size: 0.95rem;
-        line-height: 1.6;
-        margin-bottom: 1.5rem;
-        padding: 0 10px;
-        color: rgba(255, 255, 255, 0.75);
-    }
-
-    .footer-section ul {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 0;
-        margin: 0;
-        list-style: none;
-    }
-
-    .footer-section ul li {
-        margin-bottom: 0.6rem;
-        text-align: center;
-        width: 100%;
-    }
-
-    .footer-section ul li a {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.95rem;
-        color: rgba(255, 255, 255, 0.7);
-        text-decoration: none;
-        padding: 0.6rem 0;
-        transition: all 0.3s ease;
-        position: relative;
-        min-width: 120px;
-        min-height: 44px; /* Better touch target */
-        -webkit-tap-highlight-color: transparent;
-    }
-
-    .footer-section ul li a::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0;
-        height: 1px;
-        background: var(--primary-orange);
-        transition: width 0.3s ease;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    /* Separate hover styles for touch devices */
-    @media (hover: hover) and (pointer: fine) {
-        .footer-section ul li a:hover::after {
-            width: 100%;
+            footer {
+                padding: 40px 0 20px;
+            }
+            
+            .footer-tablet {
+                display: none;
+            }
+            
+            .footer-mobile {
+                display: block;
+                text-align: center;
+            }
+            
+            .footer-mobile .footer-section {
+                margin-bottom: 30px;
+            }
+            
+            .footer-mobile .footer-section:last-child {
+                margin-bottom: 0;
+            }
+            
+            .footer-logo {
+                height: 30px;
+                margin: 0 auto 1.5rem;
+                display: block;
+            }
+            
+            .footer-section h5 {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+                color: white;
+                position: relative;
+                display: inline-block;
+                padding-bottom: 8px;
+            }
+            
+            .footer-section h5::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 40px;
+                height: 2px;
+                background: var(--primary-orange);
+            }
+            
+            .footer-section p {
+                font-size: 0.9rem;
+                line-height: 1.5;
+                padding: 0 10px;
+            }
+            
+            .footer-section ul li {
+                margin-bottom: 0.5rem;
+            }
+            
+            .footer-section ul li a {
+                font-size: 0.9rem;
+                padding: 0.3rem 0;
+                display: inline-block;
+            }
+            
+            .social-links {
+                justify-content: center;
+                gap: 10px;
+                margin-top: 1rem;
+            }
+            
+            .social-links a {
+                width: 38px;
+                height: 38px;
+                font-size: 0.95rem;
+            }
+            
+            .contact-info {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.8rem;
+                margin-top: 1rem;
+            }
+            
+            .contact-info li {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 5px;
+                font-size: 0.9rem;
+                margin-bottom: 0;
+            }
+            
+            .contact-info li i {
+                margin-bottom: 5px;
+                font-size: 1rem;
+            }
+            
+            .copyright {
+                padding-top: 25px;
+                margin-top: 25px;
+                font-size: 0.8rem;
+                text-align: center;
+            }
+            
+            .copyright-links {
+                justify-content: center;
+                gap: 0.5rem;
+                margin-top: 0.75rem;
+            }
+            
+            .copyright-links a {
+                font-size: 0.8rem;
+                padding: 0.25rem 0.5rem;
+            }
         }
         
-        .footer-section ul li a:hover {
-            color: var(--primary-orange);
+        /* Extra Small Mobile Footer (up to 375px) */
+        @media (max-width: 375px) {
+            footer {
+                padding: 35px 0 18px;
+            }
+            
+            .footer-logo {
+                height: 28px;
+            }
+            
+            .footer-section h5 {
+                font-size: 0.95rem;
+            }
+            
+            .footer-section p {
+                font-size: 0.85rem;
+            }
+            
+            .social-links a {
+                width: 36px;
+                height: 36px;
+                font-size: 0.9rem;
+            }
+            
+            .contact-info li {
+                font-size: 0.85rem;
+            }
+            
+            .copyright {
+                font-size: 0.75rem;
+            }
+            
+            .copyright-links a {
+                font-size: 0.75rem;
+            }
         }
         
-        .social-links a:hover {
-            background: var(--primary-orange);
-            color: var(--primary-dark);
-            transform: scale(1.1);
-            box-shadow: 0 5px 15px rgba(255, 147, 30, 0.3);
-            border-color: transparent;
+        /* Prevent horizontal scroll */
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
         }
-    }
-
-    /* Active state for touch devices */
-    .footer-section ul li a:active,
-    .social-links a:active {
-        transform: scale(0.98);
-    }
-
-    .social-links {
-        gap: 15px;
-        margin-top: 1.5rem;
-        justify-content: center;
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    .social-links a {
-        width: 42px;
-        height: 42px;
-        font-size: 1rem;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        transform-origin: center;
-        border-radius: 50%; /* Make circular */
-        -webkit-border-radius: 50%;
-    }
-
-    .contact-info {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-        width: 100%;
-        text-align: center;
-        margin-top: 1rem;
-    }
-
-    .contact-info li {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-        font-size: 0.95rem;
-        padding: 0 10px;
-        text-align: center;
-        width: 100%;
-    }
-
-    .contact-info li i {
-        font-size: 1.2rem;
-        margin-bottom: 5px;
-        color: var(--primary-orange);
-    }
-
-    .copyright {
-        padding-top: 30px;
-        margin-top: 30px;
-        border-top: 1px solid rgba(255, 255, 255, 0.15);
-        font-size: 0.85rem;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-    }
-
-    .copyright p {
-        margin: 0;
-        color: rgba(255, 255, 255, 0.5);
-        line-height: 1.5;
-        text-align: center;
-    }
-
-    .copyright-links {
-        margin-top: 0.5rem;
-        gap: 0.75rem;
-        justify-content: center;
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    .copyright-links a {
-        font-size: 0.85rem;
-        padding: 0.25rem 0.75rem;
-        color: rgba(255, 255, 255, 0.5);
-        text-decoration: none;
-        transition: all 0.3s ease;
-        position: relative;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .copyright-links a::after {
-        content: '•';
-        position: absolute;
-        right: -0.5rem;
-        color: rgba(255, 255, 255, 0.2);
-    }
-
-    .copyright-links a:last-child::after {
-        display: none;
-    }
-
-    /* Accessibility improvements */
-    .footer-section ul li a:focus-visible,
-    .social-links a:focus-visible,
-    .copyright-links a:focus-visible {
-        outline: 2px solid var(--primary-orange);
-        outline-offset: 2px;
-    }
-}
     </style>
 </head>
 <body>
@@ -1152,8 +1141,7 @@
                 <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/cropped-tradie-mate_01b-261x71-1.png" alt="TradieMate logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
-                    aria-controls="navbarNav">
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon" aria-hidden="true"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -1189,7 +1177,7 @@
 
     <!-- Modern Professional Lightbox Modal -->
     <div class="modal fade" id="projectGalleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="galleryModalLabel">Project Gallery</h5>
@@ -1197,9 +1185,14 @@
                 </div>
                 <div class="modal-body">
                     <div class="modal-main-content">
-                        <!-- Main Image Area -->
-                        <div class="modal-image-container">
+                        <!-- Main Image Area - FULL SCREEN -->
+                        <div class="modal-image-container" id="modalImageContainerWrapper">
                             <div class="modal-image-wrapper" id="modalImageContainer"></div>
+                            
+                            <!-- Image Counter Top Right -->
+                            <div class="modal-image-counter" id="modalImageCounter">
+                                <i class="bi bi-image"></i> <span id="currentImageCount">1</span> / <span id="totalImageCount">8</span>
+                            </div>
                             
                             <!-- Navigation Arrows -->
                             <button class="modal-nav-arrow prev" onclick="prevGalleryImage()" aria-label="Previous image">
@@ -1208,17 +1201,24 @@
                             <button class="modal-nav-arrow next" onclick="nextGalleryImage()" aria-label="Next image">
                                 <i class="bi bi-chevron-right"></i>
                             </button>
-                        </div>
-                        
-                        <!-- Thumbnails & Info -->
-                        <div class="modal-thumbnails-section">
-                            <div class="thumbnails-header">
-                                <div class="image-caption" id="modalGalleryCaption"></div>
-                                <div class="image-counter" id="imageCounter">
-                                    <i class="bi bi-image"></i> <span id="currentImageCount">1</span> of <span id="totalImageCount">8</span>
-                                </div>
+                            
+                            <!-- Fullscreen Button -->
+                            <button class="modal-fullscreen-button" onclick="toggleFullscreen()" aria-label="Toggle fullscreen">
+                                <i class="bi bi-arrows-fullscreen"></i>
+                            </button>
+                            
+                            <!-- Zoom Controls -->
+                            <div class="modal-zoom-controls">
+                                <button class="zoom-button" onclick="zoomOut()" aria-label="Zoom out">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <button class="zoom-button" onclick="resetZoom()" aria-label="Reset zoom">
+                                    <i class="bi bi-arrow-clockwise"></i>
+                                </button>
+                                <button class="zoom-button" onclick="zoomIn()" aria-label="Zoom in">
+                                    <i class="bi bi-plus"></i>
+                                </button>
                             </div>
-                            <div class="modal-gallery-thumbs"></div>
                         </div>
                     </div>
                 </div>
@@ -1233,18 +1233,21 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
+    <!-- Footer - Desktop Version -->
+    <footer class="footer-desktop">
         <div class="container px-3 px-sm-4" style="max-width:var(--max-width);">
             <div class="row">
-                <div class="col-lg-4 mb-4 footer-section">
+                <div class="col-lg-4 mb-4">
                     <img class="footer-logo" src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/cropped-tradie-mate_01b-261x71-1.png" alt="TradieMate logo">
                     <p>Premium photography & videography services for Sydney tradies. Showcasing craftsmanship since 2018.</p>
                     <div class="social-links">
                         <a href="https://www.instagram.com/tradie.mate/" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
                     </div>
                 </div>
-                <div class="col-6 col-md-3 mb-4 footer-section">
+                <div class="col-6 col-md-3 mb-4">
                     <h5>Services</h5>
                     <ul class="list-unstyled">
                         <li><a href="#services">Photo Shoots</a></li>
@@ -1253,7 +1256,7 @@
                         <li><a href="#services">Walkthroughs</a></li>
                     </ul>
                 </div>
-                <div class="col-6 col-md-2 mb-4 footer-section">
+                <div class="col-6 col-md-2 mb-4">
                     <h5>Company</h5>
                     <ul class="list-unstyled">
                         <li><a href="#value">Why Choose Us</a></li>
@@ -1262,22 +1265,123 @@
                         <li><a href='/booking'>Book Now</a></li>
                     </ul>
                 </div>
-                <div class="col-md-3 mb-4 footer-section">
+                <div class="col-md-3 mb-4">
                     <h5>Contact Info</h5>
                     <ul class="list-unstyled contact-info">
-                        <li class="mb-2"><i class="bi bi-geo-alt me-2" style="color:var(--primary-orange)"></i>Sydney NSW, Australia</li>
-                        <li class="mb-2"><i class="bi bi-telephone me-2" style="color:var(--primary-orange)"></i>1300 123 456</li>
-                        <li class="mb-2"><i class="bi bi-envelope me-2" style="color:var(--primary-orange)"></i>hello@tradiemate.com.au</li>
-                        <li class="mb-2"><i class="bi bi-clock me-2" style="color:var(--primary-orange)"></i>Mon-Fri: 7am-6pm | Sat: 8am-4pm</li>
+                        <li class="mb-2"><i class="bi bi-geo-alt me-2"></i>Sydney NSW, Australia</li>
+                        <li class="mb-2"><i class="bi bi-telephone me-2"></i>1300 123 456</li>
+                        <li class="mb-2"><i class="bi bi-envelope me-2"></i>hello@tradiemate.com.au</li>
+                        <li class="mb-2"><i class="bi bi-clock me-2"></i>Mon-Fri: 7am-6pm | Sat: 8am-4pm</li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <div class="mb-2 mb-md-0">&copy; 2025 TradieMate. All rights reserved. ABN: 12 345 678 901</div>
-                <div>
-                    <a href="" class="me-2">Privacy Policy</a>
-                    <a href="" class="me-2">Terms of Service</a>
-                    <a href="">Site Map</a>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="mb-2 mb-md-0">&copy; 2025 TradieMate. All rights reserved. ABN: 12 345 678 901</div>
+                    <div class="copyright-links">
+                        <a href="#" class="me-2">Privacy Policy</a>
+                        <a href="#" class="me-2">Terms of Service</a>
+                        <a href="#">Site Map</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Footer - Tablet Version -->
+    <footer class="footer-tablet">
+        <div class="container px-3 px-sm-4" style="max-width:var(--max-width);">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="footer-section">
+                        <img class="footer-logo" src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/cropped-tradie-mate_01b-261x71-1.png" alt="TradieMate logo">
+                        <p>Premium photography & videography services for Sydney tradies. Showcasing craftsmanship since 2018.</p>
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/tradie.mate/" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                            <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                            <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="footer-section">
+                                <h5>Services</h5>
+                                <ul class="list-unstyled">
+                                    <li><a href="#services">Photo Shoots</a></li>
+                                    <li><a href="#services">Video Sessions</a></li>
+                                    <li><a href="#services">Drone Footage</a></li>
+                                    <li><a href="#services">Walkthroughs</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="footer-section">
+                                <h5>Contact</h5>
+                                <ul class="list-unstyled contact-info">
+                                    <li><i class="bi bi-telephone"></i>1300 123 456</li>
+                                    <li><i class="bi bi-envelope"></i>hello@tradiemate.com.au</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <div class="text-center">
+                    <p>&copy; 2025 TradieMate. All rights reserved. ABN: 12 345 678 901</p>
+                    <div class="copyright-links">
+                        <a href="#" class="me-2">Privacy Policy</a>
+                        <a href="#" class="me-2">Terms of Service</a>
+                        <a href="#">Site Map</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Footer - Mobile Version -->
+    <footer class="footer-mobile">
+        <div class="container px-3 px-sm-4">
+            <div class="footer-section">
+                <img class="footer-logo" src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/cropped-tradie-mate_01b-261x71-1.png" alt="TradieMate logo">
+                <p>Premium photography & videography services for Sydney tradies. Showcasing craftsmanship since 2018.</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/tradie.mate/" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h5>Services</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#services">Photo Shoots</a></li>
+                    <li><a href="#services">Video Sessions</a></li>
+                    <li><a href="#services">Drone Footage</a></li>
+                    <li><a href="#services">Walkthroughs</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h5>Contact Info</h5>
+                <ul class="list-unstyled contact-info">
+                    <li><i class="bi bi-geo-alt"></i>Sydney NSW, Australia</li>
+                    <li><i class="bi bi-telephone"></i>1300 123 456</li>
+                    <li><i class="bi bi-envelope"></i>hello@tradiemate.com.au</li>
+                    <li><i class="bi bi-clock"></i>Mon-Fri: 7am-6pm | Sat: 8am-4pm</li>
+                </ul>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 TradieMate. All rights reserved. ABN: 12 345 678 901</p>
+                <div class="copyright-links">
+                    <a href="#" class="me-2">Privacy Policy</a>
+                    <a href="#" class="me-2">Terms of Service</a>
+                    <a href="#">Site Map</a>
                 </div>
             </div>
         </div>
@@ -1296,7 +1400,7 @@
         balgowlah: {
             title: "Balgowlah",
             theme: "Modern Luxury",
-            thumbnail: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/DJI_0164-1024x768-1.jpg", // Main card image
+            thumbnail: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/DJI_0164-1024x768-1.jpg",
             images: [
                 {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/504335443_972883554782421_4940353200773861363_n.jpg", caption: "Balgowlah Living Area"},
                 {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/504456322_489424747565749_4930958807677657524_n.jpg", caption: "Balgowlah Kitchen Design"},
@@ -1311,11 +1415,11 @@
             ]
         },
         
-        // Project 2: Drummoyne (NEW)
+        // Project 2: Drummoyne
         drummoyne: {
             title: "Drummoyne",
             theme: "Contemporary Renovation",
-            thumbnail: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/SIDE-STAIRS-2.jpg", // Main card image
+            thumbnail: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/SIDE-STAIRS-2.jpg",
             images: [
                 {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/SIDE-STAIRS-2-NEW.jpg", caption: "Staircase Design"},
                 {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/STAIRS-NEW.jpg", caption: "Modern Staircase"},
@@ -1334,11 +1438,11 @@
             ]
         },
         
-        // Project 3: Kenthurst (NEW)
+        // Project 3: Kenthurst
         kenthurst: {
             title: "Kenthurst",
             theme: "Rural Retreat",
-            thumbnail: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/CARPORT-1.jpg", // Main card image
+            thumbnail: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/CARPORT-1.jpg",
             images: [
                 {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/BEDROOM-2.jpg", caption: "Guest Bedroom"},
                 {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/CARPORT-2.jpg", caption: "Carport Design"},
@@ -1363,7 +1467,7 @@
         mcmahons: {
             title: "McMahons Point",
             theme: "Waterfront Luxury",
-            thumbnail: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/LIVING-ROOM-3-1024x683-1.jpg", // Main card image
+            thumbnail: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/LIVING-ROOM-3-1024x683-1.jpg",
             images: [
                 {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/KITCHEN-1-3.jpg", caption: "Gourmet Kitchen"},
                 {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/KITCHEN-2-2.jpg", caption: "Kitchen Island"},
@@ -1385,7 +1489,7 @@
         mosman: {
             title: "Mosman",
             theme: "Heritage Restoration",
-            thumbnail: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/Mosman-15-1.jpg", // Main card image
+            thumbnail: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/Mosman-15-1.jpg",
             images: [
                 {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.51-AM-2.jpeg", caption: "Restored Facade"},
                 {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.51-AM.jpeg", caption: "Heritage Details"},
@@ -1406,7 +1510,7 @@
         bellevue: {
             title: "Bellevue Hill",
             theme: "Architectural Excellence",
-            thumbnail: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/bellevuehill-1-1024x683-1.jpg", // Main card image
+            thumbnail: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/bellevuehill-1-1024x683-1.jpg",
             images: [
                 {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/1b8a6911-768x512-1.jpg", caption: "Architectural Facade"},
                 {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/1b8a7048-1-scaled-1-300x200-2.jpg", caption: "Garden Oasis"},
@@ -1424,7 +1528,7 @@
     };
 
     // ============================================
-    // ⚙️ SYSTEM CODE - DON'T EDIT BELOW THIS LINE
+    // ⚙️ SYSTEM CODE - GALLERY FUNCTIONALITY
     // ============================================
 
     // Modal/Slider State
@@ -1432,7 +1536,16 @@
         projectKey: null,
         currentIndex: 0,
         touchStartX: 0,
-        touchEndX: 0
+        touchEndX: 0,
+        isDragging: false,
+        dragStartX: 0,
+        dragStartY: 0,
+        currentTranslateX: 0,
+        currentTranslateY: 0,
+        scale: 1,
+        minScale: 1,
+        maxScale: 3,
+        isZoomed: false
     };
 
     // Dynamically generate gallery cards on page load
@@ -1497,6 +1610,11 @@
     function openProjectGallery(projectKey) {
         galleryState.projectKey = projectKey;
         galleryState.currentIndex = 0;
+        galleryState.scale = 1;
+        galleryState.currentTranslateX = 0;
+        galleryState.currentTranslateY = 0;
+        galleryState.isZoomed = false;
+        
         const gallery = projectGalleries[projectKey];
 
         // Set Title with Theme
@@ -1529,25 +1647,8 @@
 
         showGalleryImage(0);
 
-        // Thumbnails
-        const thumbsContainer = document.querySelector('.modal-gallery-thumbs');
-        thumbsContainer.innerHTML = '';
-        gallery.images.forEach((img, idx) => {
-            const thumb = document.createElement('img');
-            thumb.src = img.src;
-            thumb.alt = img.caption;
-            thumb.className = idx === 0 ? 'active' : '';
-            thumb.tabIndex = 0;
-            thumb.setAttribute('role', 'button');
-            thumb.setAttribute('aria-label', `View image ${idx + 1}`);
-            thumb.onclick = () => showGalleryImage(idx);
-            thumbsContainer.appendChild(thumb);
-        });
-
-        // Add touch events for swipe
-        const modalBody = document.querySelector('.modal-image-container');
-        modalBody.addEventListener('touchstart', handleTouchStart, {passive: true});
-        modalBody.addEventListener('touchend', handleTouchEnd, {passive: true});
+        // Add event listeners for drag and zoom
+        setupDragAndZoom();
 
         // Show Modal
         const modalElement = document.getElementById('projectGalleryModal');
@@ -1560,10 +1661,192 @@
         }, 300);
     }
 
+    function setupDragAndZoom() {
+        const container = document.getElementById('modalImageContainerWrapper');
+        const activeImg = document.querySelector('.modal-gallery-img.active');
+        
+        if (!container || !activeImg) return;
+
+        // Remove previous event listeners
+        container.removeEventListener('mousedown', handleDragStart);
+        container.removeEventListener('mousemove', handleDragMove);
+        container.removeEventListener('mouseup', handleDragEnd);
+        container.removeEventListener('mouseleave', handleDragEnd);
+        container.removeEventListener('wheel', handleWheel);
+        
+        container.removeEventListener('touchstart', handleTouchStartDrag, { passive: false });
+        container.removeEventListener('touchmove', handleTouchMoveDrag, { passive: false });
+        container.removeEventListener('touchend', handleTouchEndDrag);
+        
+        // Add new event listeners
+        container.addEventListener('mousedown', handleDragStart);
+        container.addEventListener('mousemove', handleDragMove);
+        container.addEventListener('mouseup', handleDragEnd);
+        container.addEventListener('mouseleave', handleDragEnd);
+        container.addEventListener('wheel', handleWheel, { passive: false });
+        
+        container.addEventListener('touchstart', handleTouchStartDrag, { passive: false });
+        container.addEventListener('touchmove', handleTouchMoveDrag, { passive: false });
+        container.addEventListener('touchend', handleTouchEndDrag);
+    }
+
+    function handleDragStart(e) {
+        if (!galleryState.isZoomed) return;
+        
+        galleryState.isDragging = true;
+        galleryState.dragStartX = e.clientX - galleryState.currentTranslateX;
+        galleryState.dragStartY = e.clientY - galleryState.currentTranslateY;
+        
+        e.preventDefault();
+    }
+
+    function handleDragMove(e) {
+        if (!galleryState.isDragging || !galleryState.isZoomed) return;
+        
+        const activeImg = document.querySelector('.modal-gallery-img.active');
+        if (!activeImg) return;
+        
+        galleryState.currentTranslateX = e.clientX - galleryState.dragStartX;
+        galleryState.currentTranslateY = e.clientY - galleryState.dragStartY;
+        
+        // Apply transform
+        activeImg.style.transform = `translate(-50%, -50%) translate(${galleryState.currentTranslateX}px, ${galleryState.currentTranslateY}px) scale(${galleryState.scale})`;
+        
+        e.preventDefault();
+    }
+
+    function handleDragEnd() {
+        galleryState.isDragging = false;
+    }
+
+    function handleTouchStartDrag(e) {
+        if (!galleryState.isZoomed) return;
+        
+        if (e.touches.length === 1) {
+            galleryState.isDragging = true;
+            galleryState.dragStartX = e.touches[0].clientX - galleryState.currentTranslateX;
+            galleryState.dragStartY = e.touches[0].clientY - galleryState.currentTranslateY;
+        }
+        e.preventDefault();
+    }
+
+    function handleTouchMoveDrag(e) {
+        if (!galleryState.isDragging || !galleryState.isZoomed || e.touches.length !== 1) return;
+        
+        const activeImg = document.querySelector('.modal-gallery-img.active');
+        if (!activeImg) return;
+        
+        galleryState.currentTranslateX = e.touches[0].clientX - galleryState.dragStartX;
+        galleryState.currentTranslateY = e.touches[0].clientY - galleryState.dragStartY;
+        
+        // Apply transform
+        activeImg.style.transform = `translate(-50%, -50%) translate(${galleryState.currentTranslateX}px, ${galleryState.currentTranslateY}px) scale(${galleryState.scale})`;
+        
+        e.preventDefault();
+    }
+
+    function handleTouchEndDrag() {
+        galleryState.isDragging = false;
+    }
+
+    function handleWheel(e) {
+        if (!galleryState.isZoomed) return;
+        
+        e.preventDefault();
+        const delta = e.deltaY > 0 ? -0.1 : 0.1;
+        const newScale = Math.max(galleryState.minScale, Math.min(galleryState.maxScale, galleryState.scale + delta));
+        
+        if (newScale !== galleryState.scale) {
+            galleryState.scale = newScale;
+            updateImageTransform();
+        }
+    }
+
+    // Zoom functions
+    function zoomIn() {
+        const newScale = Math.min(galleryState.maxScale, galleryState.scale + 0.25);
+        if (newScale !== galleryState.scale) {
+            galleryState.scale = newScale;
+            galleryState.isZoomed = galleryState.scale > 1;
+            updateImageTransform();
+        }
+    }
+
+    function zoomOut() {
+        const newScale = Math.max(galleryState.minScale, galleryState.scale - 0.25);
+        if (newScale !== galleryState.scale) {
+            galleryState.scale = newScale;
+            galleryState.isZoomed = galleryState.scale > 1;
+            updateImageTransform();
+        }
+    }
+
+    function resetZoom() {
+        galleryState.scale = 1;
+        galleryState.currentTranslateX = 0;
+        galleryState.currentTranslateY = 0;
+        galleryState.isZoomed = false;
+        updateImageTransform();
+    }
+
+    function updateImageTransform() {
+        const activeImg = document.querySelector('.modal-gallery-img.active');
+        if (activeImg) {
+            activeImg.style.transform = `translate(-50%, -50%) translate(${galleryState.currentTranslateX}px, ${galleryState.currentTranslateY}px) scale(${galleryState.scale})`;
+        }
+    }
+
+    // Fullscreen function
+    function toggleFullscreen() {
+        const modalContent = document.querySelector('#projectGalleryModal .modal-content');
+        
+        if (!document.fullscreenElement) {
+            if (modalContent.requestFullscreen) {
+                modalContent.requestFullscreen();
+            } else if (modalContent.webkitRequestFullscreen) {
+                modalContent.webkitRequestFullscreen();
+            } else if (modalContent.msRequestFullscreen) {
+                modalContent.msRequestFullscreen();
+            }
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+        }
+    }
+
+    // Handle fullscreen change
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    document.addEventListener('msfullscreenchange', handleFullscreenChange);
+
+    function handleFullscreenChange() {
+        const fullscreenBtn = document.querySelector('.modal-fullscreen-button');
+        if (fullscreenBtn) {
+            if (document.fullscreenElement) {
+                fullscreenBtn.innerHTML = '<i class="bi bi-fullscreen-exit"></i>';
+                fullscreenBtn.setAttribute('aria-label', 'Exit fullscreen');
+            } else {
+                fullscreenBtn.innerHTML = '<i class="bi bi-arrows-fullscreen"></i>';
+                fullscreenBtn.setAttribute('aria-label', 'Enter fullscreen');
+            }
+        }
+    }
+
     function showGalleryImage(idx) {
         const gallery = projectGalleries[galleryState.projectKey];
         
         if (!gallery || !gallery.images[idx]) return;
+
+        // Reset zoom for new image
+        galleryState.scale = 1;
+        galleryState.currentTranslateX = 0;
+        galleryState.currentTranslateY = 0;
+        galleryState.isZoomed = false;
 
         // Hide all images
         const modalImgs = document.querySelectorAll('.modal-gallery-img');
@@ -1577,25 +1860,19 @@
         if (currentImg) {
             currentImg.classList.add('active');
             currentImg.style.display = 'block';
-            document.getElementById('modalGalleryCaption').textContent = gallery.images[idx].caption;
+            currentImg.style.transform = `translate(-50%, -50%) scale(1)`;
+            document.getElementById('galleryModalLabel').textContent = gallery.images[idx].caption;
             
             // Update image counter
             document.getElementById('currentImageCount').textContent = idx + 1;
         }
 
-        // Highlight thumbnail and scroll it into view
-        const thumbs = document.querySelectorAll('.modal-gallery-thumbs img');
-        thumbs.forEach((img, i) => {
-            img.classList.toggle('active', i === idx);
-            // Scroll thumb into view smoothly
-            if (i === idx) {
-                setTimeout(() => {
-                    img.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-                }, 100);
-            }
-        });
-
         galleryState.currentIndex = idx;
+        
+        // Re-setup drag and zoom for new image
+        setTimeout(() => {
+            setupDragAndZoom();
+        }, 100);
     }
 
     function prevGalleryImage() {
@@ -1612,12 +1889,14 @@
         showGalleryImage(idx);
     }
 
-    // Touch swipe handling for mobile
+    // Touch swipe handling for navigation (when not zoomed)
     function handleTouchStart(evt) {
+        if (galleryState.isZoomed) return;
         galleryState.touchStartX = evt.touches[0].clientX;
     }
 
     function handleTouchEnd(evt) {
+        if (galleryState.isZoomed) return;
         galleryState.touchEndX = evt.changedTouches[0].clientX;
         handleSwipe();
     }
@@ -1660,6 +1939,24 @@
                 nextGalleryImage();
                 ev.preventDefault();
                 break;
+            case '+':
+            case '=':
+                zoomIn();
+                ev.preventDefault();
+                break;
+            case '-':
+                zoomOut();
+                ev.preventDefault();
+                break;
+            case '0':
+                resetZoom();
+                ev.preventDefault();
+                break;
+            case 'f':
+            case 'F':
+                toggleFullscreen();
+                ev.preventDefault();
+                break;
         }
     });
 
@@ -1678,6 +1975,7 @@
 
     document.getElementById('projectGalleryModal').addEventListener('hidden.bs.modal', function () {
         document.body.style.overflow = 'auto';
+        resetZoom();
     });
     </script>
 </body>
