@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,6 +36,2522 @@
             padding: 0;
             box-sizing: border-box;
         }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--primary-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+            -webkit-font-smoothing: antialiased;
+            padding-top: 70px; /* Fixed header offset - UPDATED */
+        }
+        
+        @media (max-width: 991px) {
+            body {
+                padding-top: 65px; /* UPDATED */
+            }
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        /* Button Styles */
+        .btn-primary {
+            background-color: var(--primary-orange);
+            border-color: var(--primary-orange);
+            color: var(--white);
+            font-weight: 600;
+            padding: 14px 34px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .btn-primary:hover, .btn-primary:focus {
+            background-color: #E6820B;
+            border-color: #E6820B;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(247, 147, 30, 0.3);
+            color: var(--white);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
+            font-weight: 600;
+            padding: 12px 32px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .btn-secondary:hover, .btn-secondary:focus {
+            background-color: var(--white);
+            border-color: var(--white);
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        /* Contact Form Button */
+        .btn-contact {
+            background-color: var(--primary-orange);
+            border-color: var(--primary-orange);
+            color: var(--white);
+            font-weight: 600;
+            padding: 14px 34px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .btn-contact:hover, .btn-contact:focus {
+            background-color: #E6820B;
+            border-color: #E6820B;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(247, 147, 30, 0.3);
+            color: var(--white);
+        }
+        
+        /* Mobile Touch Improvements */
+        button, .btn, .nav-link {
+            touch-action: manipulation;
+        }
+        
+        /* Hero Section - Mobile First */
+        .hero-section {
+            position: relative;
+            height: 88vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: var(--primary-dark);
+            width: 100%;
+            margin-top: -70px; /* Compensate for fixed header - UPDATED */
+        }
+        
+        @media (min-width: 768px) {
+            .hero-section {
+                height: 95vh;
+            }
+        }
+        
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        
+        .video-background video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            -o-object-fit: cover;
+            object-position: center;
+        }
+        
+        /* Gradient overlay - left side only */
+        .gradient-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 70%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0) 100%);
+            z-index: 1;
+        }
+        
+        @media (min-width: 768px) {
+            .gradient-overlay {
+                width: 55%;
+            }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: var(--white);
+            max-width: 100%;
+            padding: 120px 24px 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            text-align: center;
+            width: 100%;
+        }
+        
+        @media (min-width: 768px) {
+            .hero-content {
+                max-width: 520px;
+                margin-left: 80px;
+                padding: 140px 0 120px;
+                text-align: left;
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .hero-content {
+                margin-left: 120px;
+            }
+        }
+        
+        .hero-section h1 {
+            font-size: 34px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        @media (min-width: 768px) {
+            .hero-section h1 {
+                font-size: 54px;
+            }
+        }
+        
+        .hero-section .lead {
+            font-size: 16px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 0;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        @media (min-width: 768px) {
+            .hero-section .lead {
+                font-size: 20px;
+            }
+        }
+        
+        .micro-proof {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.75);
+            font-weight: 400;
+            margin-top: 8px;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        @media (min-width: 768px) {
+            .hero-buttons {
+                justify-content: flex-start;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .hero-buttons .btn {
+                width: 100%;
+                text-align: center;
+                padding: 16px;
+                font-size: 1rem;
+            }
+        }
+        
+        /* ===== FIXED NAVIGATION - PADDING & MARGIN ===== */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.98) !important;
+            box-shadow: 0 2px 30px rgba(1, 1, 0, 0.1);
+            padding: 0.5rem 0; /* Reduced vertical padding - UPDATED */
+            transition: all 0.3s ease;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1050;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            height: 70px; /* Consistent height - UPDATED */
+            display: flex;
+            align-items: center;
+        }
+        
+        /* Container inside navbar */
+        .navbar > .container {
+            padding: 0 15px; /* Consistent container padding - ADDED */
+        }
+        
+        @media (max-width: 991px) {
+            .navbar {
+                height: 65px; /* Slightly smaller on mobile - UPDATED */
+                padding: 0.4rem 0; /* Less padding on mobile - UPDATED */
+            }
+            
+            .navbar > .container {
+                padding: 0 12px; /* Slightly less padding on mobile - ADDED */
+            }
+        }
+        
+        /* Logo sizing - consistent */
+        .navbar-brand {
+            padding: 0;
+            margin: 0;
+        }
+        
+        .navbar-brand img {
+            height: 40px; /* Consistent size - UPDATED */
+            width: auto;
+            transition: all 0.3s ease;
+        }
+        
+        /* Mobile menu button */
+        .navbar-toggler {
+            border: none;
+            padding: 0.4rem; /* Reduced padding - UPDATED */
+            font-size: 1.4rem; /* Slightly smaller - UPDATED */
+            background: transparent;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            margin: 0;
+        }
+        
+        .navbar-toggler:focus {
+            box-shadow: 0 0 0 3px rgba(247, 147, 30, 0.25);
+            outline: none;
+        }
+        
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(1, 1, 0, 0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+            width: 1.5em;
+            height: 1.5em;
+            background-size: 100%;
+        }
+        
+        /* Nav links - better spacing */
+        .nav-link {
+            font-weight: 600;
+            color: var(--primary-dark) !important;
+            margin: 0;
+            padding: 0.5rem 0.75rem !important; /* Reduced padding - UPDATED */
+            transition: all 0.3s ease;
+            font-size: 0.95rem; /* Slightly smaller - UPDATED */
+            -webkit-tap-highlight-color: transparent;
+            display: block;
+        }
+        
+        .nav-link:hover, .nav-link:focus {
+            color: var(--primary-orange) !important;
+        }
+        
+        /* Mobile menu dropdown */
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                background: var(--white);
+                border-radius: 0 0 10px 10px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                padding: 0.75rem 1rem; /* Reduced padding - UPDATED */
+                margin-top: 8px; /* Less margin - UPDATED */
+                position: absolute;
+                top: 100%;
+                left: 12px; /* Match container padding - UPDATED */
+                right: 12px; /* Match container padding - UPDATED */
+                z-index: 1000;
+                max-height: calc(100vh - 65px);
+                overflow-y: auto;
+            }
+            
+            .nav-item {
+                margin-bottom: 0.25rem; /* Less space between items - UPDATED */
+            }
+            
+            .nav-link {
+                padding: 0.5rem 0 !important; /* Reduced padding - UPDATED */
+                border-bottom: 1px solid var(--border-gray);
+            }
+            
+            .nav-link:last-child {
+                border-bottom: none;
+            }
+            
+            .nav-link.active {
+                color: var(--primary-orange) !important;
+            }
+            
+            .header-booking-btn {
+                width: 100%;
+                margin-top: 0.75rem; /* Less margin - UPDATED */
+                padding: 12px 20px; /* Slightly smaller - UPDATED */
+                font-size: 0.95rem;
+            }
+        }
+        
+        /* Desktop Navigation */
+        @media (min-width: 992px) {
+            .navbar-collapse {
+                background: transparent;
+                box-shadow: none;
+                margin-top: 0;
+            }
+            
+            .nav-item {
+                margin-left: 0.25rem; /* Less space between items - UPDATED */
+            }
+            
+            .nav-link {
+                padding: 0.4rem 0.75rem !important; /* Reduced padding - UPDATED */
+            }
+            
+            .nav-link.active {
+                color: var(--primary-orange) !important;
+            }
+        }
+        
+        /* Header booking button */
+        .header-booking-btn {
+            background-color: var(--primary-orange);
+            color: var(--white);
+            border: none;
+            padding: 0.5rem 1.25rem; /* Reduced padding - UPDATED */
+            border-radius: 6px; /* Slightly smaller radius - UPDATED */
+            font-weight: 600;
+            font-size: 0.9rem; /* Smaller font - UPDATED */
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
+            margin: 0;
+        }
+        
+        .header-booking-btn:hover, .header-booking-btn:focus {
+            background-color: #E6820B;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(247, 147, 30, 0.3);
+            color: var(--white);
+            text-decoration: none;
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+            color: var(--white);
+            padding: 60px 0;
+        }
+        
+        @media (min-width: 768px) {
+            .stats-section {
+                padding: 80px 0;
+            }
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .stat-item {
+                padding: 2rem;
+            }
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-orange);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        @media (min-width: 768px) {
+            .stat-number {
+                font-size: 3.5rem;
+            }
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+        }
+        
+        @media (min-width: 768px) {
+            .stat-label {
+                font-size: 1.1rem;
+            }
+        }
+        
+        /* Services Section */
+        .section-padding {
+            padding: 60px 0;
+        }
+        
+        @media (min-width: 768px) {
+            .section-padding {
+                padding: 80px 0;
+            }
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 0 15px;
+        }
+        
+        @media (min-width: 768px) {
+            .section-header {
+                margin-bottom: 50px;
+                padding: 0;
+            }
+        }
+        
+        .section-header h2 {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        @media (min-width: 768px) {
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        .section-header p {
+            font-size: 1rem;
+            color: var(--medium-gray);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        @media (min-width: 768px) {
+            .section-header p {
+                font-size: 1.1rem;
+            }
+        }
+        
+        .service-card {
+            border: 1px solid var(--border-gray);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            background: var(--white);
+            text-align: center;
+            margin-bottom: 24px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        @media (min-width: 768px) {
+            .service-card {
+                padding: 2rem;
+                margin-bottom: 30px;
+            }
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(1, 1, 0, 0.1);
+            border-color: var(--primary-orange);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary-orange);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            padding: 15px;
+            background: rgba(247, 147, 30, 0.1);
+            border-radius: 16px;
+        }
+        
+        @media (min-width: 768px) {
+            .service-icon {
+                font-size: 3rem;
+                padding: 20px;
+            }
+        }
+        
+        .service-card h4 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        @media (min-width: 768px) {
+            .service-card h4 {
+                font-size: 1.5rem;
+            }
+        }
+        
+        .service-card p {
+            font-size: 0.95rem;
+            color: var(--medium-gray);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        @media (min-width: 768px) {
+            .service-card p {
+                font-size: 1rem;
+            }
+        }
+        
+        .price-badge {
+            background-color: var(--primary-orange);
+            color: var(--white);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin: 1rem 0;
+        }
+        
+        @media (min-width: 768px) {
+            .price-badge {
+                font-size: 0.95rem;
+            }
+        }
+        
+        /* Service Areas Section - NEW */
+        .service-areas-section {
+            background: var(--light-gray);
+            padding: 60px 0;
+        }
+        
+        @media (min-width: 768px) {
+            .service-areas-section {
+                padding: 80px 0;
+            }
+        }
+        
+        .area-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-gray);
+            height: 100%;
+            margin-bottom: 20px;
+        }
+        
+        @media (min-width: 768px) {
+            .area-card {
+                margin-bottom: 0;
+                padding: 2.5rem;
+            }
+        }
+        
+        .area-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: var(--primary-orange);
+        }
+        
+        .area-icon {
+            font-size: 2.5rem;
+            color: var(--primary-orange);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            padding: 15px;
+            background: rgba(247, 147, 30, 0.1);
+            border-radius: 12px;
+        }
+        
+        .area-card h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+        
+        .area-card p {
+            font-size: 0.95rem;
+            color: var(--medium-gray);
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        /* Built for Tradies Section */
+        .tradies-section {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+            color: var(--white);
+            padding: 60px 0;
+        }
+        
+        @media (min-width: 768px) {
+            .tradies-section {
+                padding: 80px 0;
+            }
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 2rem 0;
+        }
+        
+        .feature-list li {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        
+        @media (min-width: 768px) {
+            .feature-list li {
+                font-size: 1.1rem;
+            }
+        }
+        
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary-orange);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        /* Portfolio Section - UPDATED */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        @media (min-width: 576px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+                margin-top: 40px;
+            }
+        }
+        
+        @media (min-width: 1200px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+            display: block;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(1, 1, 0, 0.9));
+            color: var(--white);
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        @media (min-width: 768px) {
+            .portfolio-overlay {
+                padding: 24px;
+            }
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+        }
+        
+        .portfolio-overlay h5 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+            font-weight: 700;
+        }
+        
+        .portfolio-overlay p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin: 0;
+        }
+        
+        /* Testimonials Section */
+        .testimonial-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            height: 100%;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-gray);
+            margin-bottom: 20px;
+        }
+        
+        @media (min-width: 768px) {
+            .testimonial-card {
+                padding: 24px;
+                margin-bottom: 0;
+            }
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .testimonial-card .stars {
+            color: var(--primary-orange);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        
+        @media (min-width: 768px) {
+            .testimonial-card .stars {
+                font-size: 1.1rem;
+            }
+        }
+        
+        .testimonial-card .quote {
+            font-style: italic;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--medium-gray);
+            margin-bottom: 1.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .testimonial-card .quote {
+                font-size: 1rem;
+            }
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .author-info h6 {
+            margin-bottom: 0.25rem;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        
+        .author-info small {
+            color: var(--medium-gray);
+            font-size: 0.85rem;
+        }
+        
+        /* FAQ Section */
+        .accordion-item {
+            border: 1px solid var(--border-gray);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            background: var(--white);
+        }
+        
+        .accordion-button {
+            padding: 1.25rem;
+            font-weight: 600;
+            background: var(--white);
+            border: none;
+            box-shadow: none;
+            font-size: 1rem;
+            color: var(--primary-dark);
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        @media (min-width: 768px) {
+            .accordion-button {
+                padding: 1.5rem;
+                font-size: 1.1rem;
+            }
+        }
+        
+        .accordion-button:not(.collapsed) {
+            background: rgba(247, 147, 30, 0.1);
+            color: var(--primary-dark);
+            border-bottom: 1px solid var(--primary-orange);
+        }
+        
+        .accordion-button:focus {
+            box-shadow: 0 0 0 0.25rem rgba(247, 147, 30, 0.25);
+            border-color: var(--primary-orange);
+        }
+        
+        .accordion-body {
+            padding: 1.25rem;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--medium-gray);
+            background: var(--white);
+        }
+        
+        @media (min-width: 768px) {
+            .accordion-body {
+                padding: 1.5rem;
+                font-size: 1rem;
+            }
+        }
+        
+        /* Contact Form Section - NEW STYLE */
+        .contact-form-section {
+            background: var(--white);
+            padding: 60px 0;
+        }
+        
+        @media (min-width: 768px) {
+            .contact-form-section {
+                padding: 80px 0;
+            }
+        }
+        
+        .contact-form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background: var(--light-gray);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        
+        @media (max-width: 767px) {
+            .contact-form-container {
+                padding: 30px 20px;
+            }
+        }
+        
+        .contact-form-section h2 {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        @media (min-width: 768px) {
+            .contact-form-section h2 {
+                font-size: 40px;
+            }
+        }
+        
+        .contact-form-section .lead {
+            font-size: 18px;
+            color: var(--medium-gray);
+            text-align: center;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        
+        @media (min-width: 768px) {
+            .contact-form-section .lead {
+                font-size: 20px;
+            }
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        
+        .form-control, .form-select {
+            padding: 14px 16px;
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+            background: var(--white);
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-orange);
+            box-shadow: 0 0 0 3px rgba(247, 147, 30, 0.1);
+            outline: none;
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        /* Contact CTA Section - FIXED & CLEAN DESIGN */
+        .contact-cta-section {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+            color: var(--white);
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        @media (min-width: 768px) {
+            .contact-cta-section {
+                padding: 100px 0;
+            }
+        }
+        
+        .contact-cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/DJI_0164-1024x768-1.jpg') center/cover;
+            opacity: 0.15;
+            z-index: 1;
+        }
+        
+        .contact-cta-section .container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .contact-cta-section h2 {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        @media (min-width: 768px) {
+            .contact-cta-section h2 {
+                font-size: 48px;
+            }
+        }
+        
+        .contact-cta-section .lead {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        @media (min-width: 768px) {
+            .contact-cta-section .lead {
+                font-size: 24px;
+            }
+        }
+        
+        .reply-time {
+            font-size: 18px;
+            color: var(--primary-orange);
+            font-weight: 700;
+            margin-bottom: 40px;
+            display: block;
+            padding: 10px 20px;
+            background: rgba(247, 147, 30, 0.1);
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        @media (min-width: 768px) {
+            .reply-time {
+                font-size: 20px;
+                padding: 12px 24px;
+            }
+        }
+        
+        /* FIXED CTA BUTTONS - Clean, smooth design */
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        
+        @media (min-width: 576px) {
+            .cta-buttons {
+                flex-direction: row;
+                justify-content: center;
+                gap: 20px;
+            }
+        }
+        
+        .btn-cta {
+            padding: 18px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            -webkit-tap-highlight-color: transparent;
+            border: 2px solid transparent;
+            min-width: 200px;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.3px;
+            line-height: 1.4;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        @media (max-width: 575px) {
+            .btn-cta {
+                width: 100%;
+                max-width: 300px;
+                padding: 18px 24px;
+                min-width: unset;
+            }
+        }
+        
+        .btn-cta i {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .btn-cta:hover i {
+            transform: translateX(3px);
+        }
+        
+        .btn-cta-primary {
+            background-color: var(--primary-orange);
+            color: var(--white);
+            border-color: var(--primary-orange);
+        }
+        
+        .btn-cta-primary:hover, .btn-cta-primary:focus {
+            background-color: #E6820B;
+            border-color: #E6820B;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(247, 147, 30, 0.35);
+        }
+        
+        .btn-cta-whatsapp {
+            background-color: #25D366;
+            color: var(--white);
+            border-color: #25D366;
+        }
+        
+        .btn-cta-whatsapp:hover, .btn-cta-whatsapp:focus {
+            background-color: #128C7E;
+            border-color: #128C7E;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(37, 211, 102, 0.35);
+        }
+        
+        .contact-hours {
+            margin-top: 30px;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            line-height: 1.6;
+        }
+        
+        @media (min-width: 768px) {
+            .contact-hours {
+                font-size: 18px;
+            }
+        }
+        
+        .contact-hours p {
+            margin: 0;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 50px 0 25px;
+        }
+        
+        .footer-logo {
+            height: 35px;
+            width: auto;
+            margin-bottom: 1.5rem;
+            filter: brightness(0) invert(1);
+            display: block;
+        }
+        
+        .footer-section {
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h5 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-section ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-size: 0.95rem;
+        }
+        
+        .footer-section ul li a:hover {
+            color: var(--primary-orange);
+            transform: translateX(5px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary-orange);
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 147, 30, 0.3);
+        }
+        
+        .contact-info {
+            margin-top: 1rem;
+        }
+        
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .contact-info li i {
+            color: var(--primary-orange);
+            margin-top: 4px;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+        }
+        
+        .copyright {
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-align: center;
+        }
+        
+        .copyright-links {
+            margin-top: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .copyright-links a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: inline-block;
+            padding: 0 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .copyright-links a:hover {
+            color: var(--primary-orange);
+        }
+        
+        @media (max-width: 767px) {
+    /* Define the missing animation */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    footer {
+        padding: 50px 0 25px;
+        text-align: center;
+    }
+
+    /* More specific column targeting to avoid conflicts */
+    footer > .container > .row > [class*="col-"],
+    footer .footer-content > [class*="col-"] {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        float: none; /* Prevent Bootstrap float issues */
+    }
+
+    .footer-content {
+        gap: 35px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-section {
+        margin-bottom: 30px;
+        text-align: center;
+        width: 100%;
+        max-width: 300px;
+        animation: fadeInUp 0.5s ease-out forwards;
+        opacity: 0;
+        animation-fill-mode: both;
+    }
+
+    /* Stagger animations for better visual flow */
+    .footer-section:nth-child(1) { animation-delay: 0.1s; }
+    .footer-section:nth-child(2) { animation-delay: 0.2s; }
+    .footer-section:nth-child(3) { animation-delay: 0.3s; }
+    .footer-section:nth-child(4) { animation-delay: 0.4s; }
+
+    .footer-section:last-child {
+        margin-bottom: 0;
+    }
+
+    .footer-logo {
+        height: 35px;
+        margin: 0 auto 1.25rem;
+        display: block;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+    .footer-section h5 {
+        font-size: 1.1rem;
+        margin-bottom: 1.25rem;
+        font-weight: 700;
+        color: white;
+        position: relative;
+        padding-bottom: 10px;
+        text-align: center;
+    }
+
+    .footer-section h5::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 2px;
+        background: var(--primary-orange);
+        border-radius: 2px;
+    }
+
+    .footer-section p {
+        text-align: center;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+        padding: 0 10px;
+        color: rgba(255, 255, 255, 0.75);
+    }
+
+    .footer-section ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    .footer-section ul li {
+        margin-bottom: 0.6rem;
+        text-align: center;
+        width: 100%;
+    }
+
+    .footer-section ul li a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        padding: 0.6rem 0;
+        transition: all 0.3s ease;
+        position: relative;
+        min-width: 120px;
+        min-height: 44px; /* Better touch target */
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .footer-section ul li a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: var(--primary-orange);
+        transition: width 0.3s ease;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    /* Separate hover styles for touch devices */
+    @media (hover: hover) and (pointer: fine) {
+        .footer-section ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .footer-section ul li a:hover {
+            color: var(--primary-orange);
+        }
+        
+        .social-links a:hover {
+            background: var(--primary-orange);
+            color: var(--primary-dark);
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(255, 147, 30, 0.3);
+            border-color: transparent;
+        }
+    }
+
+    /* Active state for touch devices */
+    .footer-section ul li a:active,
+    .social-links a:active {
+        transform: scale(0.98);
+    }
+
+    .social-links {
+        gap: 15px;
+        margin-top: 1.5rem;
+        justify-content: center;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .social-links a {
+        width: 42px;
+        height: 42px;
+        font-size: 1rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transform-origin: center;
+        border-radius: 50%; /* Make circular */
+        -webkit-border-radius: 50%;
+    }
+
+    .contact-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    .contact-info li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.95rem;
+        padding: 0 10px;
+        text-align: center;
+        width: 100%;
+    }
+
+    .contact-info li i {
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+        color: var(--primary-orange);
+    }
+
+    .copyright {
+        padding-top: 30px;
+        margin-top: 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        font-size: 0.85rem;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .copyright p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.5);
+        line-height: 1.5;
+        text-align: center;
+    }
+
+    .copyright-links {
+        margin-top: 0.5rem;
+        gap: 0.75rem;
+        justify-content: center;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .copyright-links a {
+        font-size: 0.85rem;
+        padding: 0.25rem 0.75rem;
+        color: rgba(255, 255, 255, 0.5);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .copyright-links a::after {
+        content: '•';
+        position: absolute;
+        right: -0.5rem;
+        color: rgba(255, 255, 255, 0.2);
+    }
+
+    .copyright-links a:last-child::after {
+        display: none;
+    }
+
+    /* Accessibility improvements */
+    .footer-section ul li a:focus-visible,
+    .social-links a:focus-visible,
+    .copyright-links a:focus-visible {
+        outline: 2px solid var(--primary-orange);
+        outline-offset: 2px;
+    }
+}   </style>
+</head>
+<body>
+    <!-- Navigation - FIXED -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class='navbar-brand' href='/'>
+                <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/cropped-tradie-mate_01b-261x71-1.png" 
+                     alt="TradieMate Logo - Professional photography for Sydney tradies" 
+                     class="logo-img">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#built-for-tradies">Built for Tradies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#service-areas">Service Areas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class='nav-link' href='/portfolio'>Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Testimonials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#faq">FAQ</a>
+                    </li>
+                    <li class="nav-item d-block d-lg-none mt-3">
+                        <a class='header-booking-btn btn-primary w-100' href='/booking'>Get a Quote</a>
+                    </li>
+                    <li class="nav-item d-none d-lg-block ms-3">
+                        <a class='header-booking-btn' href='/booking'>Get a Quote</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="video-background">
+            <video id="heroVideo" autoplay muted loop playsinline preload="metadata">
+                <source src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/TAMARAMA-homepage-hero-2.webm" type="video/webm">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        
+        <div class="gradient-overlay"></div>
+        
+        <div class="hero-content">
+            <h1>Show Your Craftsmanship. Win More Clients.</h1>
+            <p class="lead">Premium photography & videography services exclusively for Sydney tradies</p>
+            <p class="micro-proof">Over 500 projects completed • 98% client satisfaction</p>
+            <div class="hero-buttons">
+                <a href="#contact-form" class="btn btn-primary">
+                    <i class="bi bi-calendar-check me-2"></i>Get a Quote
+                </a>
+                <a href="portfolio.html" class="btn btn-secondary">
+                    <i class="bi bi-images me-2"></i>View Portfolio
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-3 col-6 mb-4 mb-md-0">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="500">0</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4 mb-md-0">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="98">0</div>
+                        <div class="stat-label">Client Satisfaction</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4 mb-md-0">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="24">0</div>
+                        <div class="stat-label">Hour Turnaround</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="5">0</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BUILT FOR TRADIES SECTION -->
+    <section id="built-for-tradies" class="section-padding tradies-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2 class="mb-4">Built Specifically for Tradies</h2>
+                    <p class="lead mb-4">We understand the unique needs of trade businesses and work around your schedule and requirements.</p>
+                    <ul class="feature-list">
+                        <li>Fast turnaround for builder deadlines</li>
+                        <li>Early-morning and on-site availability</li>
+                        <li>Drone + ground coverage</li>
+                        <li>Content that wins more jobs</li>
+                        <li>Trade-focused photography</li>
+                        <li>Flexible scheduling around your projects</li>
+                    </ul>
+                    <a class='btn btn-primary mt-3' href='/booking'>Get Started Today</a>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/505786309_17965460930919242_346004945939808555_n.jpg" 
+                         alt="Tradie working on construction site with drone photography coverage in Sydney" 
+                         class="img-fluid rounded shadow-lg" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>Visual Packages Built for Tradies</h2>
+                <p>High-quality photo, video and drone content designed to help tradies showcase their work and win more clients.</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-camera"></i>
+                        </div>
+                        <h4>Photo Shoots</h4>
+                        <p class="text-muted">Before & afters, progress photos and finished-work shots — perfect for quoting and portfolios.</p>
+                        <div class="price-badge">From $299</div>
+                        <a class='btn btn-primary w-100 mt-3' href='/booking'>Get Quote</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-camera-reels"></i>
+                        </div>
+                        <h4>Video Sessions</h4>
+                        <p class="text-muted">Clean walk-throughs and project videos for websites, socials and client updates.</p>
+                        <div class="price-badge">From $499</div>
+                        <a class='btn btn-primary w-100 mt-3' href='/booking'>Get Quote</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-camera-video"></i>
+                        </div>
+                        <h4>Drone Footage</h4>
+                        <p class="text-muted">Aerial shots for site layout, progress tracking and full-property coverage.</p>
+                        <div class="price-badge">From $399</div>
+                        <a class='btn btn-primary w-100 mt-3' href='/booking'>Get Quote</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-person-video"></i>
+                        </div>
+                        <h4>Interviews</h4>
+                        <p class="text-muted">Client testimonials + walkthroughs that help tradies close more jobs.</p>
+                        <div class="price-badge">From $599</div>
+                        <a class='btn btn-primary w-100 mt-3' href='/booking'>Get Quote</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Areas Section - NEW -->
+    <section id="service-areas" class="service-areas-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Sydney Service Areas</h2>
+                <p>We service tradies across Greater Sydney with fast response times and flexible scheduling</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="area-card">
+                        <div class="area-icon">
+                            <i class="bi bi-buildings"></i>
+                        </div>
+                        <h4>Sydney CBD</h4>
+                        <p>Commercial & residential projects in the heart of Sydney with easy access to all business districts.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="area-card">
+                        <div class="area-icon">
+                            <i class="bi bi-house"></i>
+                        </div>
+                        <h4>Eastern Suburbs</h4>
+                        <p>Bondi, Bronte, Coogee, Paddington, and surrounding areas for luxury residential projects.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="area-card">
+                        <div class="area-icon">
+                            <i class="bi bi-water"></i>
+                        </div>
+                        <h4>Northern Beaches</h4>
+                        <p>Manly, Dee Why, Newport, Palm Beach and coastal properties with spectacular views.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="area-card">
+                        <div class="area-icon">
+                            <i class="bi bi-tree"></i>
+                        </div>
+                        <h4>Inner West</h4>
+                        <p>Newtown, Marrickville, Leichhardt, Balmain and heritage renovation specialists.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="area-card">
+                        <div class="area-icon">
+                            <i class="bi bi-bank"></i>
+                        </div>
+                        <h4>North Shore</h4>
+                        <p>Chatswood, Lane Cove, St Ives, Gordon and premium residential developments.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="area-card">
+                        <div class="area-icon">
+                            <i class="bi bi-building"></i>
+                        </div>
+                        <h4>Western Sydney</h4>
+                        <p>Parramatta, Penrith, Liverpool, Campbelltown for commercial and large-scale projects.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="area-card">
+                        <div class="area-icon">
+                            <i class="bi bi-house-heart"></i>
+                        </div>
+                        <h4>Southern Suburbs</h4>
+                        <p>Sutherland Shire, Cronulla, Miranda, Caringbah for family homes and renovations.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="area-card">
+                        <div class="area-icon">
+                            <i class="bi bi-geo-alt"></i>
+                        </div>
+                        <h4>Greater Sydney</h4>
+                        <p>All surrounding areas with flexible travel arrangements for larger projects.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- "Check Your Location" button removed as requested -->
+        </div>
+    </section>
+
+    <!-- Portfolio Section - UPDATED (Removed first 3 cards and last card) -->
+    <section id="portfolio" class="section-padding bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Work Around Sydney</h2>
+                <p>Professional photography and videography for tradies across Sydney's suburbs</p>
+            </div>
+            
+            <div class="portfolio-grid">
+                <!-- Only 4 images kept as requested -->
+                <div class="portfolio-item">
+                    <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/Mosman-15.jpg" 
+                         alt="Interior design photography for trade professionals in Sydney" 
+                         loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h5>Interior Design</h5>
+                        <p>Residential interior styling</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/LIVING-ROOM-3-1024x683-1.jpg" 
+                         alt="Living room renovation photography in Sydney apartments" 
+                         loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h5>Apartment Living Room</h5>
+                        <p>Complete living space renovation</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/DJI_0164-1024x768-1.jpg" 
+                         alt="Drone aerial photography of Sydney construction site" 
+                         loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h5>Aerial Site Coverage</h5>
+                        <p>Drone progress photography</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/bellevuehill-1-1024x683-1.jpg" 
+                         alt="Bellevue Hill Sydney luxury home photography for builders" 
+                         loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h5>Bellevue Hill Luxury</h5>
+                        <p>High-end residential project</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <a class='btn btn-primary btn-lg px-5 py-3' href='/portfolio'>
+                    <i class="bi bi-chat-right-text me-2"></i>Request More Photos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Tradies Say About Us</h2>
+                <p>Hear from Sydney tradies who've used our services to grow their business</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="testimonial-card">
+                        <div class="stars mb-3">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="quote">"The photos helped us win a $150k renovation project. Best investment we've made in marketing."</p>
+                        <div class="testimonial-author">
+                            <div class="author-info">
+                                <h6 class="mb-0">Mike Johnson</h6>
+                                <small>Builder, North Sydney</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="testimonial-card">
+                        <div class="stars mb-3">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="quote">"Professional, on-time, and understood exactly what we needed. The drone footage was incredible."</p>
+                        <div class="testimonial-author">
+                            <div class="author-info">
+                                <h6 class="mb-0">Sarah Chen</h6>
+                                <small>Landscaper, Eastern Suburbs</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="testimonial-card">
+                        <div class="stars mb-3">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="quote">"Our social media engagement tripled after using their video content. Highly recommend!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-info">
+                                <h6 class="mb-0">David Wilson</h6>
+                                <small>Electrician, Inner West</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section-padding bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Got questions? We've got answers for Sydney tradies</p>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    What types of projects do you cover?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    We cover all trade projects across Sydney - residential renovations, new builds, commercial fitouts, landscaping, plumbing, electrical, and more. If you're a tradie with a project to showcase, we can capture it.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    How long does a typical shoot take?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Most photo shoots take 2-3 hours. Video sessions typically require 3-4 hours. We work around your schedule and aim to minimize disruption to your workday.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    Do you handle drone permits and safety?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes, our drone operators are CASA certified and carry full insurance. We handle all necessary permits and conduct thorough site safety assessments before every flight.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                    How soon can I get my photos/videos?
+                                </button>
+                            </h2>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Edited photos are typically delivered within 24-48 hours. Video projects take 3-5 business days. We offer rush services for urgent projects.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                    What's your service area?
+                                </button>
+                            </h2>
+                            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    We service all of Greater Sydney including Northern Beaches, Eastern Suburbs, Inner West, North Shore, and Western Sydney. Travel fees may apply for locations outside the metro area.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section - FIXED STRUCTURE -->
+    <section id="contact-form" class="contact-form-section">
+        <div class="container">
+            <div class="contact-form-container">
+                <h2>Get Your Custom Quote</h2>
+                <p class="lead">Fill out the form below and we'll get back to you within 2-3 hours with a personalized quote</p>
+                
+                <form action="https://api.web3forms.com/submit" method="POST" id="contactForm" class="needs-validation" novalidate>
+                    <!-- Hidden Web3Forms input -->
+                    <input type="hidden" name="access_key" value="5cacb368-e5bb-4ba5-a805-a332dcf24958">
+                    
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label for="name" class="form-label">Full Name *</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                            <div class="invalid-feedback">
+                                Please enter your name.
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="phone" class="form-label">Phone Number *</label>
+                            <input type="tel" class="form-control" id="phone" name="phone" required>
+                            <div class="invalid-feedback">
+                                Please enter a valid phone number.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label for="email" class="form-label">Email Address *</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                            <div class="invalid-feedback">
+                                Please enter a valid email address.
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="suburb" class="form-label">Suburb / Location *</label>
+                            <input type="text" class="form-control" id="suburb" name="suburb" required placeholder="e.g., Bondi, Parramatta, etc.">
+                            <div class="invalid-feedback">
+                                Please enter your suburb or location.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label for="service" class="form-label">Service Type *</label>
+                            <select class="form-select" id="service" name="service" required>
+                                <option value="" selected disabled>Select a service</option>
+                                <option value="photo-shoot">Photo Shoot</option>
+                                <option value="video-session">Video Session</option>
+                                <option value="drone-footage">Drone Footage</option>
+                                <option value="interviews">Interviews & Testimonials</option>
+                                <option value="package">Complete Package</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Please select a service type.
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="business" class="form-label">Business / Trade Type</label>
+                            <input type="text" class="form-control" id="business" name="business" placeholder="e.g., Builder, Electrician, Landscaper">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="notes" class="form-label">Project Details / Notes</label>
+                        <textarea class="form-control form-textarea" id="notes" name="notes" rows="4" placeholder="Tell us about your project, timeline, specific requirements..."></textarea>
+                    </div>
+                    
+                    <div class="d-grid">
+                        <button type="submit" class="btn-contact">
+                            <i class="bi bi-send me-2"></i>Send Quote Request
+                        </button>
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        <p class="text-muted small">We'll contact you within 2-3 hours during business hours</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA Section - CLEAN FIXED DESIGN -->
+    <section id="contact" class="contact-cta-section">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h2 class="mb-4">Ready to Showcase Your Best Work?</h2>
+                    <p class="lead mb-3">Professional visuals that help you win more projects and grow your business.</p>
+                    <span class="reply-time">We reply within 2–3 hours</span>
+                    
+                    <div class="cta-buttons">
+                        <a href="#contact-form" class="btn-cta btn-cta-primary">
+                            <i class="bi bi-calendar-check me-2"></i>Get a Quote
+                        </a>
+                        <a href="https://wa.me/61434995895" class="btn-cta btn-cta-whatsapp">
+                            <i class="bi bi-whatsapp me-2"></i>Chat on WhatsApp
+                        </a>
+                    </div>
+                    
+                    <div class="contact-hours">
+                        <p class="mb-0">Operating Hours: Mon-Fri 7am-6pm | Sat 8am-4pm</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <a href='/'>
+                        <img src="https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/cropped-tradie-mate_01b-261x71-1.png" 
+                             alt="TradieMate Logo - Professional photography for Sydney tradies" 
+                             class="footer-logo mb-3">
+                    </a>
+                    <p class="text-light">Premium photography & videography services for Sydney tradies. Showcasing craftsmanship since 2018.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/tradie.mate/?hl=en" aria-label="Follow us on Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="https://facebook.com" aria-label="Follow us on Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="https://linkedin.com" aria-label="Connect on LinkedIn"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h5 class="text-white mb-3">Services</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#services" class="text-light text-decoration-none">Photo Shoots</a></li>
+                        <li class="mb-2"><a href="#services" class="text-light text-decoration-none">Video Sessions</a></li>
+                        <li class="mb-2"><a href="#services" class="text-light text-decoration-none">Drone Footage</a></li>
+                        <li><a href="#services" class="text-light text-decoration-none">Interviews</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 mb-4 mb-md-0">
+                    <h5 class="text-white mb-3">Locations</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2 text-light">Sydney CBD</li>
+                        <li class="mb-2 text-light">Eastern Suburbs</li>
+                        <li class="mb-2 text-light">Northern Beaches</li>
+                        <li class="text-light">Inner West</li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-4">
+                    <h5 class="text-white mb-3">Contact Info</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-3">
+                            <i class="bi bi-geo-alt text-primary me-2"></i>
+                            <span class="text-light">Sydney NSW, Australia</span>
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-telephone text-primary me-2"></i>
+                            <a href="#contact" class="text-light text-decoration-none">Get a Quote</a>
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-envelope text-primary me-2"></i>
+                            <a href="mailto:hello@tradiemate.com.au" class="text-light text-decoration-none">hello@tradiemate.com.au</a>
+                        </li>
+                        <li>
+                            <i class="bi bi-clock text-primary me-2"></i>
+                            <span class="text-light">Mon-Fri: 7am-6pm<br>Sat: 8am-4pm</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="row mt-5 pt-4 border-top border-secondary">
+                <div class="col-md-6">
+                    <p class="text-light mb-0">&copy; 2023 TradieMate. All rights reserved. ABN: 12 345 678 901</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-light text-decoration-none me-3">Privacy Policy</a>
+                    <a href="#" class="text-light text-decoration-none me-3">Terms of Service</a>
+                    <a href="#" class="text-light text-decoration-none">Site Map</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Mobile first adjustments
+            function isMobile() {
+                return window.innerWidth < 768;
+            }
+            
+            // Smooth scrolling for navigation links - UPDATED OFFSET
+            $('a.nav-link, .btn-primary, .btn-secondary').on('click', function(e) {
+                if (this.hash !== '' && this.hash !== '#') {
+                    e.preventDefault();
+                    const hash = this.hash;
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top - 70 // Updated to match new header height
+                    }, 800);
+                    
+                    // Close mobile menu when clicking a link
+                    if ($(window).width() < 992) {
+                        $('.navbar-collapse').collapse('hide');
+                    }
+                }
+            });
+            
+            // Video loading - simplified (no loading circle)
+            const heroVideo = document.getElementById('heroVideo');
+            
+            if (heroVideo) {
+                heroVideo.addEventListener('error', function(e) {
+                    console.log('Video error:', e);
+                });
+                
+                // Force video to play on mobile
+                heroVideo.play().catch(function(error) {
+                    console.log('Video play failed:', error);
+                });
+            }
+            
+            // Animate stats counter
+            function animateCounter() {
+                $('.stat-number').each(function() {
+                    const $this = $(this);
+                    const countTo = parseInt($this.attr('data-count'));
+                    const duration = 2000;
+                    const steps = 60;
+                    const stepTime = duration / steps;
+                    let current = 0;
+                    const increment = countTo / steps;
+                    
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= countTo) {
+                            $this.text(countTo);
+                            clearInterval(timer);
+                        } else {
+                            $this.text(Math.floor(current));
+                        }
+                    }, stepTime);
+                });
+            }
+            
+            // Trigger counter animation when in viewport
+            function isElementInViewport(el) {
+                if (!el) return false;
+                const rect = el.getBoundingClientRect();
+                return (
+                    rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8 &&
+                    rect.bottom >= 0
+                );
+            }
+            
+            let statsAnimated = false;
+            $(window).scroll(function() {
+                if (!statsAnimated && isElementInViewport($('.stat-item')[0])) {
+                    animateCounter();
+                    statsAnimated = true;
+                }
+                
+                // Navbar scroll effect - fixed
+                if ($(window).scrollTop() > 50) {
+                    $('.navbar').css({
+                        'background-color': 'rgba(255, 255, 255, 0.98)',
+                        'box-shadow': '0 2px 30px rgba(1, 1, 0, 0.1)'
+                    });
+                } else {
+                    $('.navbar').css({
+                        'background-color': 'rgba(255, 255, 255, 0.98)',
+                        'box-shadow': '0 2px 30px rgba(1, 1, 0, 0.1)'
+                    });
+                }
+            });
+            
+            // Mobile menu improvements
+            $('.navbar-nav .nav-link').on('click', function() {
+                if ($(window).width() < 992) {
+                    $('.nav-link').removeClass('active');
+                    $(this).addClass('active');
+                    $('.navbar-collapse').collapse('hide');
+                }
+            });
+            
+            // Set active nav link based on scroll position - UPDATED OFFSET
+            $(window).scroll(function() {
+                var currentPosition = $(this).scrollTop();
+                
+                $('section').each(function() {
+                    var top = $(this).offset().top - 90; // Adjusted for smaller header
+                    var bottom = top + $(this).outerHeight();
+                    var id = $(this).attr('id');
+                    
+                    if (currentPosition >= top && currentPosition <= bottom) {
+                        $('.nav-link').removeClass('active');
+                        $('a[href="#' + id + '"]').addClass('active');
+                    }
+                });
+            });
+            
+            // Fix iOS video autoplay
+            if (/iPad|iPhone|iPod/.test(navigator.userAgent) && heroVideo) {
+                heroVideo.setAttribute('playsinline', '');
+                heroVideo.setAttribute('webkit-playsinline', '');
+                heroVideo.setAttribute('muted', '');
+                heroVideo.setAttribute('autoplay', '');
+            }
+            
+            // Mobile touch improvements
+            $('a, button').on('touchstart', function() {
+                $(this).addClass('touch-active');
+            }).on('touchend', function() {
+                $(this).removeClass('touch-active');
+            });
+            
+            // Prevent zoom on input focus in iOS
+            if (isMobile()) {
+                $('input, textarea, select').on('focus', function() {
+                    $(this).css('font-size', '16px');
+                });
+            }
+            
+            // Lazy loading for images
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src || img.src;
+                            imageObserver.unobserve(img);
+                        }
+                    });
+                }, {
+                    rootMargin: '50px 0px',
+                    threshold: 0.1
+                });
+                
+                images.forEach(img => {
+                    if (!img.src) {
+                        img.src = img.dataset.src;
+                    }
+                    imageObserver.observe(img);
+                });
+            }
+            
+            // Contact form validation for Web3Forms
+            (function() {
+                'use strict';
+                
+                var form = document.getElementById('contactForm');
+                
+                if (form) {
+                    form.addEventListener('submit', function(event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        } else {
+                            // Form is valid - show success message after submission
+                            setTimeout(function() {
+                                alert('Thank you for your inquiry! We will contact you within 2-3 hours.');
+                                form.reset();
+                                form.classList.remove('was-validated');
+                            }, 1000);
+                        }
+                        
+                        form.classList.add('was-validated');
+                    }, false);
+                }
+            })();
+            
+            // Phone number formatting
+            $('#phone').on('input', function() {
+                let value = $(this).val().replace(/\D/g, '');
+                if (value.length > 0) {
+                    value = value.match(/.{1,4}/g).join(' ');
+                }
+                $(this).val(value);
+            });
+            
+            // Trigger initial scroll check
+            $(window).trigger('scroll');
+            
+            // Mobile menu close on outside click
+            $(document).on('click', function(e) {
+                if ($(window).width() < 992) {
+                    if (!$(e.target).closest('.navbar').length) {
+                        $('.navbar-collapse').collapse('hide');
+                    }
+                }
+            });
+            
+            // Prevent empty hash links
+            $('a[href="#"]').on('click', function(e) {
+                e.preventDefault();
+            });
+            
+            // Add loading class to body for initial load
+            $('body').addClass('loaded');
+        });
+        
+        // Handle page load
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+            
+            // Force video to play if it's not playing
+            const heroVideo = document.getElementById('heroVideo');
+            if (heroVideo && heroVideo.paused) {
+                heroVideo.play().catch(e => console.log('Video play on load failed:', e));
+            }
+        });
+    </script>
+</body>
+</html>        }
         
         html {
             scroll-behavior: smooth;
