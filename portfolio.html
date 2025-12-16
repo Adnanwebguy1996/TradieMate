@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1441,16 +1442,16 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-    // ============================================
+        // ============================================
     // 🎯 UPDATED IMAGE URLS WITH YOUR REQUESTS
     // ============================================
     
     const projectGalleries = {
-        // Project 1: Balgowlah - Updated thumbnail and added new image
+        // Project 1: Balgowlah - UPDATED: Removed wrong photos from other jobs
         balgowlah: {
             title: "Balgowlah",
             theme: "Modern Luxury",
-            thumbnail: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/1B8A6749.jpg", // Updated thumbnail
+            thumbnail: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/1B8A6749.jpg",
             images: [
                 {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/504335443_972883554782421_4940353200773861363_n.jpg", caption: "Balgowlah Living Area"},
                 {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/504456322_489424747565749_4930958807677657524_n.jpg", caption: "Balgowlah Kitchen Design"},
@@ -1462,63 +1463,63 @@
                 {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/dji-0156-768x576-1-2.jpg", caption: "Balgowlah Garden Area"},
                 {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/dji-0150-1024x768-1-2-768x576-1.jpg", caption: "Balgowlah Pool View"},
                 {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/dji-0145-768x576-1-2.jpg", caption: "Balgowlah Outdoor Entertaining"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/DJI_0150.jpg", caption: "Balgowlah Aerial Overview"} // Added new image
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/DJI_0150.jpg", caption: "Balgowlah Aerial Overview"}
             ]
         },
         
-        // Project 2: Drummoyne
+        // Project 2: Drummoyne - UPDATED: Reversed the order of photos
         drummoyne: {
             title: "Drummoyne",
             theme: "Contemporary Renovation",
             thumbnail: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/SIDE-STAIRS-2.jpg",
             images: [
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/SIDE-STAIRS-2-NEW.jpg", caption: "Staircase Design"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/STAIRS-NEW.jpg", caption: "Modern Staircase"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/BATHROOM-1-1.jpg", caption: "Main Bathroom"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/BATHROOM-2-1.jpg", caption: "Bathroom Vanity"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/BATHROOM-3.jpg", caption: "Bathroom Shower"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/BATHROOM-4.jpg", caption: "Bathroom Tile Detail"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/CORRIDOR-1-1.jpg", caption: "Corridor Lighting"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/DECK-2.jpg", caption: "Outdoor Deck"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/DINING-1.jpg", caption: "Dining Area"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/DINING-2.jpg", caption: "Formal Dining"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/KITCHEN-1-1.jpg", caption: "Modern Kitchen"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/KITCHEN-2-1.jpg", caption: "Kitchen Island"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/OUTSIDE-1.jpg", caption: "Exterior Facade"},
                 {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/OUTDOOR-TILES.jpg", caption: "Outdoor Tiling"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/OUTSIDE-1.jpg", caption: "Exterior Facade"}
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/KITCHEN-2-1.jpg", caption: "Kitchen Island"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/KITCHEN-1-1.jpg", caption: "Modern Kitchen"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/DINING-2.jpg", caption: "Formal Dining"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/DINING-1.jpg", caption: "Dining Area"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/DECK-2.jpg", caption: "Outdoor Deck"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/CORRIDOR-1-1.jpg", caption: "Corridor Lighting"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/BATHROOM-4.jpg", caption: "Bathroom Tile Detail"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/BATHROOM-3.jpg", caption: "Bathroom Shower"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/BATHROOM-2-1.jpg", caption: "Bathroom Vanity"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/BATHROOM-1-1.jpg", caption: "Main Bathroom"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/STAIRS-NEW.jpg", caption: "Modern Staircase"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/SIDE-STAIRS-2-NEW.jpg", caption: "Staircase Design"}
             ]
         },
         
-        // Project 3: Kenthurst
+        // Project 3: Kenthurst - UPDATED: Reversed the order of photos
         kenthurst: {
             title: "Kenthurst",
             theme: "Rural Retreat",
             thumbnail: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/CARPORT-1.jpg",
             images: [
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/BEDROOM-2.jpg", caption: "Guest Bedroom"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/CARPORT-2.jpg", caption: "Carport Design"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/ENSUITE-1.jpg", caption: "Ensuite Bathroom"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/ENSUITE-2.jpg", caption: "Ensuite Vanity"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/ENSUITE-3.jpg", caption: "Ensuite Shower"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/FIREPLACE-2.jpg", caption: "Fireplace Feature"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/FIREPLACE-3.jpg", caption: "Living Room Fireplace"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/FRONT-DOOR-1.jpg", caption: "Entryway"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/KITCHEN-1-2.jpg", caption: "Country Kitchen"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/LAUNDRY-1-1.jpg", caption: "Laundry Room"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/MAIN-BATHROOM-1.jpg", caption: "Main Bathroom"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/MAIN-ROOM-1.jpg", caption: "Great Room"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/MAIN-ROOM-2.jpg", caption: "Living Area"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/OUTDOOR-1.jpg", caption: "Outdoor Landscape"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/BARN-DOOR-1.jpg", caption: "Barn Door Feature"},
                 {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/OUTDOOR-5.jpg", caption: "Garden View"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/BARN-DOOR-1.jpg", caption: "Barn Door Feature"}
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/OUTDOOR-1.jpg", caption: "Outdoor Landscape"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/MAIN-ROOM-2.jpg", caption: "Living Area"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/MAIN-ROOM-1.jpg", caption: "Great Room"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/MAIN-BATHROOM-1.jpg", caption: "Main Bathroom"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/LAUNDRY-1-1.jpg", caption: "Laundry Room"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/KITCHEN-1-2.jpg", caption: "Country Kitchen"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/FRONT-DOOR-1.jpg", caption: "Entryway"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/FIREPLACE-3.jpg", caption: "Living Room Fireplace"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/FIREPLACE-2.jpg", caption: "Fireplace Feature"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/ENSUITE-3.jpg", caption: "Ensuite Shower"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/ENSUITE-2.jpg", caption: "Ensuite Vanity"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/ENSUITE-1.jpg", caption: "Ensuite Bathroom"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/CARPORT-2.jpg", caption: "Carport Design"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/BEDROOM-2.jpg", caption: "Guest Bedroom"}
             ]
         },
         
-        // Project 4: McMahons Point - Updated thumbnail
+        // Project 4: McMahons Point - GOOD AS IS
         mcmahons: {
             title: "McMahons Point",
             theme: "Waterfront Luxury",
-            thumbnail: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/LIVING-ROOM-4-2.jpg", // Updated thumbnail
+            thumbnail: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/LIVING-ROOM-4-2.jpg",
             images: [
                 {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/LIVING-ROOM-3-1024x683-1.jpg", caption: "Living Room with Water View"},
                 {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/KITCHEN-1-3.jpg", caption: "Gourmet Kitchen"},
@@ -1537,28 +1538,28 @@
             ]
         },
         
-        // Project 5: Mosman
+        // Project 5: Mosman - UPDATED: Reversed the order of photos
         mosman: {
             title: "Mosman",
             theme: "Heritage Restoration",
             thumbnail: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/Mosman-15-1.jpg",
             images: [
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.51-AM-2.jpeg", caption: "Restored Facade"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.51-AM.jpeg", caption: "Heritage Details"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.52-AM.jpeg", caption: "Living Room"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.53-AM-1.jpeg", caption: "Original Fireplace"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.53-AM-2.jpeg", caption: "Period Features"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.53-AM.jpeg", caption: "Dining Room"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.54-AM.jpeg", caption: "Kitchen Renovation"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.55-AM-1.jpeg", caption: "Modern Extension"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.55-AM.jpeg", caption: "Garden View"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.56-AM-1.jpeg", caption: "Master Suite"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.56-AM.jpeg", caption: "Original Flooring"},
                 {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.56-AM-2.jpeg", caption: "Ensuite Bathroom"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.56-AM.jpeg", caption: "Original Flooring"}
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.56-AM-1.jpeg", caption: "Master Suite"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.55-AM.jpeg", caption: "Garden View"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.55-AM-1.jpeg", caption: "Modern Extension"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.54-AM.jpeg", caption: "Kitchen Renovation"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.53-AM.jpeg", caption: "Dining Room"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.53-AM-2.jpeg", caption: "Period Features"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.53-AM-1.jpeg", caption: "Original Fireplace"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.52-AM.jpeg", caption: "Living Room"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.51-AM.jpeg", caption: "Heritage Details"},
+                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-09-at-6.04.51-AM-2.jpeg", caption: "Restored Facade"}
             ]
         },
         
-        // Project 6: Bellevue Hill
+        // Project 6: Bellevue Hill - UPDATED: Replaced wrong photos and removed small ones
         bellevue: {
             title: "Bellevue Hill",
             theme: "Architectural Excellence",
@@ -1567,18 +1568,17 @@
                 {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/1b8a6911-768x512-1.jpg", caption: "Architectural Facade"},
                 {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/1b8a7048-1-scaled-1-300x200-2.jpg", caption: "Garden Oasis"},
                 {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/hkhkjk1b8a6320-scaled-1-768x512-1.jpg", caption: "Entry Statement"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/jhkljkljl1b8a6346-300x200-1.jpg", caption: "Custom Detailing"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/lhjlhlhl1b8a6412-scaled-1-150x150-1.jpg", caption: "Material Selection"},
                 {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/1b8a6412-scaled-1-768x512-1.jpg", caption: "Courtyard View"},
                 {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/1b8a6328-scaled-1-768x512-1.jpg", caption: "Exterior Lighting"},
                 {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/1b8a6517-scaled-1-768x512-1.jpg", caption: "Landscape Design"},
                 {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/asasasadetails1-768x512-1.jpg", caption: "Architectural Details"},
-                {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/dfsfsfdfdfmosman2-768x512-1-768x512-1.jpg", caption: "Interior Flow"},
                 {src: "https://dev-dutchbarn.pantheonsite.io/wp-content/uploads/2025/12/edit-00261-768x1152-1.jpg", caption: "Custom Finishes"}
+                // Removed: jhkljkljl1b8a6346-300x200-1.jpg (too small)
+                // Removed: lhjlhlhl1b8a6412-scaled-1-150x150-1.jpg (too small)
+                // Removed: dfsfsfdfdfmosman2-768x512-1-768x512-1.jpg (wrong project)
             ]
         }
     };
-
     // ============================================
     // ⚙️ SYSTEM CODE - GALLERY FUNCTIONALITY
     // ============================================
@@ -2016,4 +2016,4 @@
     });
     </script>
 </body>
-    </html>
+</html>
